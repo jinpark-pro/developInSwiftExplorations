@@ -32,3 +32,15 @@
   - But an error indicator having an idea how to fix the error on Xcode is a red circle with a white dot in it.
     - a Fix-it will fix errors in your code, but the fix might not be what you meant to do.
     - The Fix-it is trying to be helpful, but it could be suggesting that you make something mutable that you wanted to stay immutable.
+- special string syntax for long text
+
+  - ```swift
+      let manyLineString =
+      """
+      This is a long string.
+      It can be interpolated \(1) or any number of times. You don't have to escape "quote marks."
+
+      And it can contain empty lines, like the one above.
+      Just use three quotes on their own lines to open and close it.
+      """
+    ```
