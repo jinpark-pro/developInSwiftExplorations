@@ -65,4 +65,28 @@
    - Inspector
      - To find out more details about the item currently selected or displayed in the editor
      - Especially to edit user interface files in Interface Builder
-     -
+4. Add a Photo
+   1. Select Asset on teh navigator area.
+   2. Drag in image files
+5. Edit the Storyboard
+   1. Open the storyboard by selecting `Main` from the list of files in the project navigator.
+   2. Change the Device.
+      1. Click the Devices icon at the bottom of the window and select iPhone 13 Pro.
+   3. Select the main view.
+      1. Click anywhere in the scene to select its main view.
+      2. In the Document Outline to the left, you'll notice that the View Controller Scene expands to show the items it contains, and the View item is highlighted.
+   4. Show the Attributes inspector.
+   5. Adjust the background color.
+   6. Run you app
+6. Adding a Frame
+   1. Open the Object library, type `UIView`
+   2. Drag `View` in the center of the view controller.
+   3. Resize to make the view large enough to display your photo.
+   4. In the Attributes Inspector, select the menu next to Background, select Custom, and choose a color from the color picker.
+7. Adding and Configuring an Image View
+   1. Open the Object library, type `image`
+   2. Drag `Image View` into the frame view.
+   3. Resize the image view until the frame behind it is the right width.
+   4. In the Attributes Inspector, choose the image you added earlier at the top of the inspector.
+   5. Select Content Mode to Aspect Fill.
+   - <img src="./resources/images/photo_frame.png" alt="Photo Frame" width="200" />
