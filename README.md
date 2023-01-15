@@ -87,6 +87,9 @@
    1. Open the Object library, type `image`
    2. Drag `Image View` into the frame view.
    3. Resize the image view until the frame behind it is the right width.
-   4. In the Attributes Inspector, choose the image you added earlier at the top of the inspector.
-   5. Select Content Mode to Aspect Fill.
-   - <img src="./resources/images/photo_frame.png" alt="Photo Frame" width="200" />
+   4. In the Attributes Inspector
+      1. Choose the image you added earlier at the top of the inspector.
+      2. Select Content Mode to Aspect Fill.
+         - <img src="./resources/images/photo_frame.png" alt="Photo Frame" width="200" />
+
+### Design For People
