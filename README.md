@@ -93,3 +93,33 @@
          - <img src="./resources/images/photo_frame.png" alt="Photo Frame" width="200" />
 
 ### Design For People
+
+## Algorithms
+
+### Get Started With Algorithms
+
+- An algorithm is a set of instructions for accomplishing a task.
+- There are three essential building blocks in all algorithms: `sequencing`, `selection`, and `iteration`.
+- Sequencing
+  - Arranging instructions in order is called sequencing, and it's one of basic techniques for creating an algorithm.
+  - Swift uses sequencing as it executes your code line by line and from top to bottom.
+- Selection
+  - Selection lets you describe multiple paths through your algorithm.
+  - By using selection, you can examine the conditions at the time your code runs and your program will proceed along one of many possible paths.
+- Functions
+  - In Swift, you use functions to group instructions together and give them a name.
+  - By breaking a problem into pieces, you can write functions to solve each piece independently.
+  - You can combine them to solve the bigger problem.
+  - The approach of grouping instructions into a unit and giving that unit a name is call `procedural abstraction`.
+  - Remember, the key feature of any kind of abstraction is to hide, or encapsulate, the details of how something works.
+  - After you've written and tested a function, you no longer have to think about how it works, just about what it does.
+- Types
+  - Swift uses the term type to describe each different kind of value.
+- Parameters
+  - You use parameters to define the input that goes into a function.
+  - Each parameter for a function has a type.
+  - By adding parameters to functions, you can make them more flexible so they can be used in a variety of situations.
+- Making Decisions with Booleans
+  - The yes-and-no answers are represented in Swift as "true" and "false."
+  - They are known as Boolean values, named after George Boole, a 19th century mathematician.
+  - The Bool type is used in Swift to represent Boolean values.
