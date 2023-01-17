@@ -123,3 +123,13 @@
   - The yes-and-no answers are represented in Swift as "true" and "false."
   - They are known as Boolean values, named after George Boole, a 19th century mathematician.
   - The Bool type is used in Swift to represent Boolean values.
+
+### Play with Programs
+
+- Functions
+  - Reusability is a large part of what makes functions so powerful.
+  - Any identifier followed by parentheses, `()`, is a function.
+  - The code between the two braces, `{...}`, is called the body of the function.
+  - Nothing is displayed in the results because declaring a function only describes what the function would do if it ever run.
+  - To actually run the code, you have to call the function. Typing the name of the function will call the function.
+  - Decomposition: break a single long list down into multiple smaller lists.
