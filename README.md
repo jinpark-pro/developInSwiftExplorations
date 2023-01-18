@@ -133,3 +133,22 @@
   - Nothing is displayed in the results because declaring a function only describes what the function would do if it ever run.
   - To actually run the code, you have to call the function. Typing the name of the function will call the function.
   - Decomposition: break a single long list down into multiple smaller lists.
+- Types
+  - String
+  - Number is Int, an abbreviation of integer.
+  - Swift keeps track of the type of the variable and makes sure you don't accidentally try to assign a value of a different type.
+    - The value of a variable can change, but the type of the variable can't change.
+  - Type Safety: Swift won't let you write code that uses types incorrectly or unexpectedly.
+    - Another instance of type safety would occur if you tried to add values of different types.
+  - A literal is the simplest form of expression.
+  - Swift makes assumptions about what types the literals are meant to be.
+    - Any value inside double quotes will be treated as a String, and a whole number will be treated as an Int.
+    - Type Inference: Swift uses context clues from code to infer what type something is.
+  - Check the type by holding down the `Option` key while clicking a variable.
+  - You can add an extra piece of information, called a `type annotation`, to tell Swift exactly what type you want to use.
+    - `let annotationDouble: Double = 20`
+    - `annotationDouble` is a Double, even though there is no decimal point, because of the type annotation.
+  - All type names begin with a capital letter. If there are multiple words the first letter of each word is also capitalized.
+    - This is slightly different from the rules for naming constants, variables, and functions, which all begin with lower-case letters.
+  - Types and capabilities can be grouped together into collections called `frameworks` or `libraries`.
+    - To use a framework in your program, you have to import it like `import Foundation`.
