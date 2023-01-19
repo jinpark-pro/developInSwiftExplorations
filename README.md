@@ -127,13 +127,16 @@
 ### Play with Programs
 
 - Functions
+
   - Reusability is a large part of what makes functions so powerful.
   - Any identifier followed by parentheses, `()`, is a function.
   - The code between the two braces, `{...}`, is called the body of the function.
   - Nothing is displayed in the results because declaring a function only describes what the function would do if it ever run.
   - To actually run the code, you have to call the function. Typing the name of the function will call the function.
   - Decomposition: break a single long list down into multiple smaller lists.
+
 - Types
+
   - String
   - Number is Int, an abbreviation of integer.
   - Swift keeps track of the type of the variable and makes sure you don't accidentally try to assign a value of a different type.
@@ -152,3 +155,37 @@
     - This is slightly different from the rules for naming constants, variables, and functions, which all begin with lower-case letters.
   - Types and capabilities can be grouped together into collections called `frameworks` or `libraries`.
     - To use a framework in your program, you have to import it like `import Foundation`.
+
+- Parameters and Results
+
+  - Declare: `func functionName(parameter: Type) {...}`
+  - Call: `functionName(parameter: argument)`
+  - Passing a value back when a function is finished is called returning a value. To declare a function that returns a value, you have to add two things to your code.
+    - After your list of parameters, add a text arrow `->` and the type of value to be returned.
+    - Then you have to end the body of the function with a return statement that gives that type fo value back.
+    - `func functionName(parameter: Type) -> Type { ... return ...}`
+    - Your function can have multiple parameters, but it can only return one value.
+  - When a function does some kind of work that's unrelated to a return value, like printing to the console, the work is call a `side effect`.
+    - When you name a function, it's good to somehow include the side effect in the name.
+    - If a function has no return value, all of its work is considered a side effect.
+    - A function that has a side effect should have a verb in the name.
+  - The order that code executes in a program is called `control flow`.
+  - When your code calls a function, the following line doesn't execute until after the function returns.
+  - `func functionName(argumentLabel parameterName: Type) {...}`
+
+    - ```swift
+        func printHello(to name: String) {
+          print("Hello " + name)
+        }
+        printHello(to: "Chris")
+      ```
+
+  - To declare a parameter without an argument label, you use the underscore `_` where the argument label would go.
+  - In Swift, the underscore means "I don't care about this item because I'm not going to use it."
+
+    - ```swift
+        func printHelloTo(_ name: String) {
+          print("Hello " + name)
+        }
+        printHelloTo("John")
+      ```
