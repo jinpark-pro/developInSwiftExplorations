@@ -236,3 +236,5 @@
     - A function is reusable, which saves on reading and typing.
     - A function can be understood on its own, so you don't have to think of every single step.
     - If a function is changed, the changes apply everywhere the function is used.
+
+- Data Visualization
