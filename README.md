@@ -238,3 +238,45 @@
     - If a function is changed, the changes apply everywhere the function is used.
 
 - Data Visualization
+
+### Build a QuestionBot App
+
+- Rather than running the app several times as you develop your code, you can use a playground to get your question answerer up and running more quickly.
+- You can see multiple results instantly, and there's no need to return.
+- Once you're happy with your code, you'll use it to replace the existing code segment in QuestionBot.
+
+- QuestionAnswerer.playground
+
+  - ```swift
+      import Foundation
+      func responseTo(question: String) -> String {
+          let lowerQuestion = question.lowercased()
+
+          if lowerQuestion.hasPrefix("hello") {
+              return "Why, hello there"
+          } else if lowerQuestion.hasPrefix("where are the cookies?") {
+              return "In the cookie jar!"
+          } else if lowerQuestion.hasPrefix("where") {
+              return "To the North"
+          } else if lowerQuestion.hasPrefix("can i") {
+              return "Yes, you can"
+          } else if lowerQuestion.contains("your name") {
+              return "My name is QuestionBot."
+          } else if lowerQuestion.contains("what time") {
+              return "\(Calendar.current.component(.hour, from: Date())):\(Calendar.current.component(.minute, from: Date()))"
+          } else {
+              if lowerQuestion.count % 2 == 0 {
+                  return "Thank you for asking, but I have no idea."
+              } else {
+                  return "Please ask it tomorrow."
+              }
+          }
+      }
+
+      responseTo(question: "Hello there")
+      responseTo(question: "Where are the cookies?")
+      responseTo(question: "Where should I go on holiday?")
+      responseTo(question: "Can I have a cookie?")
+      responseTo(question: "Should I go?")
+      responseTo(question: "What time is it?")
+    ```
