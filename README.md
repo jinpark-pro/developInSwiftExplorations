@@ -293,3 +293,16 @@
   - The app doesn't build with an error that reads **Missing return in a function expected to return 'String'**. You probably pasted an entire function inside another one.
   - The app doesn't build with an error that reads **Closure expression is unused** or **Expressions are not allowed at the top level**. You probably pasted the body of your function into a file without any context - with no `func` keyword.
   - The app doesn't build with an error that reads **Use of unresolved identifier 'MyQuestionAnswerer'**. You probably replaced the entire `struct MyQuestionAnswerer` with the `responseToQuestion` function or its body.
+
+#### Customizing the Interface
+
+- Open the Main.storyboard, and make sure the Attributes inspector is visible.
+- Background Color
+  - Select View under View Controller, and use the Background attribute to choose a different color.
+- Robot Head
+  - Select the Robot Head label under Stack View
+  - Using the Text attribute in the inspector, change the emoji to a different character.
+  - Press `Ctrl + CMD + Space` to bring up the emoji picker.
+- Welcome Message
+  - Select Response Label in the Document Outline and change the opening text.
+  - Pressing `Ctrl + Return` to add a new line if you need one.
