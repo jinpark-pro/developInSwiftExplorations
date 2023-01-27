@@ -306,3 +306,14 @@
 - Welcome Message
   - Select Response Label in the Document Outline and change the opening text.
   - Pressing `Ctrl + Return` to add a new line if you need one.
+
+### Design an Experience
+
+- Design isn't just about how a product looks and feels; it's also about how it works.
+- A crucial step in designing successful computing innovations is understanding the people who will use the innovation.
+- When your design incorporates diverse perspectives, it will improve the experience for all users.
+- Apple has four key principles around designing for user privacy:
+  - Request consent when your app needs personal data.
+  - Be transparent about how personal data will be used.
+  - Give the user control over their personal data and protect the personal data you collect.
+  - Use the minimum amount of personal data required.
