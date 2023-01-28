@@ -317,3 +317,18 @@
   - Be transparent about how personal data will be used.
   - Give the user control over their personal data and protect the personal data you collect.
   - Use the minimum amount of personal data required.
+
+#### Plan
+
+- You need to consider how your main screens will look. Refer back to your design mood board for inspiration, and sketch a few screens.
+- <img src="./resources/images/initial_idea.png" alt="Initial Idea" width="500" />
+- Show how a user will move through the screens - a storyboard.
+  - You can create a storyboard by organizing the screens in a flowchart and indicating the graphic elements that enable users to make choices within the app.
+  - <img src="./resources/images/storyboard.png" alt="Storyboard" width="500" />
+
+#### Create a User Experience Flowchart
+
+- Take photos or screenshots of your screens and add them to Keynote.
+- The flowchart should show how a user can move through your app based on the choices they make.
+- Annotate your storyboard to explain key features of the app, and highlight the accessibility features you've incorporated.
+- Apple provides [resources](https://developer.apple.com/accessibility/) to support developers to build accessible apps.
