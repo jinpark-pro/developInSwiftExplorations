@@ -332,3 +332,13 @@
 - The flowchart should show how a user can move through your app based on the choices they make.
 - Annotate your storyboard to explain key features of the app, and highlight the accessibility features you've incorporated.
 - Apple provides [resources](https://developer.apple.com/accessibility/) to support developers to build accessible apps.
+
+#### Review and Iterate
+
+- Simplification is a key idea in the app design process.
+- If you're very clear about purpose, you can simplify your design so your app fits seamlessly into the flow of the user's activity.
+- Share your storyboard with your peers or mentors.
+  - As they explore your app design, encourage them to ask you How? Why? and What if? questions. You can record their responses or annotate your storyboard with their queries and ideas.
+  - With a partner, take turns examining each other’s designs through the lens of someone who has a disability. (You can consider four broad categories: vision; hearing; physical and motor; and learning and literacy.)
+  - Each of you should adopt a specific persona and explain your requirements when using an app. Then work through the app and give feedback from that person’s point of view. Together, identify ways you could improve the app to make it more inclusive.
+- App design is an iterative process, and identifying problems and issues can be seen as an opportunity rather than a setback. If you need to, return to the brainstorming phase and use your new insights to revise your app idea. Great apps are the product of extensive ideation, exploration, testing, and revision.
