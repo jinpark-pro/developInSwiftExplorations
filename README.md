@@ -342,3 +342,54 @@
   - With a partner, take turns examining each other’s designs through the lens of someone who has a disability. (You can consider four broad categories: vision; hearing; physical and motor; and learning and literacy.)
   - Each of you should adopt a specific persona and explain your requirements when using an app. Then work through the app and give feedback from that person’s point of view. Together, identify ways you could improve the app to make it more inclusive.
 - App design is an iterative process, and identifying problems and issues can be seen as an opportunity rather than a setback. If you need to, return to the brainstorming phase and use your new insights to revise your app idea. Great apps are the product of extensive ideation, exploration, testing, and revision.
+
+## Organizing Data
+
+### Get Started With Organizing Data
+
+#### Instances, Methods, and Properties
+
+- Types enable you to understand what each value in your code represents.
+- Type safety in Swift ensures that you use values of the right type in the right place.
+- Types can also define or describe the attributes and behaviors of a particular kind of thing - in other words, what a type is, or knows (its attributes), and what it does (its behaviors).
+- In Swift, the attributes of a type are called `properties`, and its behaviors are called `methods`.
+- Even though the type describes the properties and methods of a particular kind of thing, each concrete example of the type is a separate, independent instance of the type.
+
+#### Lists and Arrays
+
+- In Swift, such a collection is called an array.
+- An array is a collection of individual instances of just one ypte.
+- Each instance in the array is called an element.
+- Each element in an array has a unique index, which identifies its location in the array respective to the first element, which is always located at index 0.
+
+#### Algorithms: Iteration
+
+- In algorithms, repeating the same swquence of steps multiple times is known as iteration.
+- In Swift, as well as all other programming languages, iteration is critical building block of algorithms.
+- Remeber - algorithms have three basic building blocks: sequencing, selection, and iteration.
+
+#### Loops
+
+- The term for iteration in most programming languages, including Swift, is a loop.
+- A loop defines a code segment that will be repeated - its body - and a determination for when to exit the loop.
+
+#### Working With Arrays - Searches
+
+- It can be very useful to apply a function to every item in an array, but what if you just wanted to perform that function on one particular item?
+- You would need to find that item's location in the array - its index - and specify that you were performing the function on the item at that location.
+- Finding an item in an array (or determining that it's not there) is called searching, and there are multiple algorithms for performing a search on an array.
+- Linear search
+  - It isn't as efficient as binary search because it works by evaluating the items in the list one after the other - which means it might have to evaluate the entire list before it finishes.
+- Binary search
+  - The approach works by successively splitting finding the middle element and comparing the sought value to the middle element.
+  - If the value is greater, the first half of the list can be eliminated.
+  - If the value is less, the second half can be eleminated.
+  - If the value is equal to the middle element, the algorithm has found the value in the list.
+- Binary searches are more efficient that linear searches, especially with large amounts of data, but require that the data be in sorted order.
+
+#### Defining Your Own Types With Structs
+
+- In Swift, you can create types of your own that group lots of attributes together.
+- A very common way to create a new type in Swift is to define a `struct`.
+- When you make your own struct, you define properties that represent all the attributes of the thing they represent.
+- In the definition of your struct, you'll also probably include methods to perform useful tasks.
