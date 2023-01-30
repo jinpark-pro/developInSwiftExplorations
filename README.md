@@ -393,3 +393,93 @@
 - A very common way to create a new type in Swift is to define a `struct`.
 - When you make your own struct, you define properties that represent all the attributes of the thing they represent.
 - In the definition of your struct, you'll also probably include methods to perform useful tasks.
+
+### Play with Complex Data
+
+#### Experiment with Organizing Your Code
+
+##### Code - Instances, Methods, and Properties
+
+###### Instances
+
+- You can create and use different instances of a given type.
+- Each instance has its own set of property values, and each instance can perform behavior independent of other instances.
+- Creating an Instance
+  - You've created almost every instance by typing a literal value directly into code.
+  - The exception was in the Types playground, where you used `Date()` to create a value holding the current time.
+  - `Date()` looks a lot like a function, but with an important difference: It uses a type name instead of a name beginning with a lowercase letter.
+  - You use an initializer to create a new instance of a particular type.
+  - Only a few types, like String, Bool, and Int, can be created using literals, but every type has at least one initializer.
+  - Even types you've been creating using literals have initializers.
+  - You'll often want to provide more information when you create an instance.
+  - Many types have initializers with parameters to let you do this:
+    - `let oneHourLater = Date(timeIntervalSinceNow: 3600)`
+    - This initializer gives you a Date that is a number of seconds from the current time.
+  - Initializers and functions are similar in some ways:
+    - They can have parameters or no parameters at all.
+    - You call them the same way, by passing in required argument values.
+  - They also have differences:
+    - You use the name of the type when calling an initializer.
+    - An initializer returns a new instance of its type.
+
+###### Methods
+
+- Functions can be defined as part of a type.
+- These functions are called instance methods, or just methods.
+- String has many instance methods, which are used for common operations.
+- It's often useful to know if a string begins with another string. The method `hasPrefix()` can answer this question.
+  - The method is declared like this: `func hasPrefix(_ prefix: String) -> Bool`
+  - The method `hasPrefix()` has a String parameter, which is the prefix you want to test, and returns a Bool.
+  - Instance methods are called by using a period (.) after the instance, followed by the method call:
+    - `introduction.hasPrefix("It was")`
+    - This is known as calling a method on the instance. You've called hasPrefix() on introduction.
+
+###### Methods and Type Safety
+
+- Type safety still applies when you're using instance methods. hasPrefix is a String instance method, so you can't use it without an instance.
+- You also can't use an instance method on an instance of the wrong type. You can only use methods that are part of, or members of, a particular type.
+
+###### Properties
+
+- Each instance has one or more pieces of associated information. These values are known as properties.
+- It's often useful to know if a string contains any characters at all. The property `isEmpty` answers this question.
+- The property is declared like this: `var isEmpty: Bool { get }`.
+  - It is marked `var` because the property value could change if the string contents change.
+  - The `{ get }` indicates you can only get the value of this property, but you can't set it.
+  - This is also called a `read-only` property.
+- Properties are called by using a period (.) after the instance, followed by the property name:
+  - `something.isEmpty`
+- The same type safety rules apply for properties as with methods.
+
+###### Properties Versus Methods
+
+- Variable Versus Function
+  - The different between a method and a property is similar to the difference between a function and a variable or constant.
+  - A variable is useful for **referring to a value** that you can access when required. Similarly, a property provides a way to get or set a value that's part of an instance. Each instance can have a different value for that property.
+  - A function is useful for **providing behavior** that can be repeated as needed. A method works in the same way, providing behavior specific to that instance.
+- Arguments
+  - If the work you want to perform needs extra information, then it must be a method, since you can't pass arguments to a property.
+  - That means `hasPrefix()` must be a method, because you need to pass in the prefix you're testing for.
+- Side Effects
+  - If the work has side effects, things that happen that aren't related to the return value, then it's a method.
+  - For example, String has a method, `removeAll()`, which empties the string.
+- Values
+  - Properties are for getting values from an instance and for setting values on an instance. Properties don't do any additional work.
+
+##### Arrays and Loops
+
+##### Structures
+
+##### Enums and Switch
+
+##### Testing Code
+
+##### Processing Data
+
+#### Creatively Apply Your Thinking
+
+##### Pixel Art
+
+##### Password Security
+
+##### Visualization
