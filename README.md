@@ -465,6 +465,31 @@
   - For example, String has a method, `removeAll()`, which empties the string.
 - Values
   - Properties are for getting values from an instance and for setting values on an instance. Properties don't do any additional work.
+- Methods and properties help to break down the complexity of a large program by putting related pieces of information (properties) and work to be done (methods) together in a single self-contained package (an instance).
+- The are significant advantages to using methods and properties over top-level functions(not contained in anything else) and variables:
+  - Putting the capabilities of a type together with the type itself makes the code easier to understand.
+  - Autocompletion works mach better: Autocompletion only supplies the methods that can apply at the point your're typing. If all methods were top-level functions, then whenever you started typing, every function in the system would show up.
+  - Documentation is much easier to organize and find: How would you classify all the top-level functions that could do something with a string, or a number? What if a function dealt with both? How would you search this documentation?
+
+###### APIs, Revisited
+
+- The instance methods and properties of a String are the API(Application Programming Interface) of the String type.
+- If you can sort-of-remember the name of a method or property, you can just start typing an dXcode will offer you autocompletion suggestions.
+- APIs also come with documentation to help you learn about them and see how they should be used.
+- One of the most important skills you'll develop as a programmer is how to find and understand things in documentation.
+- Option + Click a type, method, or property and it will show you useful information.
+- You can find the same information using the Quick Help inspector.
+- To view this, make sure the utilities are is visible, by choosing View > Inspectors > Show Quick Help Inspector from the menu.
+- Whenever your cursor is positioned, the Quick Help inspector will tell you about the code at that point.
+
+###### Classes and Structs
+
+- As you build apps in Swift, you'll work with instance of both structs and classes. Both provide a way to define types in Swift.
+- Structs and classes have may similarities:
+  - Both has instances
+  - Instances are created with an initializer
+  - Both can have methods
+  - Both can have properties
 
 ##### Arrays and Loops
 
