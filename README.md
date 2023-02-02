@@ -493,6 +493,46 @@
 
 ##### Arrays and Loops
 
+###### Arrays
+
+- Array have two key features
+  - The items in the array are all the same type.
+  - The items in the array are in a specific order.
+- In Swift, a list is called an array. It's an important data abstraction - a way to think about a concept, such as a list, as a unit without having to think about all its individual elements.
+- Arrays, like all data abstractions, help you to simplify your code by providing solutions.
+- Array literals are lists of items, separated by commas, with the whole thing inside square brackets:
+  - `let devices = ["iPHone", "iPad", "iPod", "iMac"]`
+- Each item in an array has an index, starting with the first item at zero. You can get the value that's stored at a particular index by putting the index in square brackets after the array name.
+- If you ask for an item hat is not in the list, you can cause a serious program error.
+- You can find out the number of items in array using the `count` property, which is an `Int`.
+- Array is a type, but an array type in Swift also includes the type of the values in the array.
+
+###### Array - Loops
+
+- Swift has a built-in way to let you run code for each item in an array. It's call looping or iterating through the array.
+- To run code for each item in an array, you can use a `for <variable name> in <array> { body }` loop.
+- You can assign a whole different mutable array of items, but you can't change the type of items the array holds.
+- To create a mutable empty array that will hold strings, do this: `var list = [String]()`.
+- Once you've created the array, there are several ways to add items to it.
+  - `list.append("Banana")`
+  - `list.insert("Strawberry", at: 0)`
+    - You can add an item at a specific index using the insert instance method. As with everywhere you use an index, it has to be within the array or the program will crash.
+  - `list += ["Plum"]`
+- There are also several ways to remove items from mutable arrays.
+  - `let someNumber = numbers.remove(at: 2)`
+    - You can remove items using the index. The index has to be within the array.
+    - The `remove(at:)` method returns the item you have removed.
+  - `let firstNumber = numbers.removeFirst()` and `let lastNumber = numbers.removeLast()`
+    - You can remove the first item using `removeFirst()`.
+    - Using `removeFirst()` or `removeLast()` on an empty array will cause an error.
+  - `numbers.removeAll()`
+    - You can remove everything using `removeAll()`.
+    - This doesn't return anything.
+- In Swift, the part of the statement [0] is called a `subscript`.
+- With a mutable array, you can use the subscript to set the value at an existing index, replacing the value that is already there.
+  - `flavors[0] = "Chocolate"`
+- You can replace values in a mutable array using subscripts, you can't add or remove things.
+
 ##### Structures
 
 ##### Enums and Switch
