@@ -537,7 +537,7 @@
 
 ###### Modeling Data
 
-- In general, the types of data that an app deals with are known collectively as its model, or somethimes more verbosely, its data model.
+- In general, the types of data that an app deals with are known collectively as its model, or sometimes more verbosely, its data model.
 - If you have information as arrays, you'd need to access the differnt arrays using the same index.
 - It would be better to have data instead of arrays. The term for this higher-level concept is data abstraction.
 - One way to create a new type in Swift is to define a structure, often called a struct.
@@ -566,6 +566,85 @@
       }
       let song = Song(title: "No, no, no", artist: "Fizz", duration: 150, rating: 0)
       song.rating = 4
+    ```
+
+###### Computed Properties
+
+- A Song has a duration property, measured in seconds. But it would also be useful to ask a song for its duration as a string formatted in minutes and seconds.
+- To solve this, you could have two properties, minutes and seconds, but then you would need to perform a calculation to find out the total duration.
+- Alternatively, you could have three properties - minutes, seconds, and duration - but it would be easy to create a struct with inconsistent data, where the duration value didn't add up to the right number of minutes and seconds.
+- A better approach to the problem would be to calculate the formatted string from the duration value.
+- For properties that can be calculated on demand, you can add a computed property to the struct like this:
+
+  - ```swift
+      struct Song {
+        let title: String
+        let artist: String
+        let duration: Int
+
+        var formattedDuration: String {
+          let minutes = duration / 60
+          let seconds = duration % 60
+          return "\(minutes)m \(seconds)s"
+        }
+      }
+      let song = Song(title: "No, no, no", artist: "Fizz", duration: 150)
+      song.formattedDuration
+    ```
+
+- A computed property is declared as a `var`, since it could change depending on the rest of the struct. The rest of the declaration consists of a name, a type annotation, and then some code in braces, which has to return a value of the correct type. You can access the computed property just like any other.
+- Not that inside the definition of formattedDuration, the property duration is accessed without dot notation.
+  - Within the code of a struct, you can access its own properties directly by their names, without using the dot.
+- Computed properties are a further example of the power of structs to create data abstraction. Instead of using separate functions outside the struct, you can put related functionality right alongside the data it relies on.
+  - Code that uses the struct can simply use these new properties without needing to know how they work.
+
+###### Functions
+
+- Your own types can be passed into or out of functions, just like built-in types.
+
+  - ```swift
+      struct Rectangle {
+        let width: Int
+        let height: Int
+      }
+
+      func inRectangle(_ rectangle: Rectangle, biggerThan rectangle2: Rectangle) -> Bool {
+        let areaOne = rectangle.width * rectangle.height
+        let areaTwo = rectangle2.width * rectangle2.height
+        return areaOne > areaTwo
+      }
+
+      let rectangle = Rectangle(width: 10, height: 10)
+      let anotherRectangle = Rectangle(width: 10, height: 30)
+      isRectangle(rectangle, biggerThan: anotherRectangle)
+    ```
+
+- This works, but there are a couple of issues:
+  - The two arguments to the function are a lot of code to read in one line, which makes it harder to understand.
+  - The function is available everywhere is a program, but you only need it when dealing with rectangles.
+  - If you don't know there is an isRectangle() function, it is difficult to find using autocompletion.
+
+###### Instance Methods
+
+- A instance method is written as part of the struct definition, and so it can directly access the properties witin the instance.
+- Just like the methods on built-in types, the methods you define are called using the instance name, then a dot, then the name and arguments of the method.
+
+  - ```swift
+      struct Rectangle {
+        let width: Int
+        let height: Int
+
+        func isBiggerThan(_ rectangle: Rectangle) -> Bool {
+          let areaOne = width * height
+          let areaTwo = rectangle.width * rectangle.height
+          return areaOne > areaTwo
+        }
+      }
+
+      let rectangle = Rectangle(width: 10, height: 10)
+      let anotherRectangle = Rectangle(width: 10, height: 30)
+      rectangle.isBiggerThan(anotherRectangle)
+      anotherRectangle.isBiggerThan(rectangle)
     ```
 
 ##### Enums and Switch
