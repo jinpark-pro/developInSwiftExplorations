@@ -535,6 +535,39 @@
 
 ##### Structures
 
+###### Modeling Data
+
+- In general, the types of data that an app deals with are known collectively as its model, or somethimes more verbosely, its data model.
+- If you have information as arrays, you'd need to access the differnt arrays using the same index.
+- It would be better to have data instead of arrays. The term for this higher-level concept is data abstraction.
+- One way to create a new type in Swift is to define a structure, often called a struct.
+- As a data abstraction, a struct provices some distance between the abstract properties of a data type, and its concrete representation.
+  - Its name should begin with a captial letter. Property names should begin with lower case letter.
+- Using data abstraction can result in a program that is easier to develop and maintain.
+- An array is a kind of struct and you can make your own structs mutable or immutable.
+- To make the properties of your custom structs mutable there are two things you need to do:
+
+  - In the definition of the struct, declare any changeable properties using var.
+  - Assign the struct to a variable, not a constant.
+
+  - ```swift
+      /* arrays */
+      let songTitles = ["Ooh yeah", "Maybe", "No, no, no", "Makin' up your mind"]
+      let artists = ["Brenda and the Del-chords", "Brenda and the Del-chords", "Fizz", "Boom!"]
+      let durations = [90, 200, 150, 440]
+      let song3 = "\(songTitles[2]) by \(artists[2]), duration \(durations[2])s"
+
+      /* data */
+      struct Song {
+          let title: String
+          let artist: String
+          let duration: Int
+          var rating: Int
+      }
+      let song = Song(title: "No, no, no", artist: "Fizz", duration: 150, rating: 0)
+      song.rating = 4
+    ```
+
 ##### Enums and Switch
 
 ##### Testing Code
