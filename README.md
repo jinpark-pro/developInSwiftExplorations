@@ -649,6 +649,52 @@
 
 ##### Enums and Switch
 
+###### Enumerations
+
+- In Swift, you can use an enumeration to represent a group of related choices. Each choice is called a case.
+- You can define your own enumeration types, just as you can define your own structs.
+- An enumeration is usually called by its abbreviation, `enum`.
+- The name of an enum starts with a capital letter, like all other type names.
+- The name of a case starts with a lower-case letter, like the names of properties and methods.
+- The name of the enum should be singular, because the value refers to only one choice, not many choices.
+- One benefit of an enum is it limits the choices to one of its cases.
+- If Swift already knows what type to expect, you can skip the enum name. Since you've already specified the type of an enum instance, you can leave out the enum name when assigning a value.
+- Whenever you have a restricted group of related values in your code, it might be good to think about using an enum.
+
+  - ```swift
+      enum LunchChoice {
+        /*
+        * case pasta
+        * case burger
+        * case soup
+        */
+        case pasta, burger, soup
+      }
+
+      /* let choice = LunchChoice.soup */
+      var choice: LunchChoice
+      choice = .soup
+    ```
+
+###### Enums and Functions
+
+- Enum values can be used as parameters or return values for functions, just like any other type.
+- When calling a function, you know that you have to pass in an enum. Autocompletion will tell you exactly what the options are.
+- You can't pass in anything that's not on the list, so you'll always get what you're looking for.
+
+  - ```swift
+      func cookLunch(_ choice: LunchChoice) -> String {
+        if choice == .pasta {
+          return "🍝"
+        } else if choice == .burger {
+          return "🍔"
+        } else {
+          return "🍲"
+        }
+      }
+      chookLunch(.burger)
+    ```
+
 ##### Testing Code
 
 ##### Processing Data
