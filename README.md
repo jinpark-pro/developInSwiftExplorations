@@ -769,6 +769,43 @@
       soundFor(animal: animal)
     ```
 
+###### Enum Methods and Properties
+
+- You can define methods and properties in an enum.
+
+  - ```swift
+      enum Suit {
+          case spades, hearts, diamonds, clubs
+
+          var rank: Int {
+              switch self {
+              case .spades: return 4
+              case .hearts: return 3
+              case .diamonds: return 2
+              case .clubs: return 1
+              }
+          }
+
+          func beats(_ otherSuit: Suit) -> Bool {
+              return self.rank > otherSuit.rank
+          }
+      }
+
+      let oneSuit = Suit.spades
+      let otherSuit = Suit.clubs
+      oneSuit.beats(otherSuit)
+      oneSuit.beats(oneSuit)
+    ```
+
+- The `self` keyword is used in methods and computed properties and refers to the instance that is being asked for the property value.
+
+###### Wrapping Up
+
+- Enumerations are used when you want to represent one of a group of related values. Each possible value is called a case.
+- When you create an enum, you're making a new type. Instance of that type can only have values matching one of the specified cases.
+- Using enums can make our code easier to read and write, because it's always clear what the possible values are and what they mean.
+- Because switch statements must be exhaustive, you must handle every possible value. To handle any values that haven't been specified, you can use a default case.
+
 ##### Testing Code
 
 ##### Processing Data
