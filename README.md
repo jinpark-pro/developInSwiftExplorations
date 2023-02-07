@@ -695,6 +695,80 @@
       chookLunch(.burger)
     ```
 
+###### Switch
+
+- Apparently if statements aren't great fit when dealing with enums.
+- The switch statement looks very much like the enum declaration.
+- Since the type of the enums is known, you can use the dot syntax and leave out the type name.
+- Switch statements have a special feature: they must be exhaustive. This means a switch statement must exhaust every possibility of the value being checked. With an enum, you can use a different case to handle every possible value.
+
+  - You're not allowed to write a switch statement that doesn't cover every case.
+  - This feature prevents you from accidentally missing a value.
+  - It also alerts you if you update the definition of an enum without updating any switch statements that use it.
+
+  - ```swift
+      switch choice {
+      case .pasta:
+          "🍝"
+      case .burger:
+          "🍔"
+      case .soup:
+          "🍲"
+      }
+    ```
+
+- If you add a default case to your switch statement, you won't get an error when you add new cases to the enum.
+
+  - ```swift
+      enum Quality {
+          case bad, poor, acceptable, good, great
+      }
+
+      let quality = Quality.good
+
+      switch quality {
+      case .bad:
+          print("That really won't do")
+      case .poor:
+          print("That's not good enough")
+      default:
+          print("OK, I'll take it")
+      }
+    ```
+
+- A default case might cause you problems later on if you add new cases to the enum.
+- The switch statement will use the default case for your new value, which may not be what you wanted.
+- Instead, you can match several values in the same case:
+
+  - ```swift
+      switch quality {
+      case .bad:
+          print("That really won't do")
+      case .poor:
+          print("That's not good enough")
+      case .acceptable, .good, .great:
+          print("OK, I'll take it")
+      }
+    ```
+
+- Switch statements can work with strings and numbers. Since it's impossible to have an exhaustive list of all string and number values, switch states using these types require a default case.
+
+  - ```swift
+      let animal = "cat"
+
+      func soundFor(animal: String) -> String {
+          switch animal {
+          case "cat":
+              return "Meow!"
+          case "dog":
+              return "Woof!"
+          default:
+              return "I don't know that animal!"
+          }
+      }
+      soundFor(animal: animal)
+    ```
+
 ##### Testing Code
 
 ##### Processing Data
