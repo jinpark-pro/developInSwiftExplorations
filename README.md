@@ -808,6 +808,63 @@
 
 ##### Testing Code
 
+- Your code doesn't always work as you expect it to. Testing your code will help you detect errors and make sure that your functions behave predictably.
+
+###### Limits of Integers
+
+- What's a `UInt8`?
+
+  - All numbers in Swift occupy a fised number of bits. The standard Int type occupies either 32 or 64 bits, depending on the computer that's running it.
+  - The `UInt8` type occupies only 8 bits.
+  - The "U" in `UInt8` stands for "unsigned." An unsigned integer is always positive.
+  - Values of `UInt8` range from 0 to 255.
+  - When tried to store 500, a number outside of the range, the console should print "Integer literal '500' overflows when stored into 'UInt8'."
+    - Overflow is the result of trying to store a number that won't fit into the number of bits available.
+  - Overflow can also occur when you reach the bank's limitations as your program executes. In that case, you'll see an "EXC_BAD_INSTRUCTION" or "EXC_BREAKPOINT" error in the console.
+
+  - ```swift
+      /// Represents a piggy bank that holds only pennies.
+      class PiggyBank {
+          private var pennies: UInt8 = 0
+
+          init() {
+              pennies = 0
+          }
+
+          /// Returns the balance of the bank.
+          func balance() -> UInt8 {
+              return pennies
+          }
+
+          /// Deposits pennies into the bank.
+          /// - Parameter pennies: the number of pennies to deposit.
+          func deposit(pennies: UInt8) {
+              self.pennies += pennies
+          }
+
+          /// Withdraws pennies from the bank.
+          /// - Parameter pennies: the number of pennies to withdraw.
+          func withdraw(pennies: UInt8) {
+              self.pennies -= pennies
+          }
+      }
+
+      var bank = PiggyBank()
+      /// won't fit into the numver of bits available
+      //bank.deposit(pennies: 500) // Integer literal '500' overflows when stored into 'UInt8'
+
+      /// reach the limitations
+      //bank.deposit(pennies: 100)
+      //bank.deposit(pennies: 100)
+      //bank.deposit(pennies: 100)  // error: Execution was interrupted, reason: EXC_BREAKPOINT (code=1, subcode=...).
+                                    // The process has been left at the point where it was interrupted, use "thread return -x" to return to the state before expression evaluation.
+
+      /// assign a negative number ot a UInt8
+      //bank.deposit(pennies: 50)
+      //bank.withdraw(pennies: 100) // error: Execution was interrupted, reason: EXC_BREAKPOINT (code=1, subcode=...).
+                                    // The process has been left at the point where it was interrupted, use "thread return -x" to return to the state before expression evaluation.
+    ```
+
 ##### Processing Data
 
 #### Creatively Apply Your Thinking
