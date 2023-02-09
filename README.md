@@ -844,6 +844,7 @@
 
           /// Withdraws pennies from the bank.
           /// - Parameter pennies: the number of pennies to withdraw.
+          /// - Note:
           func withdraw(pennies: UInt8) {
               self.pennies -= pennies
           }
@@ -863,6 +864,47 @@
       //bank.deposit(pennies: 50)
       //bank.withdraw(pennies: 100) // error: Execution was interrupted, reason: EXC_BREAKPOINT (code=1, subcode=...).
                                     // The process has been left at the point where it was interrupted, use "thread return -x" to return to the state before expression evaluation.
+    ```
+
+###### Documentation
+
+- When you write functions and methods, you should document them to indicate the conditions under which they function.
+- Documentation has important uses:
+  - To identify appropriate values for testing
+  - To make your code easier for yourself and others to read and understand
+  - To serve as the basis for published documentation of an API
+  - To capture your thought process as you code
+- If you use the special comment format `///`, you'll get a bonus: Swift will automatically create and format documentation that you can access by Option-clicking the item - just as you do for internal types.
+- There are `/// - Note:`, `/// - Parameter` as the above
+
+###### Testing
+
+- When you test a function, you should choose a range of values - including some that extend beyond the limits that the function expects.
+- Make some test cases below by creating instances of PiggyBank and calling the two methods with values that should produce valid results - as well as some tests that should cause it to crash.
+- Verify valid results by comparing the method call to the expected output as demonstrated. (You'll have to comment out the tests that crash your code in order to have them alongside other tests.)
+
+  - ```swift
+      // Test a legal deposit amount
+      var bank1 = PiggyBank()
+      bank1.deposit(pennies: 100)
+      bank1.balance() == 100 // this should be true
+    ```
+
+###### Limitations of Floats
+
+- Like Int and UInt8, Swift floating point types are represented in a fixed amount of space - a Double occupies 64 bits.
+- As a result, some floating point numbers can't be represented exactly; they can only be approximated.
+- The problem is that Doubles don't always work the way you expect them to.
+- Some strange behavior is going on. Due to the limitations of the Double type, the Dobule literal 8.95 isn't acutally that value when it's represented in the computer.
+- So when you multiply it by 100, the result isn't 985.0, but 894.000....
+- Doubles have other limitations as well, such as those that only crop up in addition operations.
+- A quick solution is to multiply the value by 100, then round to the nearest cent - before converting it to an Int.
+
+  - ```swift
+      let price = 8.95
+      let priceInPennies = price * 100
+      let roundedPriceInPennies = priceInPennies.rounded() // Produces a new Double
+      let integerPriceInPennies = Int(roundedPriceInPennies) // Produces an Int
     ```
 
 ##### Processing Data
