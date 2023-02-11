@@ -917,6 +917,80 @@
 
 ##### Pixel Art
 
+- All the pages in this playgournd have a `display` instance whose type is `PixelDisplay`. The properties and methods of PixelDisplay provide the interface to your low-resolution graphics display.
+- The display on this page has 64 pixels in an 8-by-8 grid. Pixel coordinates are zero-indexed, just like arrays.
+- The `setPixel(x:y:color)` method addresses an individual pixel at the specified x and y location. The Color type has several predefined values, as shown below.
+  - display.setPixel(x: 5, y: 2, color: .purple)
+- You can also create any color you want. The Color type has three initializers. You can use autocompletion to discover them.
+  - `display.setPixel(x: 7, y: 7, color: Color(red: 0.8, green: 0.2, blue: 0.7))`
+- The `backgroundColor` property of PixelDisplay controls the display color.
+  - `display.backgroundColor = .cyan`
+- Create functions to make horizontal and vertical lines.
+
+  - ```swift
+      func hline(x: Int, y: Int, length: Int, color: Color) {
+          for i in 0 ... length - 1 {
+              display.setPixel(x: x + i, y: y, color: color)
+          }
+      }
+      func vline(x: Int, y: Int, length: Int, color: Color) {
+          for i in 0 ... length - 1 {
+              display.setPixel(x: x, y: y + i, color: color)
+          }
+      }
+      /* rectangular block */
+      hline(x: 1, y: 1, length: 5, color: .purple)
+      hline(x: 1, y: 4, length: 5, color: .purple)
+      vline(x: 1, y: 1, length: 4, color: .purple)
+      vline(x: 6, y: 1, length: 4, color: .purple)
+    ```
+
+- Create a block function to create a rectangular block of color.
+
+  - ```swift
+      func block(x: Int, y: Int, width: Int, height: Int, color: Color) {
+          for i in 0 ... height - 1 {
+              hline(x: x, y: y + i, length: width, color: color)
+          }
+      }
+      block(x: 1, y: 1, width: 12, height: 4, color: .purple)
+    ```
+
+- Fill Speed
+  - If you created a large enough block, you might observe the playground reaching its speed limit.
+  - `batchSetPixels` takes an array of Pixels rather than just one. By passing in many pixels as an array, you're setting them all at one - rather than one at a time.
+  - But that would only partially solve the problem - you'd still have to draw your lines one after the other.
+  - A better solution is to modify your block function to use a nested loop.
+- Composition
+
+  - In computer graphics, it's common to repeat graphic elements.
+
+  - ```swift
+      func block(x: Int, y: Int, width: Int, height: Int, color: Color) -> [Pixel] {
+          var pixels = [Pixel]()
+          for x in x ... x + width - 1 {
+              for y in y ... y + height - 1 {
+                  pixels.append(Pixel(x: x, y: y, color: color))
+              }
+          }
+          return pixels
+      }
+      display.batchSetPixels(block(x: 18, y: 10, width: 2, height: 4, color: .blue))
+    ```
+
+- `wait()` method pauses the display for a given period of time before continuing to the next drawing operation.
+- Along with the `clear()` method, `wait()` enables you to create animations by drawing something, pausing for a beat, clearing the screen, and updating the drawing.
+
+  - ```swift
+      var frameTime = 1.0 / 30.0
+
+      for i in 0...39 {
+        display.setPixel(x: i, y: 5, color: .purple)
+        display.wait(time: frameTime)
+        display.clear()
+      }
+    ```
+
 ##### Password Security
 
 ##### Visualization
