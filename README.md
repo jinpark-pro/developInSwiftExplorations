@@ -993,4 +993,71 @@
 
 ##### Password Security
 
+- Develop an algorithm that rejects insecure passwords.
+- The first step is to ensure that the user hasn't chosen one of the most commonly used passwords, which hackers are sure to try first.
+  - It's the easiest way to get into somebody's account, since it doesn't require a sophisticated algorithm to make a guess.
+  - Use the `contains()` method of Array to make sure the use hasn't chosen one of common passwords.
+    - `commonPasswordsArray.contains("password")`
+  - Display a message informing the user whether or not they've chosen a secure password.
+- If you require the user to include nonalphabetic characters, there'll be some amount of randomness even if the password includes dictionary words.
+- You might also require passwords be a minimum length.
+  - The longer a password, the longer it takes for a hacker to try all possibilities.
+- Use the following rules:
+  - At least 16 characters
+  - At least one regular letter
+  - At least one digit
+  - At least one punctuation character
+- Even though `String` and `Array` are different types, they're both sequences - that is, they arrange their elements in a particular order.
+  - The `for...in` loop has a special superpower: It works on any sequence, not just an arrays.
+  - Use the `contains()` method to check each character against the predefined arrays above to see whether they satisfy one of the rules.
+  - After checking all the characters in the password, write a final conditional statement to check whether you found at least one of each type of required character.
+- You could also verify that a password contains at least one uppercase letter and one lowercase letter.
+  - To detect whether a character is uppercase, use the `isUppercase` property.
+- Another useful check is making sure that the password doesn't contain the username
+
+###### Brute-Force Guessing
+
+- A brute force attack is a hacking method that uses trial and error to crack passwords, login credentials, and encryption keys.
+- The `passwordIsCorrect(_:)` function acts as the login form for a hypothetical web service, returning true when the correct password is entered.
+- The `guessPasswordOfThreeCharacters(containing:)` function uses a brute-force algorithm to try all possible combinations of the characters passed in.
+- This function is used below to guess a purely numeric password. Looking at the results bar on the right, you'll notice it guesses the correct password on the 124th try.
+
+  - ```swift
+      import Foundation
+
+      func passwordIsCorrect(_ password: String) -> Bool {
+        return password = "123"
+      }
+
+      let digits = "0123456789"
+      let punctuation = "!@#$%^&*(),.<>;'`~[]{}\\|/?_-+= "
+      let lowercaseAlphas = "abcdefghijklmnopqrstuvwxyz"
+      let uppercaseAlphas = lowercaseAlphas.uppercased()
+
+      func guessPasswordOfThreeCharacters(containing characters: String) {
+        var password: String = ""
+
+        for a in characters {
+          for b in characters {
+            for c in characters {
+              password = String(a) + String(b) + String(c)
+              if passwordIsCorrect(password) {
+                print("Found password: \(password)")
+                // The return statement below means that the function exits
+                // early when the password is guessed, rather than executing
+                // all loops to completion.
+                return
+              }
+            }
+          }
+        }
+      }
+
+      guessPasswordOfThreeCharacters(containing: digits)
+    ```
+
+- Because the algorithm contains a loop within a loop within a loop, you have to multiple the iterations of each loop to calculate the number of times the innermost statement.
+- As a result, the algorithm is exponential. It operates as a function of the power of the number of possible characters.
+- Exponential algorithms are said to run in unreasonable time because the time for them to run grows very quickly as the problem size increases.
+
 ##### Visualization
