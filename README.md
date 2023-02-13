@@ -1060,4 +1060,107 @@
 - As a result, the algorithm is exponential. It operates as a function of the power of the number of possible characters.
 - Exponential algorithms are said to run in unreasonable time because the time for them to run grows very quickly as the problem size increases.
 
-##### Visualization
+##### Visualization Revisited
+
+- The API you'll learn now will strip away that layer so you can work directly with the items underneath.
+
+###### Pie Charts, Revisited
+
+- The new API for pie charts exposes two new types: PieWedge and PieChartView.
+- The `PieWedge` struct gives you several ways to create visual effects with pie charts. It has the following properties:
+  - `proportion`: The percentage of the pie occupied by the wedge, expressed as a Double.
+  - `color`: The color of the wedge. You can use any one of the following values.
+    - .black, .blue, .brown, .cyan, .darkGray, .gray, green, .lightGray, .magenta, .orange, .purple, .red, .yellow
+  - `scale`: The radius of the wedge relative to the pie's natural radius, expressed as a Double.
+    - Less than 1.0 will make the wedge smaller than normal-sized wedges, and greater than 1.0 will make the wedge larger (typically the desired effect).
+  - `offset`: The distance a wedge lies from the center of the pie, relative to the size of the wedge.
+    - An offset of 0 keeps the wedge at the center of the pie. An offset of 1.0 moves the center point of the wedge to where its outer edge would be.
+- The `makePieChart()` function creates an instance of a `PieChartView` named `pieChartView`.
+  - `PieChartView` has one property named `wedges`, which is an array of PieWedge instances.
+  - Assign an array of wedges to this property, or use the `append()` method of Array to add them one at a time.
+  - `PieChartView` also has a property named `labelDisplayStyle`, how labels are displayed, expressed as a `WedgeLabelDisplayStyle`.
+    - `WedgeLabelDisplayStyle` is an enum with the following cases:
+      - `interior`: Labels are displayed inside wedges.
+      - `exterior`: Labels are displayed just outside wedges.
+      - `none`: Wedges aren't labeled.
+- `makePieChart()` also creates a `key` named `keyView`.
+  - It's an instance of `ChartKeyView`, which has a `keyItems` property.
+  - `keyItems` is an array of `ChartKeyItem` instances.
+  - `ChartKeyItem` has the following properties:
+    - `color`: The color swatch displayed in the key. You can use any of the color of the wedge.
+    - `name`: The text to display expressed as a String.
+- Until now, you've specified colors, each starting with a period, from a fixed list. But that list represents a very small view into a full-featured type named Color.
+- For fine-grained color control, Color has several useful initializers that take arguments of type Double.
+  - init(red:green:blue:alpha:) takes Double arguments, each ranging from 0 to 1, indicating the amount of red, green, blue, and alpha that make up the color. Alpha is the transparency level: An item with partial transparency (any alpha less than 1.0), will blend its color with the colors of items underneath it.
+  - init(hue:saturation:brightness:alpha:) also takes Double arguments. Instead of mixing the red, green, and blue primary colors, this initializer defines a color by its hue, saturation, and brightness, as well as its transparency. Hue ranges from red, at 0.0, through the rainbow spectrum of orange, yellow, and so on, until wrapping back to red at 1.0. Saturation, from 0.0 to 1.0, describes how much "color" is in the color. (Imagine the difference between a bucket of pure red paint versus a bucket of white paint with one drop of red paint added to it.) Brightness is the relative darkness or lightness of a starting color, from black at 0.0 (no brightness) to white at 1.0 (full brightness).
+  - init(white:alpha:) is a quick way to create grayscale colors with just two Double arguments.
+- All of the color names you've been using, such as .red and .black, are just properties of the Color type.
+- They're special properties called class properties because they're part of the type itself, not part of its instances.
+- So instead of creating a new Color and then referring to its black property, you just refer to the black property of Color itself, like this: Color.black.
+  - Because Swift is good at type inference, you can leave out the Color part of this expression when using it in a place where a Color is expected.
+  - For example, the color property of both PieWedge and ChartKeyItem is actually a Color.
+
+###### Bar Charts, Revisited
+
+- The new API exposes an instance of `BarChartView` named `barChart`.
+- There's also a `ChartBar` struct which is used to specify the bars themselves.
+- `ChartBar` has the following properties:
+  - `length`: The size of the bar, expressed as a `Double`.
+  - `color`: The color of the bar, expressed as a `Color`.
+- `BarChartView` has several properties:
+  - `bars`: An Array of ChartBars.
+  - `yAxisMinimum`: The minimum value of the Y axis, expressed as a `Double`.
+  - `yAxisMaximum`: The maximum value of the Y axis, expressed as a `Double`.
+  - `seriesLabels`: An Array of Strings to display labels along the X axis with equal spacing.
+- As with the pie chart, you'll also get an instance of `ChartKeyView` called `keyView`.
+- You also have three new enums that control the look of horizontal axis labels on your bar charts. They are:
+  - `AxisLabelGravity`
+    - `top`: Axis labels will align to the top of the axis label area.
+    - `bottom`: Axis labels will align to the bottom of the axis label area.
+  - `AxisLabelAttachment`
+    - `beginning`: Axis labels will attach at the beginning of the text.
+    - `end`: Axis labels will attach at the end of the text.
+  - `AxisLabelDistributionStyle`
+    - `endToEnd`: Axis labels will be distributed evenly, with the first and last labels aligning with the beginning and end of the axis, respectively.
+    - `centeredIntervals`: Axis labels will be distributed evenly with equal amounts of space around them.
+  - Three new properties of BarChartView let you control the look of the series labels:
+    - `seriesLabelGravity`, of type AxisLabelGravity
+    - `seriesLabelAttachment`, of type AxisLabelAttachment
+    - `seriesLabelDistributionStyle`, of type AxisLabelDistributionStyle
+
+###### Plots, Revisited
+
+- This version of the API also exposes some new types to help you create better scatter plots.
+- `PlotView` displays your plot data. `makePlot()` creates an instance named `plotView`.
+- The plot data is a series of `PlotPoint` - instances, stored as an array in the points property.
+- `PlotView` has the following properties:
+  - `points`: An Array of PlotPoints.
+  - `yAxisMinimum`: The minimum value of the Y axis, expressed as a Double.
+  - `yAxisMaximum`: The maximum value of the Y axis, expressed as a Double.
+  - `xAxisMinimum`: The minimum value of the X axis, expressed as a Double.
+  - `xAxisMaximum`: The maximum value of the X axis, expressed as a Double.
+- `PlotPoint` has the following properties:
+  - `x`: The X coordinate of the point, expressed as a Double.
+  - `y`: The Y coordinate of the point, expressed as a Double.
+  - `color`: The color of the point, expressed as a Color.
+  - `size`: The size of the point, expressed as a Double.
+- You can use several initializers to create a PlotPoint instance.
+- The color will default to .black and the size to 5: `init(x:y:f)`
+- The size will default to 5: `init(x:y:color:)`
+- You specify all properties: `init(x:y:color:size:)`
+- As with pie charts and bar charts, you'll also get an instance of `ChartKeyView` called `keyView`.
+- How do you want the data points on your scatter plots to display? PlotPoint actually has one final property, named symbol, of type Symbol.
+- `Symbol` is an enum with the following cases:
+  - `circle`
+  - `square`
+  - `diamond`
+  - `triangle`
+  - `x`
+  - `plus`
+- You can use these new properties by calling a new initializer for PlotPoint: 'init(x:y:color:size:symbol:)'
+- PlotView itself gains the capability to draw lines with a new property named mode of type PlotMode. The PlotMode enum has the following cases:
+  - `pointsOnly`
+  - `linesOnly`
+  - `pointsAndLines`
+- The `pointsOnly` mode is the default. If you use either of the other two modes, the PlotView will make groups of all points that have the same color and symbol, sort each group by increasing x value, and draw lines between points in each group.
+- `ChartKeyItem` also gains a symbol property and a new initializer, `init(color:name:symbol:)`, so you can display symbols in the chart key to match those in your plot.
