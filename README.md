@@ -1164,3 +1164,27 @@
   - `pointsAndLines`
 - The `pointsOnly` mode is the default. If you use either of the other two modes, the PlotView will make groups of all points that have the same color and symbol, sort each group by increasing x value, and draw lines between points in each group.
 - `ChartKeyItem` also gains a symbol property and a new initializer, `init(color:name:symbol:)`, so you can display symbols in the chart key to match those in your plot.
+
+### Build a BouncyBall App
+
+#### Putting Shapes on the Screen
+
+- You'll build the entire game from simple elements—flat shapes that can interact with user touches and a physics simulation. The code that implements the game engine is written in the Shape and ShapeScene files. (In turn, the game engine is written on top of the standard iOS SpriteKit API, which is much more complex and powerful.)
+- Open GameCode.swift.
+
+  - This is the only file you'll need to modify as you create the game.
+  - The setup function is called once when the app launches—without it, your app won't compile.
+  - Below import Foundation, add `let circle = OvalShape(width: 150, height: 150)`
+    - `OvalShape` is a type that describes an oval with a width and a height.
+  - Inside the `setup()` function
+
+    - ```swift
+        setup() {
+          circle.position = Point(x: 250, y: 400)
+          scene.add(circle)
+        }
+      ```
+
+    - It defined its location on the screen using x and y coordinates.
+    - The position of any shape in the scene is the location of its center.
+    - The `scene` instance represents the white area on the screen where the game takes place.
