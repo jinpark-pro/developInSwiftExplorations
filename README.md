@@ -1188,3 +1188,41 @@
     - It defined its location on the screen using x and y coordinates.
     - The position of any shape in the scene is the location of its center.
     - The `scene` instance represents the white area on the screen where the game takes place.
+
+#### Adding Physics
+
+- The `hasPhysics` property of a shape determines whether it participates in the physics simulation of the game engine.
+  - Since gravity is part of the simulation, you want the ball to accelerate downwards and disappear offscreen - as physics would dictate.
+  - Add `circle.hasPhysics = true` inside the `setup()` function.
+- Add a barrier that the ball will bump into. Add the following declarations to the top of the file, underneath your declaration of `circle`.
+  - Then add barrier to the scene.
+- Both `OvalShape` and `PolygonShape` have an additional property named `isImmobile`.
+- If `isImmobile` is true, the shape won't move when forces act on it in the simulation.
+
+  - Add `barrier.isImmobile = true` inside the `setup()` function.
+  - The barrier will stay fixed at its location on the screen, and the ball will come to rest on it.
+  - Although it's immobile in the physics simulation, the rectangle is still responsive to touch.
+  - Try dragging it around to see how it interacts with the ball.
+
+  - ```swift
+      ...
+      let barrierWidth = 300.0
+      let barrierHeight = 25.0
+
+      let barrierPoints = [
+        Point(x: 0, y: 0),
+        Point(x: 0, y: barrierHeight),
+        Point(x: barrierWidth, y: barrierHeight),
+        Point(x: barrierWidth, y: 0)
+      ]
+
+      let barrier = PolygonShape(points: barrierPoints)
+
+      func setup() {
+        ...
+        barrier.position = Point(x:200, y: 150)
+        barrier.hasPhysics = true
+        barrier.isImmobile = true
+        scene.add(barrier)
+      }
+    ```
