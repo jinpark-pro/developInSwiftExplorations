@@ -1226,3 +1226,42 @@
         scene.add(barrier)
       }
     ```
+
+#### Handling Taps
+
+- Add a Funnel
+  - Create a new shape to represent the funnel through which the ball will drop.
+- When the user taps the funnel, you want the ball to drop. You can write a function to drop the ball, but you'll never call that function directly, because it's determined by the user's tap.
+
+  - Linking code to user interactions is essential to app programming. These links are commonly known as `callbacks`. A callback is a bit of code, often a function, that runs when something happens that you don't control.
+  - Write the code that will run when the user taps the funnel.
+  - A shape has multiple ways of responding to user interactions. Each of these callbacks is just a property that tells it which function to call.
+
+    - ```swift
+        ...
+        let funnelPoints = [
+            Point(x: 0, y: 50),
+            Point(x: 80, y: 50),
+            Point(x: 60, y: 0),
+            Point(x: 20, y: 0)
+        ]
+
+        let funnel = PolygonShape(points: funnelPoints)
+
+        func dropBall() {
+            circle.position = funnel.position
+        }
+
+        func setup() {
+            ...
+            funnel.position = Point(x: 200, y: scene.height - 25)
+            scene.add(funnel)
+
+            funnel.onTapped = dropBall
+        }
+      ```
+
+  - The type of `onTapped` is a function. You can assign any function to ti as long as the function has no parameters and returns no results.
+  - The `dropBall()` fnction satisfies those conditions, so you can assign it as the callback function.
+  - Note that you didn't write `funnel.onTapped = dropBall()`. That's because putting parentheses after the function's identifier will call the function.
+    - In this case, you want to assign the function as the callback that will run later, when the funnel is tapped - so you're just using hte name of the function.
