@@ -1265,3 +1265,26 @@
   - The `dropBall()` fnction satisfies those conditions, so you can assign it as the callback function.
   - Note that you didn't write `funnel.onTapped = dropBall()`. That's because putting parentheses after the function's identifier will call the function.
     - In this case, you want to assign the function as the callback that will run later, when the funnel is tapped - so you're just using hte name of the function.
+
+#### Tidying Up
+
+- Shapes
+  - Add color to the shapes
+    - `circle.fillColor = .blue`
+  - Resize the ball so it fits in the Funnel, alter the arguments you're passing to its initializer at the top of the file.
+    - `let circle = OvalShape(width: 40, height: 40)`
+- Refactoring
+  - Refactoring is the practice of reorganizing your code without changing what it does.
+  - By splitting one function into multiple, creating a new function from existing code segments, abstracting separate data into a new custom type, or other techniques.
+  - Above all, your code should be readable, easy to debug, and well organized.
+  - To create a new function from existing code, you could manually declare an empty function, cut the code from `setup()`, and paste it into the new function.
+  - But Xcode can automate this process for you.
+    - Select code related to circle at the top of the `setup()`, then choose Editor > Refactor > Extract to Method.
+    - The code you selected will be moved into a new function named `extractedFunc()`, and be replaced by a call to it.
+      - Xcode started the declaration with the `fileprivate` keyword, which indicates that you can't see this function from any other source file.
+    - You'll see that both the declaration and call are highlighted. Type the name for your new function, `setupBall`, and watch both places update at the same time.
+    - Press return when you're done.
+    - Do the same thing for the barrier and funnel.
+  - To change "circle" to "ball", select the `circle` identifier where it's declared, then choose Editor > Edit All in Scope.
+    - The primary advantage of this method over find-and-replace is that is understands your code structure.
+    - It can select just those references in the selected scope.
