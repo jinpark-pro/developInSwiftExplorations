@@ -1288,3 +1288,93 @@
   - To change "circle" to "ball", select the `circle` identifier where it's declared, then choose Editor > Edit All in Scope.
     - The primary advantage of this method over find-and-replace is that is understands your code structure.
     - It can select just those references in the selected scope.
+
+#### Adding a Target
+
+- A small diamond shape should distinguish the target from other objects in the scene.
+
+  - ```swift
+      let targetPoints = [
+          Point(x: 10, y:0),
+          Point(x: 0, y: 10),
+          Point(x: 10, y: 20),
+          Point(x: 20, y: 10)
+      ]
+
+      let target = PolygonShape(points: targetPoints)
+
+      func setupTarget() {
+          target.position = Point(x: 200, y: 400)
+          target.hasPhysics = true
+          target.isImmobile = true
+          target.isImpermeable = false
+          target.fillColor = .yellow
+          scene.add(target)
+      }
+      func setup() {
+          ...
+          setupTarget()
+      }
+
+    ```
+
+- Respond to Collisions
+
+  - How callbacks work
+
+    - Function Types
+      - In the `setupFunnel()` function, find `onTapped` callback for your funnel and Option-click it.
+        - `public var onTapped: () -> () { get set }`
+          - `public`:
+            - Indicates that the property can be accessed by users of the API.
+            - It's known as an access control modifier.
+            - `private` is another access control modifier that restricts access to the code within the API itself.
+          - `var onTapped`:
+            - Declares the property's name.
+          - `: () -> ()`:
+            - Declares the property's type.
+            - This expression is different from the types of properties like `: Int` or `: String`.
+            - It defines a function type that has no parameters and returns nothing.
+            - The first pair of empty parentheses represents the parameters, and the second pair represents the return value.
+            - The `onTapped` property's type is just a function type. You can set its value to any function, as long as that function has no parameters and doesn't return a value.
+          - `{ get set }`:
+            - Indicates that you can both inspect the value of this property and assign new values to it.
+    - A New Callback
+
+      - The property you need for collisions is named `onCollision`.
+      - Add `ball.onCollision` to `setupBall()` method.
+      - Option-click "onCollision." The documentation tells you that the type of that property is `(Shape) -> ()`.
+        - The `shape` that's passed to the callback function is the other shape involved in the collision.
+      - You'll need a new function `ballCollided(with:)` to handle collisions between the ball and the targets.
+
+        - Use the function's full identifier, which includes argument labels.
+
+        - ```swift
+            func ballCollided(with otherShape: Shape) {
+                otherShape.fillColor = .green
+            }
+            fileprivate func setupBall() {
+                ...
+                ball.onCollision = ballCollided(with:)
+            }
+          ```
+
+      - When the ball touches the target, it turns green. Of course, the barrier also turns green.
+
+        - You'll use another property of shapes to fix this problem.
+        - Add `target.name = "target"` to the `setupTarget()` function.
+          - The `name` property is a way to identify shapes.
+          - You can choose any string you want, and multiple shapes can have the same name.
+          - By default, a shape's name is the empty string "".
+        - Now that you can tell which shape is the target, you can modify the `ballCollided(with:)` function.
+
+        - ```swift
+            func ballCollided(with otherShape: Shape) {
+                if otherShape.name != "target" { return }
+                otherShape.fillColor = .green
+            }
+            func setupTarget() {
+                ...
+                target.name = "target"
+            }
+          ```
