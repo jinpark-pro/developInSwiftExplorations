@@ -1378,3 +1378,46 @@
                 target.name = "target"
             }
           ```
+
+#### Refining Game Mechanics
+
+- Stop the Runaway Ball
+  - There's an issue with the ball that you'll see if you move the barrier out of the way so that the ball can fall from the funnel directly off the screen.
+  - Every time you tap the funnel, the ball exits with greater and greater speed.
+  - If you think about it for a second, you'll realize that the ball doesn't stop moving after it exits the scene at the bottom, and it retains that momentum when you reposition it in the funnel.
+  - Add `ball.stopAllMotion()` to `dropBall()` to fix that.
+- Prevent Dragging
+  - To make the game challenging, you'll allow the user to move only the barriers - the other items will be excluded from drag interactions.
+  - The `isDraggable` property of shapes controls whether or not the user can drag them.
+  - Inside `setupBall()`, add `ball.isDraggable = false`.
+  - Now do the same for the funnel and target inside `setupFunnel()` and `setupTarget()`.
+- Lock the Barrier
+  - The barrier will only be movable when the ball isn't in play; otherwise the user could guide the ball with a barrier to hit the target.
+  - You have a function that drops the ball, so it's reasonable to lock the barrier there.
+  - Right now, the ball falls forever - even when it leaves the bottom of the screen.
+  - The scene doesn't have any physical boundaries, and neither does the physics simulation.
+  - The right time to reset the process and reenable barrier interactions is after the ball has disappeared.
+  - First, create `ballExitedScene()` function to act as the callback for when the ball exists the scene.
+  - Next, add `scene.trackShape(ball)` and `ball.onExitedScene = ballExistedScene` to the `setupBall()` functions to let the scene know that is should keep track of the ball's location, and set the callback on the ball.
+  - Now you can lock and unlock the barrier. Add `barrier.isDraggable = false` to `dropBall()`.
+  - Add `barrier.isDraggable = true` to `ballExistedScene()`.
+- Reset the Game
+
+  - When the ball comes to rest on the barrier, you won't be able to do anything but drop the ball again.
+  - One way to fix this issue is to reset the game using a tap callback on the ball.
+  - Add `resetGame()` function, then set it as the ball's tap callback in `setupBall()`.
+  - It would also be better if the game started without the ball on the screen. Add a call to `resetGame()` at the end of your `setup()` function.
+
+    - ```swift
+        func resetGame() {
+            ball.position = Point(x: 0, y: -80)
+        }
+        fileprivate func setupBall() {
+            ...
+            ball.onTapped = resetGame
+        }
+        func setup() {
+            ...
+            resetGame()
+        }
+      ```
