@@ -1421,3 +1421,38 @@
             resetGame()
         }
       ```
+
+#### Challenging The User
+
+- Tilt the Barrier
+  - If the barrier is flat, the game won't be challenging - the ball just bounces up and down in place. You can use the `angle` property of shapes to tilt the barrier.
+    - Modify the `setupBarrier()` function by adding `barrier.angle = 0.1`.
+- Make a Bouncier Ball
+  - Use the `bounciness` property to add some bounce to the ball. (The value of this property can range from 0 to 1.)
+    - Add `ball.bounciness = 0.6` to `setupBall()`.
+- Set up a Challenge
+
+  - Adjust the bounciness of the ball and the position, size, and angle of the barrier until you have a bouncing mechanic you like
+  - To reverse-engineer the challenge, you'll drag target around so that it lies in the path of the ball.
+  - To figure out the correct coordinates, you can add a helper function to print (or log) a shape's position to the console.
+
+    - Use the `onShapeMoved` callback of the scene to print a new position every time a shape is moved.
+    - Add `scene.onShapeMoved = printPosition(of:)` to the `setup()` function.
+    - Then make sure that you can manually position your target by commeting out the appropriate line in `setupTarget()`.
+
+      - ```swift
+          func printPosition(of shape: Shape) {
+              print(shape.position)
+          }
+          func setupTarget() {
+              ...
+          //    target.isDraggable = false
+          }
+          func setup() {
+              ...
+              scene.onShapeMoved = printPosition(of:)
+          }
+        ```
+
+    - Try dropping the ball again to make sure that it touches the target. When you're satisfied with its position, not the values printed to the console, and then update `setupTarget()` to set the target's position.
+    - Finally, comment back in the line of code in `setupTarget()` to disable dragging.
