@@ -1456,3 +1456,106 @@
 
     - Try dropping the ball again to make sure that it touches the target. When you're satisfied with its position, not the values printed to the console, and then update `setupTarget()` to set the target's position.
     - Finally, comment back in the line of code in `setupTarget()` to disable dragging.
+
+#### Creating a Complex Challenge
+
+- Generalize your code by maintaining an array of barriers and an array of targets, making your code more flexible to enable furtuer development - another good example of code refactoring.
+- Refactoring
+
+  - Enable Multiple Barriers
+
+    - Declare a new variable at the top of the file to store the array, `var barriers: [Shape] = []`.
+    - Rename the function from `setupBarrier` to `addBarriers`.
+      - Remember, the easiest way to do this is with the Editor > Edit All in Scope command.
+    - Add parameters to the function so that you can specify the width, height, position, and angle.
+    - Delete the declarations for `barrierWidth`, `barrierHeight`, `barrierPoints`, and `barrier`
+    - Fix two errors, `Cannot find 'barrier' in scope`.
+
+      - ```swift
+          ...
+          var barriers: [Shape] = []
+
+          func dropBall() {
+              ...
+              for barrier in barriers {
+                  barrier.isDraggable = false
+              }
+          }
+
+          func ballExitedScene() {
+              for barrier in barriers {
+                  barrier.isDraggable = false
+              }
+          }
+
+          fileprivate func addBarriers(at position: Point, width: Double, height: Double, angle: Double) {
+              let barrierPoints = [
+                  Point(x: 0, y: 0),
+                  Point(x: 0, y: height),
+                  Point(x: width, y: height),
+                  Point(x: width, y: 0)
+              ]
+
+              let barrier = PolygonShape(points: barrierPoints)
+
+              barriers.append(barrier)
+
+              barrier.position = position
+              barrier.hasPhysics = true
+              barrier.isImmobile = true
+              scene.add(barrier)
+              barrier.angle = angle
+          }
+
+          func setup() {
+              addBarriers(at: Point(x: 200, y: 150), width: 80, height: 25, angle: 0.1)
+              ...
+          }
+        ```
+
+  - Enable Multiple Targets
+    - Add a variable at the top of the file for your array of targets, `var targets: [Shape] = []`.
+    - Change `setupTarget()` to `addTarget(at position:)`.
+    - Set the target's position and update it, `target.position = position`.
+    - Delete the declarations for `targetPoints` and `target` from the very top of the file.
+
+- Construct the Challenge
+
+  - Add a few more targets and barriers in you `setup` function by calling `addTarget` and `addBarrier` with different arguments.
+  - Comment out the `target.isDraggable = false` line in `addTarget` so that you move the gargets around again.
+
+    - ```swift
+        ...
+        var targets: [Shape] = []
+
+        fileprivate func setupBall() {
+            ...
+            ball.bounciness = 0.7
+        }
+
+        func addTarget(at position: Point) {
+            let targetPoints = [
+                Point(x: 10, y: 0),
+                Point(x: 0, y: 10),
+                Point(x: 10, y: 20),
+                Point(x: 20, y: 10)
+            ]
+            let target = PolygonShape(points: targetPoints)
+            targets.append(target)
+
+            target.position = position
+            ...
+        //    target.isDraggable = false
+        }
+        func setup() {
+            ...
+            addBarriers(at: Point(x: 250, y: 250), width: 80, height: 25, angle: 0.1)
+            addBarriers(at: Point(x: 0, y: 250), width: 80, height: 25, angle: -0.3)
+            addBarriers(at: Point(x: 200, y: 500), width: 80, height: 25, angle: 0.2)
+            addTarget(at: Point(x: 150, y: 400))
+            addTarget(at: Point(x: 50, y: 400))
+            addTarget(at: Point(x: 100, y: 600))
+            addTarget(at: Point(x: 250, y: 300))
+            ...
+        }
+      ```
