@@ -1559,3 +1559,186 @@
             ...
         }
       ```
+
+#### Keeping Score
+
+- It would be nice if the app would detect when the user has hit all the targets and communicate the good news to the user.
+
+  - Add code for hit all the gargets to `ballExitedScene()` function.
+    - You should display a message so users'll get a little jolt of satisfaction when they win.
+      - There's a method in `ShapeScene` for that named `presentAlter(text:completion:)`.
+      - Modify your code in `ballExitedScene()` by replacing the `print` statement with `scene.presentAlert(text: "You won!", completion: alterDismissed)`.
+      - Declare an empty `alertDismissed` function.
+        - The `presentAlert` method calls another function once the alert has been dismissed.
+          - For example, you could use that callback to continue to the next level.
+          - In this case, you don't need to do anything after dialog is dismissed, which is why you created an empty function.
+          - If you Option-click the method name, you'll see something familiar:
+            - The type of the `completion` parameter is `() -> ()` (ignoring the `@escaping` modifier, which is outside the scope of this course).
+            - This style of callback - passing a completion function as an argument to another function - is also very common in app development.
+  - Add code for rest all targets to `dropBall()` function.
+
+    - ```swift
+        func dropBall() {
+            ...
+            for target in targets {
+                target.fillColor = .yellow
+            }
+        }
+        func ballExitedScene() {
+            ...
+            var hitTargets = 0
+            for target in targets {
+                if target.fillColor == .green {
+                    hitTargets += 1
+                }
+            }
+            if hitTargets == targets.count {
+                scene.presentAlert(text: "You won!", completion: alertDismissed)
+            }
+        }
+      ```
+
+#### The Whole Code
+
+- ```swift
+    import Foundation
+    let ball = OvalShape(width: 40, height: 40)
+
+    let funnelPoints = [
+        Point(x: 0, y: 50),
+        Point(x: 80, y: 50),
+        Point(x: 60, y: 0),
+        Point(x: 20, y: 0)
+    ]
+
+    let funnel = PolygonShape(points: funnelPoints)
+
+    var barriers: [Shape] = []
+
+    var targets: [Shape] = []
+    /*
+    The setup() function is called once when the app launches. Without it, your app won't compile.
+    Use it to set up and start your app.
+
+    You can create as many other functions as you want, and declare variables and constants,
+    at the top level of the file (outside any function). You can't write any other kind of code,
+    for example if statements and for loops, at the top level; they have to be written inside
+    of a function.
+    */
+    func dropBall() {
+        ball.position = funnel.position
+        ball.stopAllMotion()
+        for barrier in barriers {
+            barrier.isDraggable = false
+        }
+        for target in targets {
+            target.fillColor = .yellow
+        }
+    }
+
+    // Handles collisions between the ball and the targets.
+    func ballCollided(with otherShape: Shape) {
+        if otherShape.name != "target" { return }
+        otherShape.fillColor = .green
+    }
+
+    func alertDismissed() {
+
+    }
+    func ballExitedScene() {
+        for barrier in barriers {
+            barrier.isDraggable = false
+        }
+        var hitTargets = 0
+        for target in targets {
+            if target.fillColor == .green {
+                hitTargets += 1
+            }
+        }
+        if hitTargets == targets.count {
+            scene.presentAlert(text: "You won!", completion: alertDismissed)
+        }
+    }
+
+    func resetGame() {
+        ball.position = Point(x: 0, y: -80)
+    }
+
+    func printPosition(of shape: Shape) {
+        print(shape.position)
+    }
+
+    fileprivate func setupBall() {
+        ball.position = Point(x: 250, y: 400)
+        ball.hasPhysics = true
+        scene.add(ball)
+        ball.fillColor = .blue
+        ball.onCollision = ballCollided(with:)
+        ball.isDraggable = false
+        scene.trackShape(ball)
+        ball.onExitedScene = ballExitedScene
+        ball.onTapped = resetGame
+        ball.bounciness = 0.7
+
+    }
+
+    fileprivate func addBarriers(at position: Point, width: Double, height: Double, angle: Double) {
+        let barrierPoints = [
+            Point(x: 0, y: 0),
+            Point(x: 0, y: height),
+            Point(x: width, y: height),
+            Point(x: width, y: 0)
+        ]
+
+        let barrier = PolygonShape(points: barrierPoints)
+
+        barriers.append(barrier)
+
+        barrier.position = position
+        barrier.hasPhysics = true
+        barrier.isImmobile = true
+        scene.add(barrier)
+        barrier.angle = angle
+    }
+
+    fileprivate func setupFunnel() {
+        funnel.position = Point(x: 200, y: scene.height - 24)
+        scene.add(funnel)
+
+        funnel.onTapped = dropBall
+        funnel.isDraggable = false
+    }
+
+    func addTarget(at position: Point) {
+        let targetPoints = [
+            Point(x: 10, y: 0),
+            Point(x: 0, y: 10),
+            Point(x: 10, y: 20),
+            Point(x: 20, y: 10)
+        ]
+        let target = PolygonShape(points: targetPoints)
+        targets.append(target)
+
+        target.position = position
+        target.hasPhysics = true
+        target.isImmobile = true
+        target.isImpermeable = false
+        target.fillColor = .yellow
+        scene.add(target)
+        target.name = "target"
+    //    target.isDraggable = false
+    }
+    func setup() {
+        setupBall()
+        setupFunnel()
+        addBarriers(at: Point(x: 250, y: 250), width: 80, height: 25, angle: 0.1)
+        addBarriers(at: Point(x: 0, y: 250), width: 80, height: 25, angle: -0.3)
+        addBarriers(at: Point(x: 200, y: 500), width: 80, height: 25, angle: 0.2)
+        addTarget(at: Point(x: 150, y: 400))
+        addTarget(at: Point(x: 50, y: 400))
+        addTarget(at: Point(x: 100, y: 600))
+        addTarget(at: Point(x: 250, y: 300))
+        resetGame()
+        scene.onShapeMoved = printPosition(of:)
+    }
+  ```
