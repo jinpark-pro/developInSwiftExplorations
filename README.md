@@ -1742,4 +1742,14 @@
         scene.onShapeMoved = printPosition(of:)
     }
   ```
-- <video src="https://user-images.githubusercontent.com/25374253/220518528-891966f4-ed02-4f96-b696-210447921fda.mov" controls="controls" style="max-width: 400px;"></video>
+
+  - <video src="https://user-images.githubusercontent.com/25374253/220518528-891966f4-ed02-4f96-b696-210447921fda.mov" controls="controls" style="max-width: 400px;"></video>
+
+### Design a Prototype
+
+#### Analyze Technology
+
+- Advances in computing can lead to bursts of creativity in other fields.
+- Advances in computing also led to the development of machine-learning strategies that help engineers create experiences such as immersive augmented reality.
+- A prototype is a preliminary model of something - anywhere from a simple sketch on a napkin to a tangible product that users cna touch and interact with.
+- Prototypes represent a critical element in the design process because they allow you to test your ideas before you actually build the real thing.
