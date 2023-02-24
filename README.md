@@ -1753,3 +1753,9 @@
 - Advances in computing also led to the development of machine-learning strategies that help engineers create experiences such as immersive augmented reality.
 - A prototype is a preliminary model of something - anywhere from a simple sketch on a napkin to a tangible product that users cna touch and interact with.
 - Prototypes represent a critical element in the design process because they allow you to test your ideas before you actually build the real thing.
+
+#### Think Like a Developer
+
+- You'd need to explicitly describe the app specs: its purpose, the audience and their needs, the core functions of the app, and key features of the user interface.
+- You'd also specify any development constraints that might exist, such as time available, funding available, or user requirements that can't be compromised.
+- Being clear and explicit about development constraints is an important step in the overall design process.
