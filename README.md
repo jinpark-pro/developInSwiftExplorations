@@ -1759,3 +1759,11 @@
 - You'd need to explicitly describe the app specs: its purpose, the audience and their needs, the core functions of the app, and key features of the user interface.
 - You'd also specify any development constraints that might exist, such as time available, funding available, or user requirements that can't be compromised.
 - Being clear and explicit about development constraints is an important step in the overall design process.
+
+#### Plan and Build
+
+- You won't build a fully functioning prototype; instead, you'll create a mockup that looks like a real app and demonstrates its basic design and function.
+- Keep in mind that a prototype doesn't have to contain every single screen or every functioality that you'd include in a finished app.
+- Before you build your prototype, it's important to be clear what must be included and what can be part of a separate document that explains your thinking about the app.
+- You can build a working prototype in Keynote using links and animation to emulate your appls functionality and to provide a semi-realistic user experience.
+- Keynote is also a useful tool for testing your user interface design.
