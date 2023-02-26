@@ -1767,3 +1767,12 @@
 - Before you build your prototype, it's important to be clear what must be included and what can be part of a separate document that explains your thinking about the app.
 - You can build a working prototype in Keynote using links and animation to emulate your appls functionality and to provide a semi-realistic user experience.
 - Keynote is also a useful tool for testing your user interface design.
+
+#### Other Considerations
+
+- Systematic user testing helps improve your app before publication, but you can also learn from your experience metrics once your app is in market.
+- User metrics refers to data collected by the app about user interactions
+  - Things like average time spent in the app, number of times the app is used in a day, number of screens viewed, and most-used app features.
+  - But remember: Including user metrics in your app design means that you need to consider how user data will be used, shared, and stored - and deleted when it's no longer needed.
+- Data collection can dramatically accelerate positive developments in many industries as a result of computing innovations that include data collection and analytics.
+  - However, data collection by digital technologies raises many legal and ethical questions.
