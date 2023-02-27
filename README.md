@@ -1776,3 +1776,26 @@
   - But remember: Including user metrics in your app design means that you need to consider how user data will be used, shared, and stored - and deleted when it's no longer needed.
 - Data collection can dramatically accelerate positive developments in many industries as a result of computing innovations that include data collection and analytics.
   - However, data collection by digital technologies raises many legal and ethical questions.
+
+## Sharing Photos
+
+### Capturing Images
+
+- Many of the images you see on your phone are compressed. Compressing an image doesn't reduce the number of pixels, it just recudes the data needed to store the image.
+- Compressed images take less time to download and less space to store.
+- Compression strategies can be grouped into two broad categories: lessless and lossy.
+  - `Lossless compression` preserves all of the original data, so that it can be reconstructed at any time.
+    - `Run-length encoding` is a simple example of lossless compression.
+    - If an image contains a lot of redundant information - like a screenshot with a white background and black text that has lots of pixels with identical color - run-length encoding is a good compression strategy.
+    - Whereas the compressed version would contain only three bytes (because all five pixels have the same color), plus some number of bytes to encode the length of the run.
+    - The resulting size could be as small as four bytes.
+    - There are lossless compression formats that work with photos, which usually contain more varies information.
+    - Professional photographers often use TIFF (tagged image file format) image files because they want to edit them with maximum fidelity.
+    - <img src="./resources/images/lossless_compression.png" alt="Lossless Compression" width="400">
+  - `Lossy compression` creates an approximation of the original information, resulting in lower quality.
+    - <img src="./resources/images/lossy_compression_1.png" alt="Lossy Compression 1" width="400">
+    - Depending on the compression settings, it may be hard to tell the difference.
+    - Lossy image compression typically involves complex math.
+    - If you zoom into an image to examine it pixel by pixel, you'll be able to see the effects of compression.
+    - But when you view it on your screen, even a computer desktop, a lossily compressed image can look identical to the uncompressed version.
+    - <img src="./resources/images/lossy_compression_2.png" alt="Lossy Compression 2" width="300"> <img src="./resources/images/lossy_compression_3.png" alt="Lossy Compression 3" width="300">
