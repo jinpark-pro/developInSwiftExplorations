@@ -1799,3 +1799,15 @@
     - If you zoom into an image to examine it pixel by pixel, you'll be able to see the effects of compression.
     - But when you view it on your screen, even a computer desktop, a lossily compressed image can look identical to the uncompressed version.
     - <img src="./resources/images/lossy_compression_2.png" alt="Lossy Compression 2" width="300"> <img src="./resources/images/lossy_compression_3.png" alt="Lossy Compression 3" width="300">
+
+### Posting on Social Media
+
+#### Metadata
+
+- Your social media post starts with the photo and the text associated with it.
+- But a social media service requires more specific data to perform the functions you expect of it.
+  - This information is called metadata - data about data.
+- Metadata is essential for organizing and managing information.
+  - For example, to organize all the posts in your timeline in chronological order, the server has to know what day and time the post was created.
+  - Changing the post's metadata, such as the number of Likes, doesn't change the data itself.
+  - <img src="./resources/images/metadata.png" alt="Metadata" width="400">
