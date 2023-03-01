@@ -1811,3 +1811,23 @@
   - For example, to organize all the posts in your timeline in chronological order, the server has to know what day and time the post was created.
   - Changing the post's metadata, such as the number of Likes, doesn't change the data itself.
   - <img src="./resources/images/metadata.png" alt="Metadata" width="400">
+
+#### Building Feeds
+
+- To build a feed, the server performs two steps
+  - It queries the database for new posts from each of the followed users.
+  - Requesting only those posts whose date and time is more recent than the last time the feed was updated.
+  - It takes the resulting list of new posts from all followed users and sorts it by date and time - or uses an internal algorithm to sort and filter them in some other way.
+  - Searching for posts with a given hashtag works much the same way.
+  - The server takes the resulting list of posts and sorts them by date and time - or uses some other algorithm.
+
+#### Parallel and Distributed Computing
+
+- In the early days of computing, computers could only do one thing at a time.
+  - This sequential computing model - also known as serial processing - meant that they had to complete all operations in order, one after the other.
+- Fortunately, modern computers are capable of parallel computing.
+  - They can perform several operations simultaneously, provided the operations are independent of each other.
+  - If a computer can execute two queries in parallel, it could potentially complete the job two times as fast.
+- But one computer can't keep up with the demands of a popular social media service, even if it can perform many operations in parallel.
+  - The solution is to rely on `distributed computing`.
+  - The data center for a social media platform typically houses hundreds or thousands of servers, each handling many requests every second.
