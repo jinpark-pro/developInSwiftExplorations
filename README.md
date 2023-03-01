@@ -1831,3 +1831,21 @@
 - But one computer can't keep up with the demands of a popular social media service, even if it can perform many operations in parallel.
   - The solution is to rely on `distributed computing`.
   - The data center for a social media platform typically houses hundreds or thousands of servers, each handling many requests every second.
+
+## Building Apps
+
+### Get Started With App Development
+
+#### Apps
+
+- Apps can be described by their behavior.
+  - The inputs they accept, how they accept them, and the nature of the outputs they produce.
+  - Apps receive all kinds of input: touches on their screens, files, sensor input (such as a camera), data from the internet.
+  - Inputs can even come from other programs.
+    - For example, you can use the Share sheet in your Photos app to send a photo to another editing app, or to include it in a message to your friend.
+  - When it comes to output, apps can return images, sounds, music, text, tactile sensations, and animations.
+- While a user might describe an app in terms of its behavior, a developer might also describe it by explaining how its code and the underlying algorithms work together to accomplish its function.
+  - Developers have to design their apps to work for a wide variety of inputs and situations.
+    - The output of a program depends on its input and the state it's in.
+      - For example, what happens when an email app is offline, when its users write in a language that displays text from right to left, or when a message is addressed to a nonexistent email account? What if users have low vision and require accessibility accommodations such as VoiceOver?
+  - Good app designers anticipate the variety of ways their apps will be used, and will write code to handle those circumstances.
