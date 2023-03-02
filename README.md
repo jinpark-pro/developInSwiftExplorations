@@ -1849,3 +1849,39 @@
     - The output of a program depends on its input and the state it's in.
       - For example, what happens when an email app is offline, when its users write in a language that displays text from right to left, or when a message is addressed to a nonexistent email account? What if users have low vision and require accessibility accommodations such as VoiceOver?
   - Good app designers anticipate the variety of ways their apps will be used, and will write code to handle those circumstances.
+
+#### Events
+
+- Apps receive much of their input in the form of events that they don't control.
+- An event might represent a user action such as a tap or swipe, or other actions such as an incoming phone call or data arriving from the network.
+- Much of the code you write for an app is event-based, executing in response to a constantly changing environment.
+
+##### Function Callbacks
+
+- Callback is a general term for any code that executes in response to events.
+- You used a specific style - assigning a function to a callback property - to handle events such as collisions and user touches in the BouncyBall game.
+
+##### Delegates
+
+- Delegation is a common pattern for division of labor within an app - a controller-delegate relationship.
+- By delegating the responsibility for a set of tasks to another object, a controller can ignore the details of how they're accomplished.
+- Its delegate, a faithful assistant, just has to focus on its tasks, responding reliably and efficiently, without being concerned about the broader context.
+- You used the delegation pattern in the QuestionBot project - though you didn't use the term then.
+- Your `responseTo(question:)` function was called when the app needed to respond to the user entering their question.
+
+##### Data Sources
+
+- Data sources are similar to delegates.
+- They're also typically managed by controllers and respond to the demands of the app.
+- Whereas delegates perform tasks for a controller, data sources are meant to supply data to a controller.
+- As the name implies, a data source primarily works with the types and instances that form the backbone of the content inside the app.
+
+##### Outlets and Actions
+
+- Outlets
+  - An outlet connects a variable in source code to an object in the storyboard, allowing the code to access those objects and get information or make changes when the app is running.
+- Actions
+  - An action connects a method in source code and a control in Interface Builder, enabling the code to run when a user interacts with the app's controls.
+  - For example, a certain method may be associated with a button tap or a switch update.
+- When you develop an app, you write Swift code and you build your UI in a storyboard.
+- In order for the two to work together, they must be connected.
