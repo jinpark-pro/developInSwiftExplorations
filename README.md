@@ -1885,3 +1885,51 @@
   - For example, a certain method may be associated with a button tap or a switch update.
 - When you develop an app, you write Swift code and you build your UI in a storyboard.
 - In order for the two to work together, they must be connected.
+
+#### Debugging
+
+- The Swift compiler will instantly tell you when you've made an error.
+  - You've learned over time what these error messages mean and how to fix them.
+  - Those easy-to-spot errors are called `syntax errors` (or sometimes compile-time errors) because they involve checking the written code without running it.
+- But somethimes you don't see the result of the errors in your code until you run an app.
+  - This kind of error is a run-time error.
+  - You've already seen some of the ones defined by Swift, such as out-of-bounds array indices, division by zero, and integer overflow.
+- The most perplexing error is when your app runs without crashing, but doesn't work correctly.
+  - These logic errors are among the most difficult to solve, because you get no direct clues from Xcode, Swift, or iOS to help you fix them.
+- When you debug your code, you have to look for clues and reason backwards to find the culprit.
+  - The more you encounter bugs, the more easily you'll be able to find and correct them.
+- You might create a run-time error if you:
+  - Misuse an index in a loop or an array by over - or undercounting (an off-by-one error).
+  - Make a mistake in Interface Builder.
+- Or you might encounter a logic error if you:
+  - Make a simple typo, like putting a + where you should have had a -.
+  - Copy and paste code that follows a common pattern, but forget to alter the part that differs.
+  - Set a variable to the wrong value.
+  - Set s variable at the wrong time - too early or too late.
+  - Forget to insert or remove an item from an array.
+- Logic errors are the trickiest bugs to solve, because they can arise from your misunderstanding of the algorithm.
+  - You may write your code perfectly, avoiding all the common slipups, yet still fall into a trap.
+  - To fix a logic error, you'll have to go all the way back to your thought process when you designed your code in the first place.
+- Whe hunting down bugs, here are a few helpful strategies you can use.
+  - Output Statements
+    - A simple way to see the values of variables while your program is running is to embed print statements at different points in your code.
+    - These are quick and simple ways of using output for solving simple problems.
+    - However, as your apps become more complex, you'll probably find the debugger more useful for finding and fixing problems.
+  - Xcode Debugger
+    - Built into Xcode is a robust debugger tool that allows you to set breakpoints - places where program execution will halt.
+    - At that point, you can inspect the values of variables, and even see the state of the program's memory where execution halted.
+  - Visualization
+    - You've had experience creating graphical representations fo your algorithms and data.
+    - Somethimes it's helpful to return to those when you encounter bugs.
+    - Try tracing your algorithm through a flowchart, and talk yourself through its steps to see where things might be going away.
+    - You can also analyze the performance of your app in real time using Instruments, an advanced tool that provides other forms of visualization, such as graphs of how hard the processor is working.
+  - A Word of Encouragement
+    - One thing to remember:
+      - You can go about debugging bit by bit.
+      - Don't try to solve the problem all at once.
+      - If you find on clue, test it by running your code again.
+      - If necessary to confirm your suspicion, make small isolated changes in your code, like printing to the console or changing the value of a key variable.
+      - Once you're sure that you're on the right track, figure out what new questions you can ask.
+      - Don't be discouraged.
+        - Debugging can take persistence and patience.
+        - But there's nothing quite like the feeling of squashing a particularly nasty bug.
