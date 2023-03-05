@@ -1933,3 +1933,15 @@
       - Don't be discouraged.
         - Debugging can take persistence and patience.
         - But there's nothing quite like the feeling of squashing a particularly nasty bug.
+
+#### App Testing
+
+- Testing is a great way to minimize the amount of debugging you have to do.
+- As you develop your app, you'll form habitual use patterns that let you quickly test your code every time you build and run the project.
+- When you head off into uncharted territory, don't just tap and swipe randomly.
+- Try to anticipate all the paths that users can take.
+- Each unique sequence of actions will cause the app to respond in a certain way.
+- If you're systematic, you can create a representative sample of the possible pathways through your app, much the same as you would when testing a function.
+- Then, when something breaks, you'll know how to reproduce it according to the specific sequence of actions you followed.
+- The easiest way to fix a bug is to know the exact sequence of actions that caused the app to malfunction and that can be reproduced 100% of the time.
+- And when you encounter a bug in somebody else's app, you'll know that's the kind of feedback that will make a difference.
