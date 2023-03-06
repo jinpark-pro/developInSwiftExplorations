@@ -1920,7 +1920,7 @@
     - At that point, you can inspect the values of variables, and even see the state of the program's memory where execution halted.
   - Visualization
     - You've had experience creating graphical representations fo your algorithms and data.
-    - Somethimes it's helpful to return to those when you encounter bugs.
+    - Sometimes it's helpful to return to those when you encounter bugs.
     - Try tracing your algorithm through a flowchart, and talk yourself through its steps to see where things might be going away.
     - You can also analyze the performance of your app in real time using Instruments, an advanced tool that provides other forms of visualization, such as graphs of how hard the processor is working.
   - A Word of Encouragement
@@ -1945,3 +1945,35 @@
 - Then, when something breaks, you'll know how to reproduce it according to the specific sequence of actions you followed.
 - The easiest way to fix a bug is to know the exact sequence of actions that caused the app to malfunction and that can be reproduced 100% of the time.
 - And when you encounter a bug in somebody else's app, you'll know that's the kind of feedback that will make a difference.
+
+### Play With App Components
+
+#### Experiment With Building Apps
+
+##### Color Picker
+
+- In this lesson, you'll learn how to connect Swift code to the views and controls you create in a storyboard, so your code is able to respond to the user's actions
+- There are two kinds of connections between storyboards and code:
+  - `Outlets` connect variables in your code to objects in the storyboard, so you can access those objects from your code and get information or make changes to them when the app is running.
+  - `Actions` connect controls like switches and buttons to methods in your code, so tapping a button, for example, will run a particular method.
+- Your project will be to use outlets and actions to create an app that generates colors by mixing red, green, and blue.
+- You'll use incremental development to make your work manageable.
+- Part one: Learn how to use outlets to connect objects in the storyboard to your code, so you can access them when your app is running.
+- Part two: Learn how to connect actions from a switch in the storyboard to your code, so that a piece of code is run when the user changes the switch.
+- Part three: Create multiple switches, and use actions and outlets to display a color based on the on/off status of each switch.
+- Part four: Add sliders to allow more precise color control.
+- Part five: Add a reset button to set the switches and sliders back to their original values.
+- Part six: Polish the user interface to make the purpose of the switches and sliders easy to understand.
+
+###### Part 1 - Creating Outlets
+
+- Outlets are a way for your code to control your app's interface.
+- In this part, you'll add a view to the scene in your storyboard, define an outlet in your Swift code that connects to the view, and use the outlet to set the background color of the view in code.
+
+##### ChatBot
+
+##### Rock, Paper, Scissors
+
+#### Creatively Apply Your Thinking to App
+
+##### MemeMaker
