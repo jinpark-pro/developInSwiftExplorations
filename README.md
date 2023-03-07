@@ -1970,6 +1970,38 @@
 - Outlets are a way for your code to control your app's interface.
 - In this part, you'll add a view to the scene in your storyboard, define an outlet in your Swift code that connects to the view, and use the outlet to set the background color of the view in code.
 
+###### Adding the Color View and Its Outlet
+
+1. Create a new Xcode project > App within the iOS tab > Name: ColorMix
+2. Using the project navigator, open the Main.storyboard.
+3. Click the Devices icon at the bottom of the window and select iPhone 14 Pro from the popup that appears.
+4. Find a View in the Object library. Remember you can use the search field to narrow down the list of options.
+5. Drag the View onto the view controller scene. Drag it near the top of the scene, then use the blue guides to center it horizontally.
+6. Choose Editor > Canvas > Bounds Rectangles to see an outline of everything in the scene.
+7. Open the assistant editor by click Adjust Editor Options > Assistant.
+   1. Make sure you can see ViewController in the assistant editor; if not, check that the jump bar at the top of the assistant editor is et to automatic.
+8. Control+drag from the view you added into the code above `override`.
+9. Make sure Outlet is chosen in the Connection pop-up menu.
+10. Enter colorView in the Name field.
+11. Click Connect.
+    1. Code will be created, `@IBOutlet weak var colorView: UIView!`.
+       1. Circle: The filled circle indicates that the outlet is conected. If the outlet wasn't connected, it would be an empty circle.
+       2. `@IBOutlet weak`: This is a signal to Xcode that the property on this line is an outlet.
+       3. `var colorView`: This is the declaration of a property you are already familiar with.
+       4. `: UIView!`: The type of the property is UIView!.
+          1. The exclamation point means that if the outlet isn't connected and you try to access this property, your app will crash.
+          2. UIView is the basic view type used in all iOS apps.
+          3. Almost everything you see on the screen is a kind of UIView, which is responsible for drawing and handling touches.
+       5. The important thing to remember is that when you use colorView in the ViewController code, you're referring to the view you've just added to your storyboard.
+
+###### Setting the View's Color
+
+- Find the function `viewDidLoad()`.
+- This function is called when your view controller is ready to appear on the screen.
+- Inside it, add `colorView.backgroundColor = .black`.
+- When the items from the storyboard have all been created and the outlets and actions have all been connected, `viewDidLoad()` is called.
+- The view you see in the storyboard doesn't change color, because the code doesn't run until the app is run.
+
 ##### ChatBot
 
 ##### Rock, Paper, Scissors
