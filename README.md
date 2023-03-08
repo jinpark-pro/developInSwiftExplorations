@@ -2002,6 +2002,34 @@
 - When the items from the storyboard have all been created and the outlets and actions have all been connected, `viewDidLoad()` is called.
 - The view you see in the storyboard doesn't change color, because the code doesn't run until the app is run.
 
+###### Troubleshooting Disconnected Outlets
+
+- Sometimes you’ll build and run your app with no errors, but the app immediately crashes on launch. Your device (or the simulator) shows your Home screen with an error in the console, like this:
+  - `*** Terminating app due to uncaught exception 'NSUnknownKeyException', reason: '[<YourApp.ViewController 0x7f8378f05b00> setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key someNameFromYourApp`
+- This is a common error when you're working with actions and outlets. Unfortunately, the error message doesn’t tell you that the problem actually stems from a view in Interface Builder, but that’s exactly where you need to look.
+- It's not unusual to change the name of a variable in your code. Perhaps you misspelled it, or you thought of a better name.
+  - For practice, change the name `colorView` to `colorSwatch` where it's declared and where it's used in viewDidLoad().
+  - Now try to run your app. It should crash with an error as illustrated below.
+  - <img src="./resources/images/illustrated_error.png" alt="Illustrated Error" width="400"/>
+  - Go back to your storyboard.
+    - You can use the navigator (make sure to select the project navigator tab(1) at the top), or you can use the back button < on the left of the jump bar (2) to navigate back to the file that was showing before the crash.
+- Select View Controller, either in the Document Outline(1) or by selecting the yellow circle at the top of the main editor in Interface Builder(2).
+  - Now open the Connections inspector on the right side of the screen.
+  - Near the top of the Connections inspector, you'll see all the outlet connections for the selected view controller(3).
+  - <img src="./resources/images/view_controller.png" alt="View Controller" width="400"/>
+- In the list of outlets, you sould see bouth `colorView` and ``colorSwatch`.
+  - `colorSwatch` isn't connected, and `colorView` has a little yelllow hazard sign with an exclamation point.
+  - Interface Builder is warning you that it has a connection that doesn't match your cord.
+  - Renaming an outlet propert doesn't automatically update the connections in your storyboard.
+  - That's why you see both properties in the list.
+  - The mismatch won't be discovered until the app launches and tries to hook up all its connections - at which point, the storyboard file will try to open a connection to a name that no longer exists. And your app will crash.
+- You can remove invalid connections by clicking the "x" next to the element's name.
+  - You can remove valid connections this way, too.
+- The `colorView` outlet should disappear entirely.
+- To connect the new `colorSwatch` outlet to the view, click and drag from the empty circle on the right of the outlet to the view in the Main.storyboard.
+  - Run the app again. This time, it should once again launch and function properly.
+- Be sure to restore the name of the outlet back to `colorView` so you can continue following the lesson.
+
 ##### ChatBot
 
 ##### Rock, Paper, Scissors
