@@ -1948,9 +1948,7 @@
 
 ### Play With App Components
 
-#### Experiment With Building Apps
-
-##### Color Picker
+#### Color Picker
 
 - In this lesson, you'll learn how to connect Swift code to the views and controls you create in a storyboard, so your code is able to respond to the user's actions
 - There are two kinds of connections between storyboards and code:
@@ -1965,12 +1963,12 @@
 - Part five: Add a reset button to set the switches and sliders back to their original values.
 - Part six: Polish the user interface to make the purpose of the switches and sliders easy to understand.
 
-###### Part 1 - Creating Outlets
+##### Part 1 - Creating Outlets
 
 - Outlets are a way for your code to control your app's interface.
 - In this part, you'll add a view to the scene in your storyboard, define an outlet in your Swift code that connects to the view, and use the outlet to set the background color of the view in code.
 
-###### Adding the Color View and Its Outlet
+####### Adding the Color View and Its Outlet
 
 1. Create a new Xcode project > App within the iOS tab > Name: ColorMix
 2. Using the project navigator, open the Main.storyboard.
@@ -2030,10 +2028,41 @@
   - Run the app again. This time, it should once again launch and function properly.
 - Be sure to restore the name of the outlet back to `colorView` so you can continue following the lesson.
 
-##### ChatBot
+##### Part 2 - Creating Actions
 
-##### Rock, Paper, Scissors
+- An action runs your code when the user does something.
+- In this part, you'll add a `UISwitch` control.
+  - You'll define an action method and connect it to the switch.
+  - When the switch is tapped, your code will change the color of the color view.
 
-#### Creatively Apply Your Thinking to App
+1. In Xcode, open the `Main.storyboard`.
+2. Find a switch in the Object library and drag it onto the screen.
+   1. Use the guides to center it horizontally and vertically.
+3. In the Attributes inspector, set the State value of the switch to Off.
+4. Open the assistant editor so that ViewController is visible.
+5. Control+drag from the switch into the ViewController class and release.
+   1. Make sure Action is seleted in the Connection pop-up menu.
+   2. Enter `switchChanged` in the Name field.
+   3. Enter "UISwitch" in the type field.
+   4. Click Connect.
+   5. The code will be created, `@IBAction func switchChanged(_ sender: UISwitch) {}`
+      1. `@IBAction`: This line signals to Xcode that the method on this line is an action connected to a control in Interface Builder.
+      2. `sender`: The sender argument is the UI element that initiated the action.
+         1. You chose the type `UISwitch`, since you know that's the type of storyboard object connected to this `IBAction`.
+6. Add the following code inside the method.
 
-##### MemeMaker
+   1. `isOn` is a Bool property of UISwitch that describes if the switch is on or not.
+
+   - ```swift
+      if sender.isOn {
+          colorView.backgroundColor = .red
+      } else {
+          colorView.backgroundColor = .black
+      }
+     ```
+
+#### ChatBot
+
+#### Rock, Paper, Scissors
+
+#### MemeMaker
