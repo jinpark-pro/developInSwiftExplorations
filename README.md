@@ -2061,6 +2061,38 @@
       }
      ```
 
+##### Part 3 - Multiple Actions and Outlets
+
+- When you see color on the screen, you’re actually seeing three components: red, green, and blue.
+- In this part of the lesson, you’ll add two more switches to the app, so you’ll have one switch for red, one for green, and one for blue.
+- Switching each one on or off will add that color component to the color displayed on the screen.
+- To make this work, you'll need to create outlets for each switch, so that the isOn property of each switch can be checked when creating the color to be displayed.
+
+###### Adding More Switches
+
+1. In Xcode, go to the Main.storyboard and select the switch.
+2. Type Command+D to duplicate the switch. Drag it underneath the first one, using the guides to lien them up.
+3. Repeat step 2 to add a third switch.
+4. Open the assist editor to show ViewController.
+5. Control+drag from each switch to the code file to create outlets.
+   1. Call them `redSwitch`, `greenSwitch`, and `blueSwitch`.
+
+- A common technique is to connect outlets and actions to the same object. Select the middle switch and open the Connections inspector in the utilities area.
+- The image below shows all of the outlets and actions the selected switch is connected to.
+  - <img src="./resources/images/outlets_and_actions.png" alt="Outlets and Actions" width="400"/>
+  - In Sent Events, you can see that the `Value Changed` event is linked to `switchChanged:` in ViewController. Although you could link to the other events, only the Value Changed event is sent when a switch is switched.
+  - Referencing Outlets shows that the switch is referenced by greenSwitch in ViewController. Because you duplicated the red switch instead of adding new ones, it's already connected to the switchChanged action.
+  - Follow these steps to learn another way to connect actions:
+    1. In the Connections inspector click the X button by the Value Changed event. This will disconnect the green switch from the action.
+    2. In the ViewController file in the assistant editor, find the circle icon in the gutter next to the `switchChanged` action method. When you mouse over it, the red switch and blue switch will be highlighted in the storyboard to indicate that they're connected.
+    3. Drag from the circle onto the green switch to reconnect the action.
+- They are many ways to connect outlets and actions.
+  - Control+Dragging from the storyboard to code can create new outlets and actions.
+  - Once they're in place, they can be connected, disconnected, and reconnected from the Connections inspector or from the circle icons in code files.
+- Which is better?
+  - Use the **Connections inspector** if you want to know **which outlets and actions a particular object in the storyboard is connected to**.
+  - Use the **circle icons in code** if you want to know **which objects a particular outlet or actions is connected to**.
+
 #### ChatBot
 
 #### Rock, Paper, Scissors
