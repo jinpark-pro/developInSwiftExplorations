@@ -2169,6 +2169,22 @@
   - When the outlet is assigned or the action is fired, there won't be any code matching it - a crashing error.
   - To resolve the error, you mush make sure both to disconnect unwanted actions and outlets from the storyboard and to delete them from your code.
 
+##### Part 4 Sliders
+
+- Since each switch represents a binary choice, you can only make eight colors.
+- In this part of the lesson, you'll add slider controls - like the brightness or volume sliders on an iOS device - to provide finer control.
+
+###### Adjusting Your UI
+
+1. Select all three switches by Shift-clicking each one or by dragging a selection box around them.
+2. Drag the group of switches over to the left and up, so that the central switch is vertical centered in the scene and all three switches are aligned to the left margin guide.
+3. Select the top switch only, then hold down the Shift key and press the Up arrow key four times to move it farther the central switch.
+4. Select the bottom switch, do opposite way of the top switch.
+5. Find a slider in the Object library and drag it onto the scene. Using the guides, align it vertically with the top switch, and horizontally within the scene.
+6. Repeat this for the orhter switches.
+7. Drag or Shift-click to select all three sliders.
+8. In the Attributes inspector, set the value to 1. Notice that a slider also has a minimum and maximum value.
+
 #### ChatBot
 
 #### Rock, Paper, Scissors
