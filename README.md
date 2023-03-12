@@ -2161,6 +2161,14 @@
       }
     ```
 
+###### Reminder: Troubleshooting Problems With Actions and Outlets
+
+- When you make an outlet or action, you're making changes in two places.
+  - You add the `@IBOutlet` or `@IBAction` line to the Swift code, and you add information to the storyboard file that links the view with the outlet or links the control event with the action.
+- If you delete the code part of the outlet or action but don't change the storyboard, your app will likely crash.
+  - When the outlet is assigned or the action is fired, there won't be any code matching it - a crashing error.
+  - To resolve the error, you mush make sure both to disconnect unwanted actions and outlets from the storyboard and to delete them from your code.
+
 #### ChatBot
 
 #### Rock, Paper, Scissors
