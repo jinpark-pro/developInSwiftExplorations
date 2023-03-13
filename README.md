@@ -2185,6 +2185,33 @@
 7. Drag or Shift-click to select all three sliders.
 8. In the Attributes inspector, set the value to 1. Notice that a slider also has a minimum and maximum value.
 
+###### Connecting Outlets and Actions
+
+1. Open the assistant editor so ViewController is showing.
+2. Control+drag from each slider into the file to create outlets. Name them `redSlider`, `greenSlider`, and `blueSlider`.
+3. Control+drag from the top slider into the file to create an action, called `sliderChanged`.
+4. Add `updateColor()` into `sliderChanged` action method.
+5. Update each line on `updateColor` so that it uses the value of the corresponding slider instead.
+
+   - ```swift
+      func updateColor() {
+          var red: CGFloat = 0
+          var green: CGFloat = 0
+          var blue: CGFloat = 0
+          if redSwitch.isOn {
+              red = CGFloat(redSlider.value)
+          }
+          if greenSwitch.isOn {
+              green = CGFloat(greenSlider.value)
+          }
+          if blueSwitch.isOn {
+              blue = CGFloat(blueSlider.value)
+          }
+          let color = UIColor(red: red, green: green, blue: blue, alpha: 1)
+          colorView.backgroundColor = color
+      }
+     ```
+
 #### ChatBot
 
 #### Rock, Paper, Scissors
