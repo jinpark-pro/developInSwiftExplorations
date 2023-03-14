@@ -2212,6 +2212,26 @@
       }
      ```
 
+##### Part 5 Reset Button
+
+- One of the most common controls in iOS apps is a button.
+- A button can contain text, an image, or a mix of both.
+- When the user taps the button, something happens.
+
+###### Adding the Button
+
+- Open the Main storyboard and find a button in the Object library.
+- Drag it onto your scene, using the guides to center it horizontally, and place it near the bottom of the screen.
+- Select the button and change the title to "Reset" by double-clicking it and editing the text or by using the Attribute inspector.
+- Open the assistant editor, making sure it's displaying ViewController, then Control+drag from the button to the code file to create an action. Call the action `reset`. The code should look like this:
+
+  - ```swift
+      @IBAction func reset(_ sender: Any) {
+      }
+    ```
+
+- Open the Connections inspector. You'll see that the button has been connected to the `Touch Up Inside` event. This is the standard event used for most buttons.
+
 #### ChatBot
 
 #### Rock, Paper, Scissors
