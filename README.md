@@ -2232,6 +2232,24 @@
 
 - Open the Connections inspector. You'll see that the button has been connected to the `Touch Up Inside` event. This is the standard event used for most buttons.
 
+###### Updating the Code
+
+- Your Reset button will set the value of each slider to 1 and the `isOn` property of each switch to false.
+- Add that code to the new action method.
+- To update the color displayed on the screen, add a call to `updateColor()` at the end of the action method.
+
+  - ```swift
+      @IBAction func reset(_ sender: Any) {
+          redSlider.value = 1
+          redSwitch.isOn = false
+          greenSlider.value = 1
+          greenSwitch.isOn = false
+          blueSlider.value = 1
+          blueSwitch.isOn = false
+          updateColor()
+      }
+    ```
+
 #### ChatBot
 
 #### Rock, Paper, Scissors
