@@ -2250,6 +2250,34 @@
       }
     ```
 
+##### Part 6 Polishing the Interface
+
+- There are some things about the interface that could use improvement:
+  - All the switches and sliders look the same. There's no way to tell what control does what without using it.
+  - When all components are on, the color view disappears into the background.
+  - If a switch is off, the slider can still be operated, but it doesn't do anything - which may be confusing for the user.
+
+###### Tinting the Switches
+
+- A switch can have two custom colors: the `On Tint` and the `Thumb Tint`, which affect the following areas of the switch:
+  - <img src="./resources/images/switch_custom_colors.png" alt="Switch Custom Colors" width="200"/>
+- Now change the on tint for each switch to match the color it controls.
+  1. In Xcode, open the Main storyboard and select the red switch.
+  2. Open the Attributes inspector.
+     1. Under teh Switch heading are two tint options.
+     2. Change the value in the `On Tint` pop-up menu.
+        1. Select System Red Color for this switch.
+     3. For each fo the other two switches, follow the same steps to select System Green and System Blue.
+- You'll notice that the scene doesn't change when you change the colors.
+  - That's because the switches are all set to off.
+
+###### Tinting the Sliders
+
+- Sliders have three tinting options.
+- You can set the color of the track (the line the handle moves along) on the low and high slides of the thumb, and on the thumb itself.
+  - <img src="./resources/images/slider_custom_colors.png" alt="Slider Custom Colors" width="300"/>
+- Select one slider at a time, then use the Attributes inspector to set the Min Track color to be red, blue, or green as appropriate.
+
 #### ChatBot
 
 #### Rock, Paper, Scissors
