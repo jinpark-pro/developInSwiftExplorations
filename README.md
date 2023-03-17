@@ -2278,6 +2278,21 @@
   - <img src="./resources/images/slider_custom_colors.png" alt="Slider Custom Colors" width="300"/>
 - Select one slider at a time, then use the Attributes inspector to set the Min Track color to be red, blue, or green as appropriate.
 
+###### Adding a Border
+
+- To make the color view stand out from the background, regardless of the currently selected color, you can add a border to the view.
+- This can be done in code. Switch to ViewController and add the following lines to viewDidLoad():
+
+  - ```swift
+      colorView.backgroundColor = .black
+      colorView.layer.borderWidth = 5
+      colorView.layer.cornerRadius = 20
+      colorView.layer.borderColor = UIColor.black.cgColor
+    ```
+
+  - This code uses the layer property of a UIView, which in turn has its own properties.
+  - This code creates a black border, five points wide, with rounded corners.
+
 #### ChatBot
 
 #### Rock, Paper, Scissors
