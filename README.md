@@ -2293,6 +2293,36 @@
   - This code uses the layer property of a UIView, which in turn has its own properties.
   - This code creates a black border, five points wide, with rounded corners.
 
+###### Disabling Sliders
+
+- All controls have a property, `isEnabled`, that allows the control to be activated or deactivated.
+- The status of a control is accompanies by a change in its appearance, such as a dimming effect.
+- Add a new method to make sure all of the sliders are enabled properly,
+
+  - and then call the method whenever a switch is changed
+  - then add a call from `viewDidLoad()` so that the sliders are disabled correctly when the app first launches.
+  - Also add a call from `reset(_:)` so it works when you reset the app.
+
+  - ```swift
+      @IBAction func switchChanged(_ sender: UISwitch) {
+          ...
+          updateControls()
+      }
+      @IBAction func reset(_ sender: Any) {
+          ...
+          updateControls()
+      }
+      func updateControls() {
+          redSlider.isEnabled = redSwitch.isOn
+          greenSlider.isEnabled = greenSwitch.isOn
+          blueSlider.isEnabled = blueSwitch.isOn
+      }
+      override func viewDidLoad() {
+          ...
+          updateControls()
+      }
+    ```
+
 #### ChatBot
 
 #### Rock, Paper, Scissors
