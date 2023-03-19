@@ -2325,6 +2325,81 @@
 
 #### ChatBot
 
+- ChatBot will have
+  - A list of messages forming a conversation.
+  - Messages entered by the user that look different from those given by the app.
+  - A "thinking" indicator.
+  - An entry area where the user can type a question.
+- In iOS apps, a scrolling list of items is known as a table view.
+- Each item in the list is called a cell.
+
+##### Part 1 Exploring the Project
+
+- Open the project called ChatBot.xcodeproj.
+- Make sure you can see the project navigator. If you can't, choose View > Navigators > Show Project Navigator.
+- The files that make up the app are collected into groups. You'll only be working with the files in the Model group for this project.
+- Here's a summary of what the other files in the project are for, in the order they'ar shown in the project navigator.
+  - UI
+    - Main: The interface of the app, including the layout of the screens.
+    - LaunchScreen: The screen displayed when the app is first launched (an empty white screen).
+    - ThinkingCell: A specialized cell for showing the app is thinking.
+    - ConversationCell: A specialized cell for showing a message in the conversation.
+    - AskCell: A specialized cell for allowing the user to type in a question.
+  - Assets: The asset catalog holding all of the images used in the app.
+  - Controllers
+    - ConversationViewController:
+      - The main view controller for the app.
+      - This class is responsible for the list view and handling updates when the user asks questions.
+      - It's the most complicated file in the project, and contains a lot of code you haven't learned about yet.
+  - Model: Details of this group are given below.
+  - Support files:
+    - AppDelegate: Part of the standard app template, normally used to handle events such as the app being launched.
+    - Info: Part of the standard app template, holding information about the app itself.
+- Inside the Model group are three Swift files:
+  - Message
+    - The app will show you a conversation between you and a robot.
+    - This file describes the things that can make up a conversation.
+    - The conversation is going to hold two types of messages: questions and answers.
+    - The MessageType enum holds the two possible values, `.question` and `.answer`.
+    - The Message struct holds the information needed to make an entry in the conversation: the date, the message text, and the type of message.
+    - To create a question, you use the Message initializer like this: `let question = Message(date: Date(), text: "Do you know the way to Cupertino?", type: .question)`
+      - This code wil create a Message instance with the current date (given by `Date()`) and a type of `.question`.
+    - You can see an example for the `openingLine` constant at the end of the file.
+      - This `openingLine` creates a standard opening line to be used anywhere in the app.
+  - ConversationDelegate
+    - This file, formerly known as QuestionAnswerer, may be familiar from the QuestionBot lesson.
+    - The ConversationDelegate struct is the brain of the chat and is responsible for providing answers to question.
+    - The conversation view controller owns the conversation delegate and uses it to get answers from question the user enters.
+    - Delegation is a common pattern for providing information to other parts of an app based on their demands.
+    - You didn't write the code to call the `answerTo(question:)` function.
+    - The app knows to ask your conversation delegate to provide an answer when the user poses a question.
+    - The view controller delegates the responsibility of answering questions to your code so that it doesn't have to know about the details of how questions are answered.
+  - ConversationDataSource
+    - The ConversationDataSource class is responsible for holding and updating the details of the current conversation.
+    - The conversation view controller owns the data source.
+    - The data source is best thought of as a lightning-quick, very attentive assistant that waits to be asked for information or to be given orders.
+    - In this case, the questions and orders are:
+      - How many messages are there?
+      - Add this question to the conversation.
+      - Add this answer to the conversation.
+      - What is message number X?
+    - The view controller asks these questions or gives those orders based on the user's actions in app.
+    - This arrangement is very common when writing apps.
+    - The data source doesn't deal with anything other than the information about conversation.
+    - Showing things onscreen or dealing with what the user types in is handled by the view controller.
+    - As you've learned before, being able to focus on one job makes your code easier to write and easier to understand.
+    - A data source is another example of a way to respond to the circumstances of your app as it runs, rather than calling your code directly.
+    - The view controller knows when to ask the data source what it needs to know, so your code is called on demand.
+    - Currently, ConversationDataSource doesn't do anything when given orders, and doesn't give very helpful answers when asked for information.
+    - There are print statements in the methods so that you can keep track of when they're being called.
+- This diagram shows a summary of how some of the instances in the app work together:
+  - <img src="./resources/images/diagram_ChatBot.png" alt="Diagram ChatBot" />
+  - In some kinds of iOS apps, nothing happens until an action is performed.
+  - Those user-initiated actions, like swiping or tapping, are called events.
+  - Because so much that an app does is governed by events, much of the app code you write will run when it's triggered by the user.
+  - There are two types of events that ChatBot reacts to: the user scrolling the table and the user entering questions.
+  - When those events happen, your conversation data source will be asked to perform its duties.
+
 #### Rock, Paper, Scissors
 
 #### MemeMaker
