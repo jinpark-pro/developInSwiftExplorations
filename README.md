@@ -2420,6 +2420,28 @@
 - The app fills the table view based on that answer, so it doesn't ask for any messages.
 - Now you’ll look at each aspect of the data source in turn and explore what’s happening.
 
+##### Part 3 Fixing the Message Count
+
+- Change the `messageCount` property in `ConversationDataSource` to have a value of 1 instead of 0: `let messageCount = 1`.
+- You can see a single message in the conversation.
+- Check in the console and you'll see this message:
+  - `Asking for message at index 0`
+- If you ask a question, you'll see that night changes, but you still see the console messages about adding question and answer messages.
+- Now the data source's capabilities look like this:
+  - How many messages are there? - One
+  - Add this question to the conversation! - I'll print to the console, but I'm not doing anything else!
+  - Add this answer to the conversation! - I'll print to the console, but I'm not doing anything else!
+  - What is message number X? The answer "Hello, world!"
+- What should really happen is that each time a message is added to the conversation, the data source should update the number of messages so it can give the correct answer the next time it's asked.
+- Change the definition of the `messageCount` property to a `var` instead of a let and set the initial value back to 0.
+- Inside the `add(question:)` and `add(answer:)` methods, after the `print` statement, add `messageCount += 1`.
+- This increases the `messageCount` property each time a message is added to the conversation.
+  - You can see that the right number of message are displayed, and in the console the data source is being asked for messages at indexes 0 (for the question) and 1 (for the answer).
+- Now the data source's capabilities look like this:
+  - How many messages are there? - The total number of questions and answers you've given me.
+  - Add this question to the conversation! - I'll print to the console, and I'll update my message count.
+  - Add this answer to the conversation! - I'll print to the console, and I'll update my message count.
+
 #### Rock, Paper, Scissors
 
 #### MemeMaker
