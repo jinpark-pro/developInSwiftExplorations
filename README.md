@@ -2442,6 +2442,27 @@
   - Add this question to the conversation! - I'll print to the console, and I'll update my message count.
   - Add this answer to the conversation! - I'll print to the console, and I'll update my message count.
 
+##### Part 4 Working With Indexes
+
+- To show message in the conversation, remove the `return` line from `messageAt(index:)` and replace it with this:
+
+  - ```swift
+      if index % 2 == 0 {
+          return Message(date: Date(), text: "Question \(index / 2)", type: .question)
+      } else {
+          return Message(date: Date(), text: "Answer \(index / 2)", type: .answer)
+      }
+    ```
+
+- This code uses the remainder (or modulo) operator, which you saw in a previous lesson, to determine if the message should be a question or an answer, then it creates and returns something appropriate.
+- Now your app is showing the right number of messages in the conversation, the questions and answers are showing up correctly, and you're seeing different text as you move through the conversation.
+- But it isn't showing the actual contents of the conversation.
+- Now the data source's capabilities look like this:
+  - How many messages are there? - The total number of questions and answers you've given me.
+  - Add this question to the conversation! - I'll print to the console, and I'll update my message count.
+  - Add this answer to the conversation! - I'll print to the console, and I'll update my message count.
+  - What is message number X? - If X is even, a numbered question, otherwise a numbered answer.
+
 #### Rock, Paper, Scissors
 
 #### MemeMaker
