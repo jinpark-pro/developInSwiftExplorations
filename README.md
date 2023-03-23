@@ -2463,6 +2463,34 @@
   - Add this answer to the conversation! - I'll print to the console, and I'll update my message count.
   - What is message number X? - If X is even, a numbered question, otherwise a numbered answer.
 
+##### Part 5 Adding Storage
+
+- The method of storage must be able to:
+  - Store as many messages as required.
+  - Keep the messages in a specific order.
+  - Give back a message at a specific index.
+- Declare messages array variable, store message in the array, and then return the message:
+
+  - ```swift
+      class ConversationDataSource {
+          var messageCount = 0
+          var messages = [Message]()
+          func add(question: String) {
+              messageCount += 1
+              let message = Message(date: Date(), text: question, type: .question)
+              messages.append(message)
+          }
+          func add(answer: String) {
+              messageCount += 1
+              let message = Message(date: Date(), text: answer, type: .answer)
+              messages.append(message)
+          }
+          func messageAt(index: Int) -> Message {
+              return messages[index]
+          }
+      }
+    ```
+
 #### Rock, Paper, Scissors
 
 #### MemeMaker
