@@ -2491,6 +2491,19 @@
       }
     ```
 
+##### Part 6 Refinements
+
+- There's no longer any need for the separate `messageCount`, since you can just use the `count` property of Array to figure out how many messages there are.
+  - In fact, storing redundant information can be the source of bugs if you make changes in one place but forget to make them elsewhere.
+  - Delete the lines from `add(question:)` and `add(answer:)` where you increase the message count, then make the `messageCount` property a computed property: `var messageCount: Int { return messages.count }`
+- In addition to the "Ask a question..." prompt, it's nice for the app to welcome the user and ask them to get started.
+  - To add a welcome message, find the line where the messages array is initialized and replace it with this: `var messages = [openingLine]`.
+  - The code above creates an array with a single message in it, rather than an empty array of message.
+  - You don't need to change anything else, since `messageCount` is now a computed property which will have the right answer.
+- For the last step, improve ChatBot's brain.
+  - From the project navigator, open `ConversationDelegate` under the Model section.
+  - Change the logic of the `responseTo(question: String)` implementation to return your won answers to the users queries.
+
 #### Rock, Paper, Scissors
 
 #### MemeMaker
