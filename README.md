@@ -2506,4 +2506,15 @@
 
 #### Rock, Paper, Scissors
 
+- To play the game, you'll tap one of the three signs.
+- The app will randomly choose a responding sign and show the results.
+- The Play Again button goes back to the first screen.
+- You'll use the Model-View-Controller(MVC) design pattern to make this app.
+  - The purpose of MVC is to separate the parts of your app, giving clearly defined responsibilities to each part.
+  - That way, you'll keep your cod easy to read and easy to think about.
+  - MVC is the default pattern used natively in the iOS SDK, Cocoa Touch' and consequently many iOS developer follow this pattern.
+- You'll build the game logic (the model) first, followed by the UI (the view).
+- Then you'll put the two together witht he controller.
+- By now you've learned everything you need to build the app on your own.
+
 #### MemeMaker
