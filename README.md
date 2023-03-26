@@ -2517,4 +2517,24 @@
 - Then you'll put the two together witht he controller.
 - By now you've learned everything you need to build the app on your own.
 
+##### Part 1 Creating the Model
+
+- Create a new Xcode project using the App template and name the app "RPS".
+- Creating a Sign Enum
+
+  - In the project navigator, right-click (or Control-click) the gray folder named "RPS," and choose "New File...", and make sure that Swift File is highlighted in the dialog that appears.
+  - After clicking Next, name the file "Sign" (the hidden ".swift" extension will be added automatically).
+  - Make sure that the Group is set to the manilla RPS folder you clicked.
+  - In the new file, create an enum with cases representing each sign.
+  - Name the enum Sign.
+  - Add a computed property to give the emoji that represents the Sign.
+
+  - ```swift
+      import Foundation
+
+      enum Sign {
+          case rock, paper, scissors
+      }
+    ```
+
 #### MemeMaker
