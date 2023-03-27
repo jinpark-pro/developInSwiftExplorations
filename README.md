@@ -2534,7 +2534,77 @@
 
       enum Sign {
           case rock, paper, scissors
+
+          var emoji: String {
+              switch self {
+              case .rock: return "👊"
+              case .paper: return "✋"
+              case .scissors: return "👆"
+              }
+          }
       }
     ```
+
+###### Defining Game State
+
+- There are four different states that the game can be in:
+  - Start: The game is showing the tree signs and is waiting for the user to tap one of them.
+  - Win: The player has won the app is showing each move and a winning message.
+  - Lose: The player has lost and the app is showing each move and a losing message.
+  - Draw: The game was a draw and the app is showing each move and a drawn message.
+- Create another new Swift file to hold an enum with the four cases as named above.
+  - Name the file (and the enum) `GameState`.
+  - This diagram below shows the relationship between the turns and the state of the game:
+  - <img src="./resources/images/diagram_relationship.png" alt="Diagram Relationship" width="300" />
+- You need to be able to compare two `Sign` instances to give a `GameState`.
+  - For example, a player's `.rock` and the computer's `.paper` would give you `.lose`.
+- Add an instance method to `Sign` that takes another `Sign`, representing the opponent's turn, as a parameter.
+  - The method should return a `GameState` based on a comparison between `self` and the opponent's turn.
+- There are many ways that you could write this function.
+- You may wish to work in a playground first so you can check that all the possible combinations give the correct results.
+
+  - GameState.swift
+
+    - ```swift
+        import Foundation
+
+        enum GameState {
+            case Start, Win, Lose, Draw
+        }
+      ```
+
+  - Sign.swift
+
+    - ```swift
+        enum Sign {
+            ...
+
+            func beats(otherSign: Sign) -> GameState {
+                if self == otherSign {
+                    return .draw
+                } else {
+                    switch self {
+                    case .rock:
+                        if otherSign == .paper {
+                            return .lose
+                        }
+                        return .win
+                    case .paper:
+                        if otherSign == .scissors {
+                            return .lose
+                        }
+                        return .win
+                    case .scissors:
+                        if otherSign == .rock {
+                            return .lose
+                        }
+                        return .win
+                    }
+                }
+            }
+        }
+      ```
+
+###### Generating a Random Sign
 
 #### MemeMaker
