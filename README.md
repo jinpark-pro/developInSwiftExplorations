@@ -2607,4 +2607,36 @@
 
 ###### Generating a Random Sign
 
+- You need a way to generate a random Sign to act as the app's turn.
+- If you hand-code an array of arbitrary values, your app might look random at first glance, but yours would soon notice that it repeats the same sequence each time it runs.
+- What you want is a process to generate a sequence of values that are completely different each time the app runs.
+- The `Int` type has a method for generating random values called `random(in:)` which takes a `Range` argument.
+- The `Range` type simply describes a range of values.
+  - The easiest way to create a `Range` is to specify its upper and lower bounds separated by the closed range operator, `...`.
+  - The resulting range contains all the values including the upper and lower bounds.
+  - For example, the expression 1...100 represents all integers between 1 and 100.
+- Add this function to the file at the top level (outside the declaration of the Sign enum):
+
+  - ```swift
+      func randomSign() -> Sign {
+          let sign = Int.random(in: 0...2)
+          switch sign {
+          case 0:
+              return .rock
+          case 1:
+              return .paper
+          default:
+              return .scissors
+          }
+      }
+    ```
+
+- This function gets a random number and then uses it to create a new `Sign` instance.
+- You could now play a full game of Rock, Paper, Scissors by calling functions in a playground, but that's not as much fun as playing it for real. It's time to build the UI.
+
+  - ```swift
+      var playerOne = Sign.rock
+      playerOne.beats(otherSign: randomSign())
+    ```
+
 #### MemeMaker
