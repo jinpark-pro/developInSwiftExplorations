@@ -2639,4 +2639,71 @@
       playerOne.beats(otherSign: randomSign())
     ```
 
+##### Part 2 Building the View
+
+- The UI of your app is the view component in the MVC design pattern.
+- You'll create it first, then bring the app to life with the controller in the final part of the lesson.
+- Switch to Main storyboard.
+  - Click the Devices icon at the bottom of the window and select iPhone 14 Pro.
+  - Drag a button from the objet library onto the scene, and change the button's title to the 👊 ("Fisted hand sign") emoji.
+  - Set the font size to System 70.0 (font: System, size: 70).
+
+###### Arranging UI Elements
+
+- Duplicate the button twice and set the titles to the correct emoji: ✋ ("Raised hand") and 👆 ("backhand index finger point up").
+  - Arrange the buttons in a horizontal line at the center of the scene.
+  - To ensure they're aligned vertically, you can use the guides as you drag.
+  - Space them out horizontally, estimating their positions so that they are as evenly distributes as possible.
+- Drag in another button underneath the three hand sign buttons.
+  - This will be the "Play Again" button.
+  - Set it font to Title 1 in the Text Styles section of the menu.
+- Drag in a label above the three hand sign buttons.
+  - This will tell the user what's happening in the game.
+  - Make it the full width of the view and choose Title 1 for the font.
+  - Set Alignment up to center
+- Drag in another label above everything else.
+  - This will show the app's sign.
+  - The font of this label should be the same as the font used for the emoji buttons.
+  - Set Alignment up to center.
+- <img src="./resources/images/RPS_UI.png" alt="RPS UI" width="100" />
+
+###### Making Connections
+
+- Show the assistant editor, then create outlets so that you can update the screen during play:
+  - The topmost label, which represents the app's sign
+  - The next label, which represents the status of the game
+  - One for each of the player sign buttons
+  - One for the "Play Again" button
+- Next, create actions to handle the button taps:
+
+  - One fore each player button
+  - One for the Play Again button
+
+- ```swift
+    import UIKit
+
+    class ViewController: UIViewController {
+
+        @IBOutlet weak var playAgainBtn: UIButton!
+        @IBOutlet weak var paperSign: UIButton!
+        @IBOutlet weak var scissorsSign: UIButton!
+        @IBOutlet weak var rockSign: UIButton!
+        @IBOutlet weak var appStatus: UILabel!
+        @IBOutlet var appSign: UIView!
+
+        @IBAction func paperAction(_ sender: Any) {
+        }
+        @IBAction func scissorsAction(_ sender: Any) {
+        }
+        @IBAction func rockAction(_ sender: Any) {
+        }
+        @IBAction func playAgain(_ sender: Any) {
+        }
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            // Do any additional setup after loading the view.
+        }
+    }
+  ```
+
 #### MemeMaker
