@@ -2689,7 +2689,7 @@
         @IBOutlet weak var scissorsSign: UIButton!
         @IBOutlet weak var rockSign: UIButton!
         @IBOutlet weak var appStatus: UILabel!
-        @IBOutlet var appSign: UIView!
+        @IBOutlet weak var appSign: UILabel!
 
         @IBAction func paperAction(_ sender: Any) {
         }
@@ -2705,5 +2705,10 @@
         }
     }
   ```
+
+##### Part 3 Building the Controller
+
+- You'll be adding code to ViewController to tie together the game logic and the outlets and actions.
+- As the file name implies, this is your controller code - it connects your game model to the views in your UI.
 
 #### MemeMaker
