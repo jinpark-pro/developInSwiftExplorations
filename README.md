@@ -2711,4 +2711,39 @@
 - You'll be adding code to ViewController to tie together the game logic and the outlets and actions.
 - As the file name implies, this is your controller code - it connects your game model to the views in your UI.
 
+###### Updating the User Interface
+
+- Add a method to update the UI based on a GameState parameter.
+- The method should do the following things:
+  - Set the status label's text property to an appropriate message.
+    - Should the text you use be a computed property on the GameState enum, or as a string literal inside the method you're writing?
+  - Set a different background color to the main view depending on the state.
+    - Remember, UIColor is the type that represents a color.
+    - To access the main view, use the `view` property.
+  - If the game is in the `.start` state, do the following:
+    - Reset the computer sign label to the 🤖 emoji.
+    - Hide the `Play Again` button by setting the balue of the button's `isHidden` property.
+    - Enable and show all of the player sign button.
+      - This will make more sense after you've implemented the game features to hide and disable these buttons in a later step.
+- There are two places where you should call this method in code right now, passing in `.start` as an argument in each call:
+
+  - Add a call to the method you've just added from `viewDidLoad()`.
+  - Add a call to the method you've just added from the action method linked to the `Play Again` button.
+
+  - ```swift
+      @IBAction func playAgain(_ sender: Any) {
+          resetGame()
+      }
+      func resetGame() {
+          appSign.text = "🤖"
+          appStatus.text = "Rock, Paper, Scissors?"
+          playAgainBtn.isHidden = true
+          view.backgroundColor = .gray
+      }
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          resetGame()
+      }
+    ```
+
 #### MemeMaker
