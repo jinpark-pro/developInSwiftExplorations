@@ -2722,7 +2722,7 @@
     - To access the main view, use the `view` property.
   - If the game is in the `.start` state, do the following:
     - Reset the computer sign label to the 🤖 emoji.
-    - Hide the `Play Again` button by setting the balue of the button's `isHidden` property.
+    - Hide the `Play Again` button by setting the value of the button's `isHidden` property.
     - Enable and show all of the player sign button.
       - This will make more sense after you've implemented the game features to hide and disable these buttons in a later step.
 - There are two places where you should call this method in code right now, passing in `.start` as an argument in each call:
@@ -2731,18 +2731,87 @@
   - Add a call to the method you've just added from the action method linked to the `Play Again` button.
 
   - ```swift
-      @IBAction func playAgain(_ sender: Any) {
-          resetGame()
+      class ViewController: UIViewController {
+          ...
+          var currentGameState: GameState = .start
+          func updateUI(_ gameResult: GameState) {
+              switch gameResult {
+              case .lose:
+                  appStatus.text = "Sorry, you lose"
+                  view.backgroundColor = .yellow
+              case .win:
+                  appStatus.text = "You win!"
+                  view.backgroundColor = .green
+              case .draw:
+                  appStatus.text = "It's draw."
+                  view.backgroundColor = .darkGray
+              case .start:
+                  appSign.text = "🤖"
+                  appStatus.text = "Rock, Paper, Scissors?"
+                  rockSign.isHidden = false
+                  paperSign.isHidden = false
+                  scissorsSign.isHidden = false
+                  playAgainBtn.isHidden = true
+                  rockSign.isEnabled = true
+                  paperSign.isEnabled = true
+                  scissorsSign.isEnabled = true
+                  view.backgroundColor = .gray
+              }
+          }
+          override func viewDidLoad() {
+              super.viewDidLoad()
+              updateUI(currentGameState)
+          }
       }
-      func resetGame() {
-          appSign.text = "🤖"
-          appStatus.text = "Rock, Paper, Scissors?"
-          playAgainBtn.isHidden = true
-          view.backgroundColor = .gray
-      }
-      override func viewDidLoad() {
-          super.viewDidLoad()
-          resetGame()
+    ```
+
+###### Handling Player Button Taps
+
+- You should now have separate action methods for each of the player buttons.
+- And each of those methods should call a new method called `play`, which takes a `Sign` parameter.
+- Add this new `play` method. This method should do the following things:
+  - Get a randomly selected `Sign` to represent the app's turn.
+  - Work out the `GameState` from the two signs, and call the update method you wrote earlier using the new `GameState`.
+  - Set the app sign label to the appropriate emoji, using the computed property on `Sign` you created earlier.
+  - Disable all of the player sign buttons.
+  - Hide all of the player sign buttons except the one the player tapped.
+  - Show the `Play Again` button.
+- Make each of the player action methods call the play method, passing in an appropriate value of `Sign`.
+
+  - ```swift
+      class ViewController: UIViewController {
+          ...
+          @IBAction func paperAction(_ sender: Any) {
+              play(Sign.paper)
+              rockSign.isHidden = true
+              scissorsSign.isHidden = true
+          }
+          @IBAction func scissorsAction(_ sender: Any) {
+              play(Sign.scissors)
+              rockSign.isHidden = true
+              paperSign.isHidden = true
+          }
+          @IBAction func rockAction(_ sender: Any) {
+              play(Sign.rock)
+              paperSign.isHidden = true
+              scissorsSign.isHidden = true
+          }
+          @IBAction func playAgain(_ sender: Any) {
+              updateUI(currentGameState)
+          }
+          func play(_ playerTurn: Sign) {
+              rockSign.isEnabled = false
+              paperSign.isEnabled = false
+              scissorsSign.isEnabled = false
+              playAgainBtn.isHidden = false
+
+              let opponent = randomSign()
+              appSign.text = opponent.emoji
+
+              let gameResult = playerTurn.beats(otherSign: opponent)
+
+              updateUI(gameResult)
+          }
       }
     ```
 
