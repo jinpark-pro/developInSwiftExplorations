@@ -2816,3 +2816,25 @@
     ```
 
 #### MemeMaker
+
+- You're going to build an app that lets you add fun captions to a photo.
+
+##### Part 1 Planning
+
+- Before you dive into making the app, spend some time thinking about the content you're going to use.
+- The app will need to following:
+  - An image to go in the center
+  - Some text options to go above the image, and an emoji to represent each one
+  - Some text options to go below the image, and an emoji to represent each one
+- Try to think of two, three or four choices for the top and the bottom.
+  - It can be hard to think up working combinations of text.
+  - If you get stuck, her's some inspiration:
+    - Above the image
+      - "You know what's cool?" could be represented by 🕶️
+      - "You know what makes me mad?" could be represented by 💥
+      - "You know what I love?" could be represented by 💕
+    - Below the image
+      - "Cats wearing hats" could be represented by 🐱
+      - "Dogs carring logs" could be represented by 🐕
+      - "Monkeys being funky" could be represented by 🐒
+- Once you have your ideas, you can get started building.
