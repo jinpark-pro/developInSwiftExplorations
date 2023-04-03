@@ -2835,6 +2835,72 @@
       - "You know what I love?" could be represented by 💕
     - Below the image
       - "Cats wearing hats" could be represented by 🐱
-      - "Dogs carring logs" could be represented by 🐕
+      - "Dogs carrying logs" could be represented by 🐕
       - "Monkeys being funky" could be represented by 🐒
 - Once you have your ideas, you can get started building.
+
+##### Part 2 Building the UI
+
+- Create a new Xcode project using the App template, and name it "MemeMaker".
+- On Main.storyboard, add the following items, placing them from top to bottom:
+  - A segmented control
+  - A label
+  - An image view
+  - A label
+  - A segmented control
+- Change the text of the top label to "TOP" and the buttom label to "BOTTOM".
+- Segmented Controls
+  - Segmented controls are used to offer a choice between a limited number of options.
+    - For example, a Calendar app might have a segmented control to switch between day, week and month views.
+    - Only one option can be selected at a time.
+    - You can control the number of segments and the title of each segment.
+  - When the user taps one of the segments, the Value Changed control event is sent.
+    - From your code you can access the index of the selected segment.
+    - In this app you'll update the caption labels when a different option is chosen.
+- Adding the Image
+  - Open the assets catalog and choose an image to drag in.
+  - Select the image view and choose the Aspect Fit content mode in the Attributes inspector.
+  - With the image view still selected, go to the Size inspector and set the width and height to 350, or another size that fits the screen.
+  - Finally, use the Attributes inspector to choose the image that you've added to the project.
+  - The image you've added to the Asset Catalog will be available in the Image pop-up menu.
+- Finishing the Layout
+  - Make sure that all your elements are centered on the canvas by using the blue guides that appear as you drag them.
+  - One classic meme style (dating from the "I can haz" day) uses white all-caps block letters on the top of an image.
+  - Move the two labels so that they're over the top and bottom of the image.
+  - Use the Attributes inspector to adjust the following settings for each label.
+    - Set Alignment to Center.
+    - Set Lines to 0 - so that the label isn't limited to a particular number of lines.
+    - Using the Font control, set Font to Custom, Family to Avenir Next Condensed, Style to Heavy, and Size to 30.
+    - Set Autoshrink to Minimum Font Size with a value of 15.
+      - The label will wrap its text automatically to fit its width.
+      - If there's too much to fit at 30 points, it will reduce the font to as small as 15 points.
+    - Set color to White Color.
+    - Find the Shadow control and set it to Black Color, and set the Shadow Offset Width to 3 and its Height to 2.
+  - Now that the labels are configured, resize them both so that they're as wide as the image and tall enough to fit two lines of text.
+    - That size should be a good default setting for the text that you'd want to use in most memes.
+  - <img src="./resources/images/mememaker-ui.png" alt="MemeMaker UI" width="100" />
+- Making Connections
+
+  - Make outlets for the segmented controls in `ViewController`.
+    - Name them `topSegmentedControl` and `bottomSegmentedControl`.
+    - Then do the same for the labels, naming their outlets `topCaptionLabel` and `bottomCaptionLabel`.
+  - Create an action from one of the segmented controls, then connect the same action to the other segmented control.
+
+  - ```swift
+      import UIKit
+
+      class ViewController: UIViewController {
+
+          @IBAction func bottomSegmentedAction(_ sender: Any) {
+          }
+          @IBAction func topSegmentedAction(_ sender: Any) {
+          }
+          @IBOutlet weak var bottomCaptionLabel: UILabel!
+          @IBOutlet weak var topCaptionLabel: UILabel!
+          @IBOutlet weak var bottomSegmentedControl: UISegmentedControl!
+          @IBOutlet weak var topSegmentedControl: UISegmentedControl!
+          override func viewDidLoad() {
+              super.viewDidLoad()
+          }
+      }
+    ```
