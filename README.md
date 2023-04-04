@@ -2904,3 +2904,31 @@
           }
       }
     ```
+
+##### Part 3 Modeling Your Data
+
+- Defining Custom Types
+
+  - You're going to define a struct called `CaptionOption` to represent each possible choice.
+  - Add a new Swift file to the app to hold the model. Name it "CaptionOption".
+  - Define a new struct in your new file with two properties: the emoji used to represent the caption and the caption itself. Name the struct `CaptionOption`.
+
+  - ```swift
+      import Foundation
+
+      struct CaptionOption {
+          let emoji: String
+          let caption: String
+      }
+    ```
+
+- Creating the Choices
+
+  - Create two arrays inside the ViewController class, one to represent the top choices, and one to represent the bottom choices.
+  - Each array should contain `CaptionOption` instances matching the ideas you came up with at the start of this project.
+  - Name the arrays `topChoices` and `bottomChoices`.
+
+  - ```swift
+      var topChoices = [CaptionOption]()
+      var bottomChoices = [CaptionOption]()
+    ```
