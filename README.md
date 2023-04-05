@@ -2932,3 +2932,105 @@
       var topChoices = [CaptionOption]()
       var bottomChoices = [CaptionOption]()
     ```
+
+##### Part 4 Configuring The UI
+
+- Configuring the Segmented Controls
+
+  - It makes sense to configure the segmented controls in code rather than via Interface Builder, because the details of the configuration will come from the `CaptionOption` instances you've defined. These aren't available to you in Interface Builder.
+  - The segments of a segmented control have an index, like the elements of an array. Also like an array, the index start at zero.
+  - You're going to loop through each choices array and configure the segmented control while you do so.
+    - This configuration will happen in `viewDidLoad()`, which is called once the components from the story board have been set up in the running app.
+  - First, remove all of the segments from the top control: `topSegmentedControl.removeAllSegments()`
+    - This step removes the two default segments that were given when you dragged the segmented control onto the storyboard.
+  - You add segments using the `insertSegment(withTitle:at:animated:)` method of `UISegmentedControl`.
+
+    - This has three parameters:
+      - The first one is the String that will be the title,
+      - The second is the index where the segment will be inserted,
+      - The last is a Bool to say if the insertion should be animated or not.
+    - The title will be the emoji property of each CaptionOption.
+    - The index can be the count of the `topChoices` array.
+      - If you supply a number that's greater than the highest segment index, it just gets added to the end.
+    - The animated option will be false.
+      - This is all happening before the user gets to see anything, so there is no point in animating it.
+    - Loop through the `topChoices` array and add the new segments in:
+
+    - ```swift
+        for choice in topChoices {
+            topSegmentedControl.insertSegment(withTitle: choice.emoji, at: topChoices.count, animated: false)
+        }
+      ```
+
+    - Because you removed all of the segments, the control no longer has a selected segment.
+      - You can set this with the `selecedSegmentIndex` property: `topSegmentedControl.selectedSegmentIndex = 0`
+    - The top segmented control now matches the top choices array exactly.
+
+  - Follow the same pattern to configure the bottom segmented control.
+    - At this point, build and run the project to check that everything you've done so far is working.
+    - You should see the segmented controls set up with the emoji labels matching your choices.
+
+- Configuring the Caption Labels
+
+  - You need a method to set the correct captions based on the selection from each segmented control.
+    - The index of the selected segment is available via the `selectedSegmentIndex` property.
+    - This index can then be used to obtain the correct `CaptionOption` from the `topChoices` or `bottomChoices` array.
+  - Add a new method to the view controller.
+    - In it, use the selected index from each segmented control to get the control `CaptionOption`, then set the text of the appropriate label.
+  - Call this method from `viewDidLoad()` to set up the labels when the app is launched, and also from the action method linked to both segmented controls.
+
+  - ```swift
+      import UIKit
+
+      class ViewController: UIViewController {
+
+          @IBAction func bottomSegmentedAction(_ sender: Any) {
+              updateLabels()
+          }
+          @IBAction func topSegmentedAction(_ sender: Any) {
+              updateLabels()
+          }
+          @IBOutlet weak var bottomCaptionLabel: UILabel!
+          @IBOutlet weak var topCaptionLabel: UILabel!
+          @IBOutlet weak var bottomSegmentedControl: UISegmentedControl!
+          @IBOutlet weak var topSegmentedControl: UISegmentedControl!
+
+          var topChoices = [CaptionOption]()
+          var bottomChoices = [CaptionOption]()
+
+          override func viewDidLoad() {
+              super.viewDidLoad()
+              let coolChoice = CaptionOption(emoji: "🕶️", caption: "You know what's cool?")
+              let madChoice = CaptionOption(emoji: "💥", caption: "You know what makes me mad?")
+              let loveChoice = CaptionOption(emoji: "💕", caption: "You know what I love?")
+              topChoices = [coolChoice, madChoice, loveChoice]
+
+              let catChoice = CaptionOption(emoji: "🐱", caption: "Cats wearing hats")
+              let dogChoice = CaptionOption(emoji: "🐕", caption: "Dogs carrying logs")
+              let monkeyChoice = CaptionOption(emoji: "🐒", caption: "Monkeys being funky")
+              bottomChoices = [catChoice, dogChoice, monkeyChoice]
+
+              topSegmentedControl.removeAllSegments()
+              for choice in topChoices {
+                  topSegmentedControl.insertSegment(withTitle: choice.emoji, at: topChoices.count, animated: false)
+              }
+              topSegmentedControl.selectedSegmentIndex = 0
+              bottomSegmentedControl.removeAllSegments()
+              for choice in bottomChoices {
+                  bottomSegmentedControl.insertSegment(withTitle: choice.emoji, at: bottomChoices.count, animated: false)
+              }
+              bottomSegmentedControl.selectedSegmentIndex = 0
+              updateLabels()
+          }
+          func updateLabels() {
+              let topIndex = topSegmentedControl.selectedSegmentIndex
+              let bottomIndex = bottomSegmentedControl.selectedSegmentIndex
+
+              let topChoice = topChoices[topIndex]
+              let bottomChoice = bottomChoices[bottomIndex]
+
+              topCaptionLabel.text = topChoice.caption
+              bottomCaptionLabel.text = bottomChoice.caption
+          }
+      }
+    ```
