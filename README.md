@@ -3034,3 +3034,55 @@
           }
       }
     ```
+
+##### Part 5 Positioning the Captions
+
+- Gesture Recognizers
+  - There's a system of callbacks for directly processing individual touch events in iOS, but using it requires quite a bit of nuanced code.
+  - For common interactions, you can use gesture recognizer instead.
+  - They're built on top of the same touch processing system, but they provide an abstraction layer to present you with simple information about gestures such as tapping, swiping, and pinching.
+  - For the MemeMaker app, you'll use a UIPanGestureRecognizer, which tracks the state of a gesture as the user drags their finger around the screen.
+  - Open your storyboard.
+    - By default, views that aren't usually intended for user interaction, such as labels, are completely invisible to touch.
+    - Enable user interaction for both your labels by using the Attributes inspector.
+    - In the View section, look for Interaction and check the User Interaction Enabled box.
+- Adding the Recognizers
+  - Find a pan gesture recognizer in the Object library, and drag it to the top label.
+    - Make sure the label itself is highlighted when you drag the recognizer.
+      - A gesture recognizer is associated with one view in the scene.
+      - If it's connected to the image view or to the top-level view for the whole screen, your app won't work properly.
+  - Gesture recognizers use a familiar system - IBAction - to communicate events to your code.
+    - You'll use the familiar drag-and-drop technique to create an action for the gesture recognizer.
+    - Make sure the assistant editor is showing, then follow these steps:
+      1. Locate the Pan Gesture Recognizer(1) in the Document Outline.
+         - You can't drag from the scene, because there's nothing there to represent the gesture recognizer.
+         - While you're there, rename it to "Top Caption Pan Gesture Recognizer" by clicking its name and waiting for the title to turn into editable text.
+      2. Control+Drag from the gesture recognizer to the assistant editor, and drop near the bottom of the view controller's code to create a new action.(2)
+         - <img src="./resources/images/pan_gesture_recognizer.png" alt="Pan Gesture Recognizer" width="400" />
+      3. In the popup, use these values:
+         - Connection: Action
+         - Object: View Controller
+         - Name: dragTopLabel
+         - Type: UIPanGestureRecognizer
+    - Repeat the process to add another pan gesture recognizer and another action for the bottom label.
+- Moving the Labels
+
+  - Go back to your view controller to fill in the new action methods. Here's the code for the top label:
+
+    - ```swift
+        @IBAction func dragTopLabel(_ sender: UIPanGestureRecognizer) {
+            if sender.state == .changed {
+                topCaptionLabel.center = sender.location(in: view)
+            }
+        }
+      ```
+
+  - Here's what the code does:
+    - The method is called in a similar way to other actions, with the originating object passed in as an argument - in this case, the gesture recognizer.
+    - You check the state of the recognizer.
+      - For pan gesture recognizers, the state can be `began`, `changed`, or `ended` (or possibly `cancelled` if something interrupts the user's gesture, such as an incoming phone call).
+    - The `changed` state indicates that the user's touch is moving on the screen.
+      - If the user's touch is moving, you want to update the position of the label.
+    - The `location(in:)` method of `UIGestureRecognizer` returns the x and y coordinates (in a CGPoint) of the touch that the recognizer is tracking.
+      - Passing `view` as the argument tells the method that you want the location relative to the top-level view of the scene - the one that contains the label.
+    - You set the `center` property of the label to update its position.
