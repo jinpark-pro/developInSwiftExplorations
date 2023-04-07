@@ -3086,3 +3086,57 @@
     - The `location(in:)` method of `UIGestureRecognizer` returns the x and y coordinates (in a CGPoint) of the touch that the recognizer is tracking.
       - Passing `view` as the argument tells the method that you want the location relative to the top-level view of the scene - the one that contains the label.
     - You set the `center` property of the label to update its position.
+
+### Build an ElementQuiz App
+
+#### Introduction
+
+- You'll apply all those skills to build an app that quizzes users on the elements of the periodic table.
+- You'll start with a flash card–style interface. The user will see the element symbol and atomic weight, and can tap a button to reveal the name of the element.
+- Next, you'll create a quiz mode, enabling the user to input the correct element name and to receive a score at the end.
+
+#### Part 1 Creating The Interface
+
+- To start, you'll build the flash card interface in your storyboard.
+  1. In Xcode, create a new project.
+  2. Use the iOS App template.
+  3. Name the project "ElementQuiz" and save it to the desktop.
+  4. Select the Main storyboard in the project navigator.
+  5. Select iPhone 14 Pro from the Device icon at the bottom of the screen.
+
+##### Adding Elements
+
+- The flash card interface consists of four elements, from top to bottom:
+  - An image view to display an image of the chemical element
+  - A label to display either a question mark or the name of the element
+  - A button to show the answer
+  - A button to move on to the next element
+- Drag these items from the Object library onto the canvas.
+  - Remember that you can use the filter bar at the top of the library to narrow your search.
+  - Put the image view at the top and the answer label right below it, then place the two buttons side by side under the label.
+  - Center them vertically by using the dotted guidelines that appear as you're dragging them.
+    - If you select both buttons at once, you can center them as a group.
+
+##### Image View Size
+
+- Some image views display many different kinds, shapes, and sizes of images.
+  - Others display images of a consistent shape and size.
+  - Since all the chemical element images are the same size, it's a good idea to set the size of the image view to match.
+- Change the size of the image view:
+  - Select the image view.
+  - In the Size inspector, set the width to 140 and the height to 140.
+
+##### Configure Label
+
+1. Select the label.
+2. In the Attributes inspector, in the Font field, click the "T" button to display the Font popup menu.
+3. Change the Style to Bold and the Size to 24, then click Done.
+4. Change the string in the label to "Answer Label."
+5. Set the Alignment to center and move it to center.
+
+##### Configure Buttons
+
+1. Set the title of the button on the left to "Show Answer", and on the right to "Next Element."
+2. Move them to center.
+
+- <img src="./resources/images/element_quiz_adding_elements.png" alt="ElementQuiz Interface" width="200" />
