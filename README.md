@@ -3140,3 +3140,64 @@
 2. Move them to center.
 
 - <img src="./resources/images/element_quiz_adding_elements.png" alt="ElementQuiz Interface" width="200" />
+
+#### Part 2 Adding Data
+
+- To begin filling your UI with actual data, you'll add images to your project.
+- You'll also create a simple data model to help you populate the image view and the answer label.
+- Adding Images
+  - In the Finder, open the folder named ElementQuiz" in our course resources.
+  - Add the images in this folder to the Asset Catalog of your Xcode project
+- Adding Outlets
+  - As the user navigates through different elements in elementQuiz, you'll need to update the image view and the answer label.
+    - Create an outlet named `imageView` from the image view.
+    - Create an outlet named `answerLabel` for the answer label.
+- Adding Code
+
+  - Data Models
+    - The app will show a list of chemical element symbols one at a time.
+    - Because the `Array` type is the way to store lists in Swift, the data model for this app will be an array of element names.
+    - Add constant property called `elementList` to `ViewController`, and initialize it with the following element names: `let elementList = ["Carbon", "bold", "chlorine", "Sodium"]`
+    - You'll also need to teep track of which element is currently displayed, so you can access the image and answer that correspond to it.
+    - Remember that you access items in an array by index, so your code will keep track of the current array index.
+    - Add a variable property called `currentElementIndex` to `ViewController`, and initialize it to 0: `var currentElementIndex = 0`
+    - Note that `elementList` is constant - it won't change as the app runs.
+    - But `currentElementIndex` is variable.
+    - As the user navigates through the elements, your code will update the current index.
+  - Updating the Element
+
+    - When the app first launches, you'll display the first element.
+    - You'll also need to update which element is displayed when the user click the Next Element button.
+    - You can combine the core logic for both steps into a single method.
+    - Write an `updateElement()` method in `ViewController` that sets the answer label to "?" and creates and set the correct image.
+      - `let elementName = elementList[currentElementIndex]`: accesses the element name from the list using the `currentElementIndex` property as the index.
+      - `let image = UIImage(named: elementName)`: creates a new `UIImage` instance by looking for an image in the Asset Catalog with a matching name.
+      - `imageView.image = image`: sets the image of the image view to the newly creaet image instance.
+      - `answerLabel.text = "?"`: sets the text of the answer label (using the `text` property of the `UILabel` type) to a question mark.
+        - The app will display the actual answer when the Show Answer button is tapped.
+    - To show the first element in the list when the app launches and the view loads, you'll add a call to `updateElement()` to `viewDidLoad()`.
+
+    - ```swift
+        import UIKit
+
+        class ViewController: UIViewController {
+            let elementList = ["Carbon", "bold", "chlorine", "Sodium"]
+            var currentElementIndex = 0
+            @IBOutlet weak var imageView: UIImageView!
+            @IBOutlet weak var answerLabel: UILabel!
+            override func viewDidLoad() {
+                super.viewDidLoad()
+                // Do any additional setup after loading the view.
+                updateElement()
+            }
+
+            func updateElement() {
+                let elementName = elementList[currentElementIndex]
+                let image = UIImage(named: elementName)
+                imageView.image = image
+
+                answerLabel.text = "?"
+            }
+
+        }
+      ```
