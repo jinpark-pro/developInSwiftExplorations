@@ -3181,10 +3181,10 @@
         import UIKit
 
         class ViewController: UIViewController {
-            let elementList = ["Carbon", "bold", "chlorine", "Sodium"]
-            var currentElementIndex = 0
             @IBOutlet weak var imageView: UIImageView!
             @IBOutlet weak var answerLabel: UILabel!
+            let elementList = ["Carbon", "bold", "chlorine", "Sodium"]
+            var currentElementIndex = 0
             override func viewDidLoad() {
                 super.viewDidLoad()
                 // Do any additional setup after loading the view.
@@ -3201,3 +3201,59 @@
 
         }
       ```
+
+#### Part 3 Handling User Interaction
+
+- When the user taps the Show Answer button, you want the answer label to change from a question mark to the element name.
+- When the user taps the Next Element button, you want your code to show the next chemical element.
+- To make all this work, you need to add an action for each button and write the appropriate code that runs in response to user actions.
+- Creating Actions
+  1. Create an action named `showAnswer()` connected to the Show Answer button.
+  2. Create an action named `next()` connected to the Next Element button.
+- Showing the Answer
+  - To show the answer, you'll access the name of the element at the current index and set that name as the text of the `answerLabel`.
+- Navigating To the Next Element
+  - Since you access items in an array by index, you can calculate the value of the next element by adding 1 to the current index.
+  - Once the current index is updated, you can call the `updateElement()` to update the user interface to display the element at the new current index.
+- A Crash
+
+  - Tapping the Next Element button on the last element in the list had a bad result.
+    - It froze the app in the simulator.
+  - When your app crashes, there's no reason to panic.
+  - The first thing to do is look at the console, which will sometimes have useful information about what went wrong.
+    - In this case, the the last line in the console says: `Fatal error: Index out of range`.
+  - The red highlight shows you the line in the code where the error occurred: `let elementName = elementList[currentElementIndex]`
+    - According to this information, an index is used that's outside of the expected range.
+    - And since the only index in that line of code is `currentElementIndex`, it must be the one that's causing the fatal error.
+  - The crash happened on the line of code where the index is used.
+    - But that's not where you'll go to fix it.
+    - If the index goes out of range, the problem must be where the value of the index is updated.
+    - In this app, the update happens in the `next()` method.
+  - Stop and think about the problem. What are its symptoms?
+    - When you tapped the Next Element button, things worked fine until you got to the last element in the list.
+    - Do you have an idea what’s causing the problem?
+  - Remember that you can only access an index if that index exists in the array.
+    - Otherwise there will be an "Index out of range" error.
+  - The elementList contains four items with indexes 0, 1, 2, and 3.
+    - When the last element is shown, the value of currentElementIndex is 3, the last index.
+  - Currently, the code keeps adding 1 to the index.
+    - So when you tap the button again, next() is called, and 1 is added to `currentElementIndex`.
+    - The value is now 4. But since there’s no index 4 in the array, the next time `currentElementIndex` is used to access the array, the crash occurs.
+  - Fixing the Crash
+
+    - For ElementQuiz, you want the app to go back to the beginning of the list when the user gets to the last element and taps the Next Element button.
+    - To implement this behavior without causing a crash, you’ll need to detect when you’ve arrived at the end of the list.
+    - At that point, you'll reset the index to the start of the list.
+
+  - ```swift
+      @IBAction func showAnswer(_ sender: Any) {
+          answerLabel.text = elementList[currentElementIndex]
+      }
+      @IBAction func next(_ sender: Any) {
+          currentElementIndex += 1
+          if elementList.count <= currentElementIndex {
+              currentElementIndex = 0
+          }
+          updateElement()
+      }
+    ```
