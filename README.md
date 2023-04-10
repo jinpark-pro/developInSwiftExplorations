@@ -3257,3 +3257,55 @@
           updateElement()
       }
     ```
+
+#### Part 4 Adding Modes
+
+- You'll add a new control to the app to switch between flash card and quiz modes, and implement the code and interface for quizes.
+
+##### Mode Enum
+
+- Your app will be in one of two modes: quiz or flash card.
+  - This is the perfect use case for a custom enum.
+  - Define an enum at the top of `ViewController`, below `import UIKit` and above the declaration of the `ViewController` class.
+- Add a new variable property to your view controller named `mode` of type `Mode`, and initialize it to `.flashCard`.
+
+- ```swift
+    enum Mode {
+        case flashCard
+        case quiz
+    }
+
+    class ViewController: UIViewController {
+        ...
+        var mode: Mode = .flashCard
+  ```
+
+##### Quiz UI Elements
+
+- To switch between quiz and flash card modes, you'll add a segmented control at the top of the screen.
+  - If there isn't enough room for it, select all the existing UI elements and move them lower in the scene.
+    1. Darg a UISegmentedControl from the Object library onto the canvas.
+    2. Center it horizontally at the top of screen.
+    3. Change the titles of the segments by double-clicking them. Type "Flash Cards" in the left segment, and type "Quiz" in the right segment.
+- The quiz mode will be challenging for the user, because the answers are free response rather than multiple choice.
+  - To enable free response input, you'll need to give your users a way to type text using the iOS keyboard.
+  - There are two primary controls for text input: `UITextView` and `UITextField`.
+    - `UITextView` allow multiple-line editing for long-form text,
+    - while `UITextField` is designed for small amounts of single-line text.
+  - A text field is the appropriate control for this app.
+    1. Make room for the text field by moving the buttons lower in the scene.
+    2. Drag a text field from the Object library onto the canvas.
+    3. Center it below the Answer Label and above the buttons.
+    4. Stretch the text field so it's the same width as the image view.
+  - You'll need outlets for both of these new UI elements.
+    1. Create an outlet named `modeSelector` for the segmented control.
+    2. Create an outlet named `textField` for the text field.
+- Checkpoint
+  - Build and run the app.
+  - Right now the segmented control does nothing.
+    - However, you'll notice that, even without adding any code, the text field automatically displays the keyboard when it's tapped.
+    - If you don't see the keyboard when the text field is selected, go to Simulator and choose Hardware > Keyboard > Toggle Software Keyboard.
+      - Also note that if you select Connect Hardware Keyboard, you can type on your computer's keyboard in addition to tapping the keys on the simulator.
+  - If the keyboard covers any of your interface, go back to the storyboard and rearrange its contents to avoid the area the keyboard occupies.
+    - You'll notice that there's no way to dismiss they keyboard once it's there. You'll tackle that problem later.
+  - <img src="./resources/images/adding_modes.png" alt="Adding Modes" width="200" />
