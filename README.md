@@ -3301,6 +3301,7 @@
     1. Create an outlet named `modeSelector` for the segmented control.
     2. Create an outlet named `textField` for the text field.
 - Checkpoint
+
   - Build and run the app.
   - Right now the segmented control does nothing.
     - However, you'll notice that, even without adding any code, the text field automatically displays the keyboard when it's tapped.
@@ -3309,3 +3310,232 @@
   - If the keyboard covers any of your interface, go back to the storyboard and rearrange its contents to avoid the area the keyboard occupies.
     - You'll notice that there's no way to dismiss they keyboard once it's there. You'll tackle that problem later.
   - <img src="./resources/images/adding_modes.png" alt="Adding Modes" width="200" />
+
+  - ```swift
+      import UIKit
+
+      enum Mode {
+          case flashCard
+          case quiz
+      }
+
+      class ViewController: UIViewController {
+          @IBOutlet weak var imageView: UIImageView!
+          @IBOutlet weak var answerLabel: UILabel!
+
+          @IBOutlet weak var textField: UITextField!
+          @IBOutlet weak var modeSelector: UISegmentedControl!
+          @IBAction func showAnswer(_ sender: Any) {
+              answerLabel.text = elementList[currentElementIndex]
+          }
+          @IBAction func next(_ sender: Any) {
+              currentElementIndex += 1
+              if elementList.count <= currentElementIndex {
+                  currentElementIndex = 0
+              }
+              updateElement()
+          }
+          let elementList = ["Carbon", "Gold", "Chlorine", "Sodium"]
+          var currentElementIndex = 0
+          var mode: Mode = .flashCard
+          override func viewDidLoad() {
+              super.viewDidLoad()
+              // Do any additional setup after loading the view.
+              updateElement()
+          }
+
+          func updateElement() {
+              let elementName = elementList[currentElementIndex]
+              let image = UIImage(named: elementName)
+              imageView.image = image
+
+              answerLabel.text = "?"
+          }
+      }
+    ```
+
+##### Refactoring - UI State Management
+
+- To manage quiz mode, you'll soon have quite a bit more code.
+  - In fact, if you're not careful, you could end up with some very complicated code to write and debug.
+  - A good practice with view controllers is to keep your user interface updates localized to as few places as possible - ideally in one method.
+  - So when you need to change anything on the screen, you can funnel all your code to that one method.
+- For example, your current code updates the UI in `updateElement()` and also in `showAnswer()`.
+  - How will these methods evolve as you build your quiz mode, and how many more methods will you need for updating your quiz - related UI?
+- This is a good time to start using the single-path UI update pattern.
+  - If you keep all your UI update code in one method, you can use that method to answer the question, "For the current state of the app, how should the UI look?"
+  - Every time you add to your app's capabilities, you'll know where to put any code that updates the UI.
+  - And that practice will keep the rest of your code easier to understand and debug.
+- Consolidation
+
+  - First, rename the `updateElement()` method to `updateFlashCardUI()` so that its function is clear: to update the entire flash card UI based on the current state of the app.
+    - Don't forget to update the two calls to `updateElement()` as well—they're in `viewDidLoad()` and `next()`.
+  - Now take a look at the `showAnswer()` method, which makes changes directly to the UI by setting the text of the answer label.
+    - Following the single-path pattern, `updateFlashCardUI()` should be making those changes.
+    - But if the user's action is communicated to `showAnswer()`, how will `updateFlashCardUI()` know that the user wants to show the answer?
+  - The solution is to keep track of the state your app is in.
+
+    - Think about your app as the user interacts with it over time.
+    - At any point, you should be able to ask, "What is my app doing now?"
+    - The answer will determine how you set up your UI. Your app has just two states: displaying an element for the user to guess, and showing the name of the element.
+    - Create a new enum named State at the top of the file under the Mode enum.
+
+      - ```swift
+          enum State {
+              case question
+              case answer
+          }
+        ```
+
+  - Then, in the view controller, make a new variable property to keep track of the state of your app: `var state: State = .question`
+
+  - In `showAnswer()`, replace the statement to update the label with one to update the state of the app.
+
+    - Since you're no longer using that method to directly change the UI, you'll add a call to `updateFlashCardUI()`.
+
+      - ```swift
+          @IBAction func showAnswer() {
+              state = .answer
+           
+              updateFlashCardUI()
+          }
+        ```
+
+  - You'll also need to change `next()` to update the state of the app.
+
+    - ```swift
+        @IBAction func next(_ sender: Any) {
+            currentElementIndex += 1
+            if elementList.count == currentElementIndex {
+                currentElementIndex = 0
+            }
+            state = .question
+            updateFlashCardUI()
+        }
+      ```
+
+  - Finally, you can update `updateFlashCardUI()`.
+
+    - Remember, that method is supposed to be answering the question, "For the current state of the app, how should the UI look?"
+    - The state of the app determines what you display in the answer label.
+
+      - The new comment above the method will be useful as you build more and more code.
+
+    - ```swift
+        func updateFlashCardUI() {
+            let elementName = elementList[currentElementIndex]
+            let image = UIImage(named: elementName)
+            imageView.image = image
+
+            if state == .answer {
+                answerLabel.text = elementName
+            } else {
+                answerLabel.text = "?"
+            }
+        }
+      ```
+
+- Checkpoint
+  - When you build and run your app, it should behave exactly as it did before.
+    - Remember, this is the point of refactoring: You're adapting your code to accommodate new goals and tasks without changing what it does.
+- Handling Modes
+
+  - There's a bit more you should do before you start building the quiz mode.
+  - First, create a new empty method named `updateQuizUI()`.
+  - Then create one final UI update method: the one that will act as the single point of entry for all UI updates.
+
+    - In this method, you'll use a switch statement to determine which of the two specific update methods to call.
+
+      - This important step will help keep your mode-specific UI code separated and easier to read.
+
+      - ```swift
+          func updateUI() {
+              switch mode {
+              case .flashCard:
+                  updateFlashCardUI()
+              case .quiz:
+                  updateQuizUI()
+              }
+          }
+        ```
+
+  - Finally, you'll need to modify the methods that called `updateFlashCardUI` by changing them to call `updateUI` instead.
+    - Make that adjustment in these three methods: `viewDidLoad()`, `next()`, and `showAnswer()`.
+  - The only method that should ever call `updateFlashCardUI` (and `updateQuizUI`) should be `updateUI`.
+    - All other methods will rely on `updateUI` when they make changes to the interface.
+  - To verify that you made the correct changes, use Command-F to search for the string "updateFlashCardUI."
+    - There should be just two results: one declaration and one call.
+
+- Checkpoint
+
+  - Build and run your code again to confirm that this additional refactoring hasn't changed the app's behavior.
+
+  - ```swift
+      import UIKit
+
+      enum Mode {
+          case flashCard
+          case quiz
+      }
+
+      enum State {
+          case question
+          case answer
+      }
+
+      class ViewController: UIViewController {
+          @IBOutlet weak var imageView: UIImageView!
+          @IBOutlet weak var answerLabel: UILabel!
+
+          @IBOutlet weak var textField: UITextField!
+          @IBOutlet weak var modeSelector: UISegmentedControl!
+          @IBAction func showAnswer(_ sender: Any) {
+              state = .answer
+
+              updateUI()
+          }
+          @IBAction func next(_ sender: Any) {
+              currentElementIndex += 1
+              if elementList.count == currentElementIndex {
+                  currentElementIndex = 0
+              }
+              state = .question
+              updateUI()
+          }
+          let elementList = ["Carbon", "Gold", "Chlorine", "Sodium"]
+          var currentElementIndex = 0
+          var mode: Mode = .flashCard
+          var state: State = .question
+
+          override func viewDidLoad() {
+              super.viewDidLoad()
+              // Do any additional setup after loading the view.
+              updateUI()
+          }
+
+          func updateFlashCardUI() {
+              let elementName = elementList[currentElementIndex]
+              let image = UIImage(named: elementName)
+              imageView.image = image
+
+              if state == .answer {
+                  answerLabel.text = elementName
+              } else {
+                  answerLabel.text = "?"
+              }
+          }
+
+          func updateQuizUI() {
+
+          }
+
+          func updateUI() {
+              switch mode {
+              case .flashCard:
+                  updateFlashCardUI()
+              case .quiz:
+                  updateQuizUI()
+              }
+          }
+      }
+    ```
