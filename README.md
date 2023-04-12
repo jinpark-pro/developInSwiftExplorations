@@ -3539,3 +3539,48 @@
           }
       }
     ```
+
+#### Part 5 Getting keyboard Input
+
+##### Delegation
+
+- An IBAction receives a specific event from an interface element, such as a button.
+  - A callback function can be supplied to a user interface object, like a Shape in the game app.
+  - There's another way that iOS commonly delivers user input: via delegation.
+- You learned a little about delegation in the ChatBot app.
+  - Here, you'll be using it in the context of UI controls, in which delegation is a little like IBAction—linking a piece of your UI to your code.
+- Declaration
+  - Your view controller will act as the delegate of the text field.
+  - Instead of tying the text field directly to a method, you'll tie it to the whole view controller.
+    - You can then implement certain standard methods that the text field knows how to call.
+    - You'll start by conforming to the `UITextFieldDelegate` protocol. You do that by modifying the declaration of your `UIViewController` class.
+      - `class ViewController: UIViewController, UITextFieldDelegate {`
+  - To complete this lesson, it's not necessary to understand how this kind of delegation works or what a protocol is.
+  - But if you want to learn more, you can Option-click `UITextFieldDelegate` to look at its documentation.
+  - Even without knowing what a protocol is, you'll understand something about how a text field interacts with its delegate.
+- Storyboard
+  - Now that you've modified your view controller, you can set up the text field's delegate.
+  - In the storyboard scene, Control-click (or right-click) the text field, and find the delegate item in the small panel that appears.
+    - It should be near the top, in the Outlets section.
+    - To make the delegate connection, drag a blue line from the small circle to the right of delegate to the View Controller in the Document Outline.
+    - <img src="./resources/images/textfield_delegation.png" alt="Textfield Delegation" width="400" />
+- Code
+
+  - Go back to ViewController to implement your code.
+    - There are multiple callbacks available to text field delegates.
+    - You need to implement just one of them—which will be called when the user taps the Return button on the iOS keyboard.
+  - Before you write the method itself, you'll need to add some extra state to your app:
+    1. Whether the user entered the right answer
+    2. How many answers the user got right
+  - Add two new variable properties to your view controller for this state.
+
+    - ```swift
+        var answerIsCorrect = false
+        var correctAnswerCount = 0
+      ```
+
+  - Then implement the text field callback.
+    - It returns a Bool so that iOS knows whether you'd like to use its default behavior after you've run your code.
+
+- Checkpoint
+  - Build and run the app. After you type a response in the text field and press (or tap) Return, the answer label should display the name of the element.
