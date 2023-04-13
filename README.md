@@ -3584,3 +3584,46 @@
 
 - Checkpoint
   - Build and run the app. After you type a response in the text field and press (or tap) Return, the answer label should display the name of the element.
+
+##### UI Updates
+
+- How will the suer know whether they got the right answer?
+- It's time to write some UI updates code for quiz mode.
+- Add the following code to `updateQuizUI()`:
+
+  - ```swift
+      func updateQuizUI() {
+          switch state {
+          case .question:
+              answerLabel.text = ""
+          case .answer:
+              if answerIsCorrect {
+                  answerLabel.text = "Correct!"
+              } else {
+                  answerLabel.text = "❌"
+              }
+          }
+      }
+    ```
+
+- Checkpoint
+
+  - Build and run your app.
+    - Even though you expect to see feedback when you enter an answer in the text field and tap Return, the answer label still displays the name of the element. What's wrong?
+    - To find out, set a breakpoint where you'd expect to see your answer label change—on the first line of `updateQuizUI()`.
+    - To add a breakpoint, click the line number on the left side of the editor area, or position your text insertion point on the line and then select Debug > Breakpoints > Add Breakpoint at Current Line (Command-\). A blue flag will appear behind the line number, pointing to the line of code on the right.
+  - Now build and run again.
+    - You'll notice that after you enter an answer, Xcode doesn't stop at the breakpoint - which means that `updateQuizUI()` is never called.
+    - There's only one place that calls `updateQuizUI()`, and that's `updateUI()` - and it relies on the mode being set to `.quiz`.
+    - As it turns out, you haven't changed the mode of your app; it's still running in flash card mode. (Even if you set the segmented control to Quiz.)
+  - Before you learn how to switch modes, you'll still want to verify that your code is properly tabulating quiz results.
+
+    - For debugging purposes, you can add print statements to `textFieldShouldReturn`:
+
+    - ```swift
+        if answerIsCorrect {
+            print("Correct!")
+        } else {
+            print("❌")
+        }
+      ```
