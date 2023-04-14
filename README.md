@@ -3627,3 +3627,50 @@
             print("❌")
         }
       ```
+
+#### Part 6 Switching Modes
+
+##### Segmented Control Action
+
+- First, you'll make a new action that changes the app's mode when the user interacts with the segmented control.
+
+  - ```swift
+      @IBAction func switchModes(_ sender: Any) {
+          if modeSelector.selectedSegmentIndex == 0 {
+              mode = .flashCard
+          } else {
+              mode = .quiz
+          }
+      }
+    ```
+
+- You can add a call to `updateUI()` at the end of this method, but ther's a cool trick in Swift that makes your code a tiny bit more elegant. Add the floowing to your declaration fo the `mode` property:
+
+  - ```swift
+      var mode: Mode = .flashCard {
+          didSet {
+              updateUI()
+          }
+      }
+    ```
+
+- If you recall computed properties, you'll see a similar pattern: braces after a property declaration.
+  - But `mode` isn't a computed property.
+  - Instead, you've added a property observer.
+    - Property observers are specialized code that runs every time a property changes.
+  - In this case, each time the value of mode is updated, the code in the `didSet` bluck will run.
+- Checkpoint
+  - Build and run the app, then use the segmented control to switch to Quiz mode.
+    - This time, Xcode will stop at your breakpoint, highlighting the line in green and switching to the Debug navigator.
+  - If you examine the navigator, you'll see that `ViewController.updateQuizUI` is highlighted at the top under Thread 1.
+  - Below it is `ViewController.updateUI`, which called it. And below that, `ViewController.mode.didSet`. In fact, you can trace down to see the call stack of this point in your code's execution.
+  - Disable your breakpoint by clicking it - it'll turn a more muted shade of blue - or delete it by dragging it to the right away from the line numbers.
+    - To continue executing your code, choose Debug > Continue, or click the Continue button between the console and the editor area.(1)
+      - <img src="./resources/images/debug.png" alt="Debug" width="400" />
+  - So you know for sure that the updateQuizUI() method is now being called.
+    - Do you see the tiny change in behavior in your app as a result of your code changes?
+    - The question mark in the answer label should appear and disappear when you switch between modes.
+    - That's an indicator that the correct UI update code is running.
+    - If you try answering a question in quiz mode, you should now see what you expected in the answer label.
+  - Of course, you'll also notice that the image no longer updates in quiz mode.
+    - This shouldn't surprise you, since the image update code is in updateFlashCardUI.
