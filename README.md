@@ -3674,3 +3674,31 @@
     - If you try answering a question in quiz mode, you should now see what you expected in the answer label.
   - Of course, you'll also notice that the image no longer updates in quiz mode.
     - This shouldn't surprise you, since the image update code is in updateFlashCardUI.
+
+##### Refactoring - Quiz Image Updates
+
+- The code to set the image is identical in both quiz mode and flash card mode.
+  - So why not copy it from `updateFlashCardUI` and paste it into updateQuizUI?
+  - By now you've learned that, whenever possible, it's better to avoid repeating code.
+  - A better solution is to lift the code from `updateFlashCardUI` up to the method that calls it: updateUI.
+  - That way, the image will be updated before any mode - specific UI code runs.
+- Cut these lines of code from `updateFlashCardUI` and paste them at the top of `updateUI`, adding a helpful comment.
+
+  - ```swift
+      let elementName = elementList[currentElementIndex]
+      let image = UIImage(named: elementName)
+      imageView.image = image
+    ```
+
+- You'll see a compiler error, since you removed `elementName` from `updateFlashCardUI`.
+
+  - That's easy to fix by adding it as a parameter. Update the declarations of `updateFlashCardUI`, `func updateFlashCardUI(elementName: String)`.
+  - “Then change updateUI so that it calls those methods properly:
+
+    - ```swift
+        case .flashCard:
+            updateFlashCardUI(elementName: elementName)
+      ```
+
+- Checkpoint
+  - Build and run the app. Quiz mode should properly update the image when you tap Next Element.
