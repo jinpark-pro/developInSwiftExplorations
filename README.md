@@ -3702,3 +3702,103 @@
 
 - Checkpoint
   - Build and run the app. Quiz mode should properly update the image when you tap Next Element.
+
+##### Keyboard Dismissal
+
+- Now that you can switch modes, you'll notice that the keyboard remains visible when you switch from quiz mode to flash card mode (when it has no purpose).
+  - How can you dismiss the keyboard? You can handle these remaining issues with a few extra lines of code.
+- `UITextField` has a method that causes the keyboard to go away - it's called `resignFirstResponder`.
+
+  - Where should this method be called?
+  - Since this qualifies as user interface code, you'll put it in your UI update methods.
+  - Change `updateFlashCardUI` by adding the following two lines to hide the text field and dismiss the keyboard.
+
+  - ```swift
+      textField.isHidden = true
+      textField.resignFirstResponder()
+    ```
+
+- While you're there, you might add some comments to keep track of which parts of the UI you're touching.
+- You'll do similar work in updateQuizUI, using the becomeFirstResponder method, to make sure that the keyboard is showing.
+  - But it's a bit more nuanced.
+  - How would you describe the text field in quiz mode?
+    - When displaying a question (a new element), the field should be empty and it should show the keyboard.
+    - When displaying the answer, the keyboard should be hidden.
+- And regardless whether the app is displaying the question or the answer, or whether the keyboard is showing, the text field itself should always be visible in quiz mode.
+
+  - Modify `updateQuizUI` to add this new code.
+
+  - ```swift
+      func updateQuizUI(elementName: String) {
+          textField.isHidden = false
+          switch state {
+          case .question:
+              textField.text = ""
+              textField.becomeFirstResponder()
+          case .answer:
+              textField.resignFirstResponder()
+          }
+       
+          switch state {
+          case .question:
+              answerLabel.text = ""
+          case .answer:
+              if answerIsCorrect {
+                  answerLabel.text = "Correct!"
+              } else {
+                  answerLabel.text = "❌"
+              }
+          }
+      }
+    ```
+
+- You might think it's redundant to do things like hide the text field every time your app's state changes.
+  - If it's already hidden once in flash card mode, why hide it again every time `updateUI` is called?
+  - There are two reasons:
+    - It's not harmful to call some UI code like `.isHidden` and `resignFirstResponder()` more than once, even if you're not changing the state of those UI elements.
+    - It makes your code simpler to understand.
+  - The second point is more important.
+    - Inside `updateUI` is a complete description of your app's interface.
+    - So you can focus on all of your interface code (the what) in one consolidated place, without worrying about exactly where and when you should be doing something.
+    - In this case, there's no problem hiding the text field - even if you hide it when it's already hidden.
+- Checkpoint
+  - Build and run the app.
+  - When you switch to quiz mode, the text field and keyboard should appear. When you answer a question, the keyboard should disappear.
+  - As you move to the next question, the keyboard should reappear and the text field should be cleared.
+  - When you switch from quiz mode back to flash card mode, the keyboard should disappear, along with the text field.
+
+#### Part 7 Scoring the Quiz
+
+- Your users will want to know their score at the end of the quiz.
+  - Since you're already tracking the number of correct answers, you just need to detect when the quiz is over and provide feedback on the user's performance.
+- Displaying a score doesn't neatly fit into the current two-state question/answer design.
+  - You'll need to add a special new state just to display the user's score.
+
+##### New State
+
+- Start by adding a case to the State enum: `case score`.
+- You'll notice that two compiler errors, reading "Switch must be exhaustive," show up in updateQuizUI.
+  - Swift is helping you avoid bugs that can happen if you ignore possible values for a variable.
+  - You'll tackle each switch statement one at a time.
+- Look at the first switch that updates the text field and keyboard.
+
+  - When displaying the score, you should hide the keyboard and hide the text field. Add that code as a new case:
+
+  - ```swift
+      case .score:
+          textField.isHidden = true
+          textField.resignFirstResponder()
+    ```
+
+- Now look at the switch statement for the answer label.
+
+  - When you're displaying the user's score, the answer label should be empty.
+  - Add a new case for the empty label, and insert a print statement to print the score to the console for temporary debugging purposes:
+
+  - ```swift
+      case .score:
+          answerLabel.text = ""
+          print("Your score is \
+            (correctAnswerCount) out of \
+            (elementList.count).")
+    ```
