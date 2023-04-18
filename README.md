@@ -3802,3 +3802,29 @@
             (correctAnswerCount) out of \
             (elementList.count).")
     ```
+
+##### Detecting the End of the Quiz
+
+- Now you'll need to determine when to set the app's state to score.
+
+  - You already have code in the `next()` method that has to account for reaching the end of the list of elements.
+  - That's a logical place to add your code. Update the if statement in the `next()` method as follows:
+
+  - ```swift
+      if currentElementIndex >= elementList.count
+        {
+          currentElementIndex = 0
+          if mode == .quiz {
+              state = .score
+              updateUI()
+              return
+          }
+      }
+    ```
+
+- Notice that you return midway through the method after you set the state to score.
+  - Your code can't continue to the end of the method, where you set the state to question.
+  - You could rewrite the method to avoid an extra return statement, but the logic would be harder to read.
+  - It's generally better to have just one return statement in a function or method, but returning early occasionally results in better code.
+- Checkpoint
+  - Build and run your app. You'll see that, after all four questions, your quiz is scored and the results are printed to the console.
