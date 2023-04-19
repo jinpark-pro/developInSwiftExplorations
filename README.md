@@ -3828,3 +3828,59 @@
   - It's generally better to have just one return statement in a function or method, but returning early occasionally results in better code.
 - Checkpoint
   - Build and run your app. You'll see that, after all four questions, your quiz is scored and the results are printed to the console.
+
+##### Alert Controllers
+
+- A standard iOS alert appears over the rest of your app, forcing you to focus on it and dismiss it before resuming your activities. (This is called a modal interface.)
+
+  - Displaying an alert doesn't take too much code, and it's a nice skill to have.
+  - Here's the code you'll need:
+
+  - ```swift
+      func displayScoreAlert() {
+          let alert = UIAlertController(title: "Quiz Score",
+            message: "Your score is \
+                (correctAnswerCount) out
+                of \(elementList.count).",
+            preferredStyle: .alert)
+       
+          let dismissAction =
+            UIAlertAction(title: "OK",
+            style: .default,
+            handler: scoreAlertDismissed(_:))
+          alert.addAction(dismissAction)
+       
+          present(alert, animated: true, completion: nil)
+      }
+       
+      func scoreAlertDismissed(_ action: UIAlertAction) {
+          mode = .flashCard
+      }
+    ```
+
+- Take a look at the code, line by line:
+
+  - First you created a new `UIAlertController` and set its title, message, and preferred style.
+  - Then you created a new alert action, which describes the button that will go at the bottom of the alert.
+    - Its title is easy to understand, and its style can be one of several. (To learn more, look up "UIAlertAction.Style" in the documentation.)
+  - The third parameter is more interesting - it's a callback.
+    - You've supplied your own function to run after the user taps the OK button.
+    - It may look a little weird to pass a function into another function, but it's the same concept as setting a function as the value of a callback property, just as you did for shapes in your game app.
+  - You added that action to the alert controller.
+  - Then you presented the alert to the user with the `present(_:animated:completion:)` method, which is part of UIViewController.
+    - The nil argument to the third parameter won't look familiar; you can ignore it for this project.
+    - The concept of nil is part of the next level of Swift - valuable to explore if you have the time and curiosity.
+  - The method to handle the OK button simply sets the app back to flash card mode.
+  - Finally, put `displayScoreAlert()` to the bottom of your `updateQuizUI(elementName:)` method instead to print the score to the console.
+
+    - ```swift
+        case .score:
+            answerLabel.text = ""
+            displayScoreAlert()
+        }
+      ```
+
+- Checkpoint
+  - Build and run your app.
+  - Your alert displays correctly, but there are some new wrinkles.
+  - After the alert is dismissed, you'll notice that the segmented control doesn't update, even though you return to flash card mode when the alert is dismissed.
