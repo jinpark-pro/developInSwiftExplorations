@@ -3884,3 +3884,19 @@
   - Build and run your app.
   - Your alert displays correctly, but there are some new wrinkles.
   - After the alert is dismissed, you'll notice that the segmented control doesn't update, even though you return to flash card mode when the alert is dismissed.
+
+##### Segmented Control Updates
+
+- The segmented control wasn't in your updateUI code path because your app mode only changed when the user interacted with it.
+  - But now that you're automatically switching modes, the segmented control has to be managed.
+  - Add `modeSelector.selectedSegmentIndex = 0` to `updateFlashCardUI(elementName:)`.
+  - And add `modeSelector.selectedSegmentIndex = 1` to `updateQuizUI(elementName:)`.
+- Checkpoint
+  - Build and run your app. The segmented control should update properly after you finish a quiz.
+  - If you use the segmented control to switch immediately back to quiz mode without touching any buttons, the alert will appear again.
+  - That's because your app's state was score when you switched back to flash card mode, and the state wasn't updated before you went back to quiz mode.
+  - You could set the state to question in the `scoreAlertDismissed(_:)` method, but that won't solve all your problems.
+  - For example, try stopping and re-running the app and displaying the answer for the first element in flash card mode, and then switching to quiz mode.
+  - You'll see the red "X," without being given the opportunity to answer the question.
+  - What happened? When you entered quiz mode, the app's state was answer.
+  - Learn how to reset the app each time you switch modes.
