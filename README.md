@@ -3900,3 +3900,36 @@
   - You'll see the red "X," without being given the opportunity to answer the question.
   - What happened? When you entered quiz mode, the app's state was answer.
   - Learn how to reset the app each time you switch modes.
+
+#### Part 8 Setting Up Modes
+
+- You've reached a point where the basic app functions are in place and there are just a few bugs to fix.
+  - The bugs, such as the two above, are tricky to put into words because they rely on a certain sequence of steps before you see them.
+  - You can follow a common practice for describing UI bugs that makes it clear—to anyone—exactly how to reproduce them.
+
+##### Describing UI Bugs
+
+- When you describe a UI bug, you'll need to list the sequence of steps a user will take before the bug occurs — the steps to reproduce the bug.
+  - You'll also want to describe the bug concisely and clearly with a title, and document explicitly what the behavior should be, along with what actually happened.
+  - Here are descriptions of both of the bugs that occurred above.
+    - Quiz score alert displays when starting quiz mode
+      1. Launch the app.
+      2. Use the segmented control to switch to quiz mode.
+      3. Answer all four questions to reach the end of the quiz.
+      4. Tap the Next Element button to show the score alert.
+      5. Tap the OK button to dismiss the alert.
+         1. The app switches back to flash card mode.
+      6. Use the segmented control to switch to quiz mode.
+      - Expected Behavior
+        - ​The quiz begins, showing the keyboard and activating the text field, with a blank answer label.
+      - Observed Behavior
+        - ​The score alert is displayed with a result of 0 out of 4.
+    - Starting a new quiz displays an incorrect answer
+      1. Launch the app.
+      2. Tap the Show Answer button.
+         1. The app shows "Carbon" below the image.
+      3. Use the segmented control to switch to quiz mode.
+      - Expected Behavior
+        - The quiz begins, showing the keyboard and activating the text field, with a blank answer label.
+      - Observed Behavior
+        - The quiz begins by showing a red "X" below the image. The keyboard is not visible and the text field is not active.
