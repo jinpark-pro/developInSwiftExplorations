@@ -3933,3 +3933,57 @@
         - The quiz begins, showing the keyboard and activating the text field, with a blank answer label.
       - Observed Behavior
         - The quiz begins by showing a red "X" below the image. The keyboard is not visible and the text field is not active.
+
+##### Setup Methods
+
+- To fix both bugs, you'll add code to set up the state of a new flash card session or a new quiz. Start by adding two new empty setup methods, one for each mode.
+  - The purpose of each function is to start a new session in a clean state, erasing or resetting anything that's left over when the user switched modes.
+  - `func setupFlashCards() {}`
+  - `func setupQuiz() {}`
+
+##### Calling Setup Methods
+
+- The most natural place to call these methods is the point at which the mode is being changed.
+
+  - Update the code in the `didSet` block for the `mode` property as follows.
+
+  - ```swift
+      var mode: Mode = .flashCard {
+          didSet {
+              switch mode {
+              case .flashCard:
+                  setupFlashCards()
+              case .quiz:
+                  setupQuiz()
+              }
+              updateUI()
+          }
+      }
+    ```
+
+##### Flash Card Setup
+
+- The flash card mode relies on two key properties:
+  - `currentElementIndex` should be set to zero when the flash card session starts: `currentElementIndex = 0`.
+  - The state of the app should be `question`: `status = .question`
+  - Add that code to `setupFlashcards()`
+
+##### Quiz Setup
+
+- A quiz requires a bit more code.
+- In addition to setting the state and current element index, you'll have to reset the additional quiz
+
+  - specific properties `answerIsCorrect` and `correctAnswerCount`.
+  - Add the following code to `setupQuiz()`.
+
+  - ```swift
+      func setupQuiz() {
+          state = .question
+          currentElementIndex = 0
+          answerIsCorrect = false
+          correctAnswerCount = 0
+      }
+    ```
+
+- Checkpoint
+  - Build and run the app. By following the listed steps in the bug descriptions, you can verify that issues are fixed.
