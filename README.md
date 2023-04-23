@@ -3987,3 +3987,22 @@
 
 - Checkpoint
   - Build and run the app. By following the listed steps in the bug descriptions, you can verify that issues are fixed.
+
+#### Part 9 Cleanup and Polishing
+
+- While you're in bug-fixing mode, you can clean up other issues with the app.
+- Take a minute to see if you can find the problems yourself, then read below.
+  - In this part of the lesson, the bugs aren't written up in detail, but you can try your hand at bug descriptions as you work on them.
+
+##### Show Answer Button
+
+- You can still tap the Show Answer button in quiz mode.
+  - You're automatically displaying the answer in a quiz when the user finishes entering text, so there's no use for that button.
+  - And since it has the effect of displaying a red "X" if it's tapped, the button may be confusing to the user.
+  - Use the code below to manage the its visibility.
+    - First, you'll need to create a new outlet for the Show Answer button and connect it to the button in your storyboard. Do that now.
+      - `@IBOutlet weak var showAnswerButton: UIButton!`
+    - Add `showAnswerButton.isHidden = false` to `updateFlashCardUI()`.
+    - Add `showAnswerButton.isHidden = true` to `updateQuizUI()`.
+- Checkpoint
+  - Build and run the app to verify that the Show Answer button doesn't show up in quiz mode.
