@@ -4006,3 +4006,57 @@
     - Add `showAnswerButton.isHidden = true` to `updateQuizUI()`.
 - Checkpoint
   - Build and run the app to verify that the Show Answer button doesn't show up in quiz mode.
+
+##### Next Element Button
+
+- While you're thinking about buttons, examine the Next Element button.
+- There are a few things that could be improved.
+  1. In quiz mode, the button shouldn't be enabled until the user supplies an answer.
+     - Right now, they can skip a question by tapping it (and they're scored for an incorrect answer).
+  2. In quiz mode, the button should have better titles: "Next Question" during the quiz, and "Show Score" at the end.
+- Start by adding an outlet for the Next Element button and connecting it in the storyboard.
+  - `@IBOutlet weak var nextButton: UIButton!`
+- Update `updateFlashCardUI()` in the Buttons section, adding Next button code below the existing Show Answer button code:
+
+  - ```swift
+      nextButton.isEnabled = true
+      nextButton.setTitle("Next Element", for: .normal)
+    ```
+
+- You'll notice a new method to set the title of a button.
+  - You might have expected a simple title property, but iOS lets you set different button titles for different control states. (If you want to know more, look up UIControl.State in the documentation.)
+    - normal: The normal, or default, state of a control where the control is enabled but neither selected nor highlighted.
+    - highlighted: The highlighted state of a control.
+    - disabled: The disabled state of a control.
+    - selected: The selected state of a control.
+    - focused: The focused state of a control.
+    - application: Additional control-state flags available for app use.
+    - reserved: Control-state flags reserved for internal framework use.
+- Update `updateQuizUI()` in the Buttons section, adding Next button code below the existing Show Answer button code:
+
+
+
+  - ```swift
+      if currentElementIndex == elementList.count - 1 {
+          nextButton.setTitle("Show Score",
+            for: .normal)
+      } else {
+          nextButton.setTitle("Next Question",
+            for: .normal)
+      }
+      switch state {
+      case .question:
+          nextButton.isEnabled = false
+      case .answer:
+          nextButton.isEnabled = true
+      case .score:
+          nextButton.isEnabled = false
+      }
+    ```
+
+- That's some complex code! Here's a breakdown of what it's doing.
+  - The if statement sets the button's title based on the user's position in the quiz.
+  - If they're on the last question, the button's title is set to "Show Score."
+  - The switch statement enables the button only in the answer state.
+- Checkpoint
+  - Build and run the app. You'll notice that the Next button isn't wide enough to accommodate the "Next Question" title, so you'll need to widen it in your storyboard.
