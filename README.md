@@ -4034,8 +4034,6 @@
     - reserved: Control-state flags reserved for internal framework use.
 - Update `updateQuizUI()` in the Buttons section, adding Next button code below the existing Show Answer button code:
 
-
-
   - ```swift
       if currentElementIndex == elementList.count - 1 {
           nextButton.setTitle("Show Score",
@@ -4060,3 +4058,18 @@
   - The switch statement enables the button only in the answer state.
 - Checkpoint
   - Build and run the app. You'll notice that the Next button isn't wide enough to accommodate the "Next Question" title, so you'll need to widen it in your storyboard.
+
+##### Text Input
+
+- Next, turn your focus to the text field.
+- You may have noticed that it can be reentered while the answer is being displayed, which can lead to scores like 6 out of 4 if the user enters the correct answer multiple times.
+- You can fix these issues. There are two ways
+  - by disabling the text field when it's not needed.
+    - Add `textField.isEnabled` to your text field management code in `updateQuizUI()`
+      - `true` when state is question
+      - `false` when state is answer
+      - Note that you don't need to set `isEnabled` when state is score, since the field will be hidden.
+  - Or by passing the counting when the quiz already answered
+    - Add `if answerLabel.text != "" { return true }` before checking the answer in `textFieldShouldReturn()`.
+- Checkpoint
+  - Build and run the app to verify that the text field is only enabled when the user is viewing a question.
