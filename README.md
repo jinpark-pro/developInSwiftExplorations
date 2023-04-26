@@ -4073,3 +4073,19 @@
     - Add `if answerLabel.text != "" { return true }` before checking the answer in `textFieldShouldReturn()`.
 - Checkpoint
   - Build and run the app to verify that the text field is only enabled when the user is viewing a question.
+
+##### Answer Display
+
+- Right now, the user doesn't get good feedback when they enter the wrong answer.
+- Make the following change in updateQuizUI() to display the correct element name when their answer is incorrect.
+  - You'll find this code in the Answer Label section inside the `.answer` case of the switch statement.
+    - `answerLabel.text = "❌\nCorrect Answer: \(elementList[currentElementIndex])"`
+- Build and run the app. You'll notice that you don't see all of the text. Why not?
+  - The label is currently configured to display just one line of text, and it's not tall enough for multiple lines.
+  - Fix that in your storyboard by doing two things:
+    - Resize the label to make it tall enough to handle two lines of text.
+      - Also make it wider to accommodate the full width of the answer text. You'll probably want to extend it to the full width of the screen, minus the side margins that appear as you resize.
+    - In the Attributes inspector, change Lines to 0.
+    - Set Autoshrink to Minimum Font Size, and set its value to 12.
+  - It might seem odd to set the number of lines to zero, but that's the way to tell iOS that you can put any number of lines of text into the label.
+  - The third step ensures that, even if you have really long element names or other answers with lots of text, iOS will try to fit them by shrinking the font.
