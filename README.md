@@ -4089,3 +4089,21 @@
     - Set Autoshrink to Minimum Font Size, and set its value to 12.
   - It might seem odd to set the number of lines to zero, but that's the way to tell iOS that you can put any number of lines of text into the label.
   - The third step ensures that, even if you have really long element names or other answers with lots of text, iOS will try to fit them by shrinking the font.
+
+##### Keyboard
+
+- The final issue to polish in your app relates to the keyboard.
+  - You may have noticed that it displays autocorrect suggestions, which could help your users cheat.
+- In your storyboard, select the text field. Then make the following changes in the Attributes inspector under the Text Input Traits section.
+  1. Set Correction to No.
+  2. Set Spell Checking to No.
+- While you're there, you can change the look of the Return key so it looks a bit more like the user is submitting an answer:
+  1. Set Return Key to Done.
+- Checkpoint
+  - Build and run the app. Your keyboard should no longer give any hints to the user, and the Return key should be replaced by a blue key labeled "Done."
+
+##### Wrapup
+
+- Notice how easy it was to make all these changes to your UI, one by one.
+- Your code was localized to the UI update methods, since that's where you describe how the app looks.
+- Writing the code was just a matter of thinking in terms of the way your app should behave when it's in a certain state.
