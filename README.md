@@ -4107,3 +4107,24 @@
 - Notice how easy it was to make all these changes to your UI, one by one.
 - Your code was localized to the UI update methods, since that's where you describe how the app looks.
 - Writing the code was just a matter of thinking in terms of the way your app should behave when it's in a certain state.
+
+#### Part 10 Completing the App
+
+- Your quiz app has turned out quite nicely!
+- It has enough features that a student could use it as a real study aid, and the interface is clean and simple.
+- As a developer, you could easily use this project to create a quiz on any topic you choose, with any number of questions.
+
+##### Random Order
+
+- There's one more feature that will add a crowning touch to the app.
+- If it's going to be a really useful study aid, the app should randomize the quiz questions so that the user has to think on their feet.
+- To enable this functionality, you'll be changing the way you handle your data model.
+  - Currently, you use the constant elementList property to manage the app's data.
+  - But with this approach, there's no way to change the array while the app is running.
+- How can you generate a new, random array of elements every time a user begins the quiz?
+  - By making elementList a variable property instead of a constant, you can randomize the list each time the user switches modes.
+  - Start by changing the property from a constant to a variable: `var elementList = ["Carbon", "Gold", "Chlorine", "Sodium"]`
+  - Next, in `setupQuiz()`, add `elementList = elementList.shuffled()` to randomize the array.
+- Checkpoint
+  - Build and run the app.
+  - When you switch to quiz mode, you'll see that the question don't follow the same order each time.
