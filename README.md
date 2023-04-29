@@ -4128,3 +4128,31 @@
 - Checkpoint
   - Build and run the app.
   - When you switch to quiz mode, you'll see that the question don't follow the same order each time.
+
+##### Predictable Order
+
+- Of course, you've also just randomized the flash cards. Perhaps it's better to keep those in a standard order so that the user can study them more easily. Make the following changes to fix that.
+  - Add a new constant property named `fixedElementList` that will always have the same order.
+  - To avoid duplicate data, you can initialize the `elementList` property to be empty.
+    - That may not seem necessary, but remember that a real-life app will probably have a longer list of more complex data.
+    - `let fixedElementList = ["Carbon", "Gold", "Chlorine", "Sodium"]`
+    - `var elementList: [String] = []`
+  - Now, update `setupFlashCards` to set up the element list: `elementList = fixedElementList`
+  - And modify setupQuiz: `elementList = fixedElementList.shuffled()`
+- If you build and run the app now, it will crash with an "Index out of range" error. Why is that?
+  - When your app first launches, `viewDidLoad()` is called, which calls `updateUI()`. (You can verify this in the Debug navigator.)
+  - But neither `setupQuiz()` nor `setupFlashCards()` has been called. (Again, if you want, you can verify this by setting a breakpoint in each of those methods and re-running the app.)
+  - Which means that the elementList property is still empty;
+  - And you're trying to get a string from elementList to set the image view!
+- The solution is to delete the `updateUI` call in `viewDidLoad()`, and to set the mode property instead.
+- That way your setup code is guaranteed to be called when the app launches.
+
+  - ```swift
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          mode = .flashCard
+      }
+    ```
+
+- Checkpoint
+  - Build and run the app. The quiz questions should be randomized, while the flash cards display in the same order every time.
