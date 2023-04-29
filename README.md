@@ -4156,3 +4156,79 @@
 
 - Checkpoint
   - Build and run the app. The quiz questions should be randomized, while the flash cards display in the same order every time.
+
+##### Other Possibilities
+
+- By now, you're familiar enough with the app that you may have had your own ideas about how it should work or how it could be improved.
+- You're experienced enough that you might even want to challenge yourself to take the app to the next level.
+- Here are a few ideas you might want to try out:
+  - **Shuffling options**
+    - There could be a user control for shuffling elements, so that users can control whether the quiz or the flash cards are predictable or randomized.
+    - Would you use a new button for this? Or maybe another segmented control? How would you update your code?
+  - **Tracking common mistakes**
+    - As the user studies over time, you could keep track of the most commonly missed questions, and then tailor the flash cards to emphasize those elements.
+    - How would you calculate and store that information? And how would you use the data to alter the flash card sessions?
+  - **Eliminating learned items**
+    - Some elements are easier to learn than others. You could give users a way to remove an element from the flash card stack once they've learned it.
+    - Would you add a button for that? How would it affect your data model?
+  - **Multiple-choice mode**
+    - Instead of the free-response style, quizzes could offer a set of multiple-choice answers.
+    - Would you use buttons? How would you store the data? How would you change your code?
+- These are just a few ways to improve your app. If you're enjoying this project, take these ideas or others, and see where you can go.
+
+##### Designing a Model
+
+- For the ElementQuiz app, a simple data model of an array of strings is sufficient to enable the app to work as designed.
+- It works for the flash card interface because the string value is both the answer that’s displayed and the name of the image that’s displayed.
+- But if you wanted to build a more complex app, you might create a ChemicalElement struct to contain more information:
+
+  - ```swift
+      struct ChemicalElement {
+          let symbol: String
+          let name: String
+          let atomicWeight: Int
+          let imageName: String
+      }
+    ```
+
+- The data model above could support things like quizzing on more than the element name.
+- It could also allow the name of the image to be different from the name of the element that’s displayed in the user interface.
+- You could make quizzes that have longer answers, even phrases.
+- This data model would also be one way to support multiple-choice answers.
+- When building apps, developers often need to make decisions such as these.
+  - In the ElementQuiz app, there’s a trade-off between the simplicity of a single string and the structure and functionality of a custom type.
+  - When the demands of the app change, you might need to change the data model as part of your refactoring.
+
+##### Looking Back
+
+- If you examine ViewController carefully, you can still see some of your earliest code peeking through. Check out lines like: `var currentElementIndex = 0` and `let image = UIImage(named: elementName)`
+- So your ElementQuiz app is not completely different from your starting point.
+  - You can think of your development process in this project as evolving the app from a simple, single-celled organism to a breathing, complex animal with a nervous system. Feels good, doesn't it?
+- Making an app is a process of constant creation:
+  - something from nothing—or rather, from the ideas, goals, and emotions that are inside your head.
+  - Creating apps is not quite like anything else in the world, and the satisfaction you get from building an app and sending it into the world is just as special.
+- Enjoy this feeling! It's a reward for all the hard work, thinking, debugging, and persistence you applied.
+- App developers get other rewards, too, but this one is all your own—nobody can take it from you. Delight in your successes, which can help you through the tough times when nothing seems to work.
+
+##### Summary
+
+- In this lesson, you created a sophisticated app. You followed several important app development patterns that helped you along the way.
+- Model-View-Controller
+  - You modeled your app's state with a handful of properties.
+  - Even though you didn't have a separate file for your models, you used them to fully describe what the app was doing at any given time.
+  - Then you wrote controller logic to manipulate that state and modify your interface to match, and respond to UI events by updating the model.
+- Incremental development
+  - By developing step by step, you were able to work on the app in manageable chunks.
+  - Rather than trying to build the whole thing all at once, you had something that would run at the end of each step.
+  - You've followed this practice before, but this project has highlighted just how important it is when you're building a complex app.
+- Single-path UI updates
+  - Your code was organized so that you could reason about its behavior.
+  - You could use your state model to set up the UI all in one place, avoiding the problem of hunting down UI bugs all over your code.
+- Refactoring
+  - You periodically rearranged your code to keep it organized.
+  - Without refactoring, you would have had to add fixes and functionality by bolting on code in awkward ways.
+  - And you could never hope to achieve code that's easy to read.
+  - This is also a skill you've practiced in past projects, but it was especially important in this one.
+- Describing bugs
+  - By describing in detail exactly how to reproduce an error in the app, you forced yourself to think clearly about how the bug might have happened, which gave you a clue about how to solve it.
+  - And if you were working on a team, you would have enabled your teammates to understand the bugs and to help to fix them.
