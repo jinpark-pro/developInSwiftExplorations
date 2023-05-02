@@ -4232,3 +4232,33 @@
 - Describing bugs
   - By describing in detail exactly how to reproduce an error in the app, you forced yourself to think clearly about how the bug might have happened, which gave you a clue about how to solve it.
   - And if you were working on a team, you would have enabled your teammates to understand the bugs and to help to fix them.
+
+### Design For Impact
+
+#### 1 - Analyze Technology
+
+- When you design a new technology, nobody can predict how it will be used—tomorrow or a hundred years from tomorrow.
+- As you’ve learned, the unintended consequences of a computing innovation can be wonderful or horrible.
+- As an app developer, you can mitigate these issues by applying the techniques you've learned in this course, such as examining for bias and working with a diverse team of people.
+- Even so, you can't plan for how people will use your app.
+- What will you do when it's used in ways you didn't anticipate? What plans might you make to be ready for the unintended consequences—both positive and negative—of releasing your app into the world?
+  - Here’s a hint: Don't try to anticipate precisely what might happen with your app; instead, think in terms of conversation, diversity, law, and strategy.
+- When people think globally, they challenge their views.
+- Thinking globally helps people appreciate the diversity of experiences, use cases, and opportunities that arise when they share their innovations on a world stage.
+- One significant variable across individuals, groups, regions, and countries is access to the internet and to connected devices.
+- Known as the digital divide, these variations could be due to socioeconomic, geographic, or demographic differences.
+- Analyze This
+  - Examine your internet access.
+    - Visit the OECD website to see where your home country falls in terms of internet access. Compare it to others.
+      - Why do you imagine different places have such drastically different levels of internet access?
+      - Do you think regions with limited internet access would also have limited access to other technology innovations?
+    - Identify some resources you can use to find other examples of the digital divide.
+    - Analyze the ways that variations between regions can affect equity and influence—whether at a global or local level.
+    - For example, a region that has easy access to internet and cutting-edge technologies may enable farms to use water more efficiently, maximizing their yield.
+      - Another farm in a less-connected area may be dependent on human-managed irrigation systems, which are subject to failure.
+      - In this comparison, the impacts of access can have serious consequences on the population.
+- Individuals, organizations, and governments all play a role in the digital divide.
+  - Individuals can vote for or against policies and politicians that would advance technology or improve infrastructure.
+  - Some organizations try to overcome the digital divide through philanthropy, while others perpetuate it through ignorance or through actions influenced by short-term thinking.
+  - Governmental corruption can impact the decision-making process—for example, by awarding a bid to a company that doesn’t use ethical or sustainable practices.
+  - Even if everyone involved is making the best-possible decisions, sometimes the system itself can bias technology towards deepening the divide, rather than bridging it.
