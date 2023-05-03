@@ -4262,3 +4262,24 @@
   - Some organizations try to overcome the digital divide through philanthropy, while others perpetuate it through ignorance or through actions influenced by short-term thinking.
   - Governmental corruption can impact the decision-making process—for example, by awarding a bid to a company that doesn’t use ethical or sustainable practices.
   - Even if everyone involved is making the best-possible decisions, sometimes the system itself can bias technology towards deepening the divide, rather than bridging it.
+
+#### 2 - Think Like a Developer
+
+- As an app designer, you should consider audiences on both sides of the digital divide.
+  - By paying attention to this issue, you may be able to mitigate negative impacts — and maybe empower people with limited access to digital technologies.
+- Consider This
+  - Imagine that you've been asked to develop the quiz app into an assessment app for iPad.
+  - The assessment app you design is brilliant (of course!) and drastically reduces grading errors, increases the speed with which students receive their grades, and enables school districts to target resources at those most in need. Sounds great, right?
+  - But are all students’ experiences of the app the same?
+  - Even if all students could access a device on test day, how might their experiences and achievement differ based on their access to digital technologies at school and at home?
+  - What could you build into the app design to bridge that divide — and create a fairer, more inclusive app?
+- Try This
+  - Consider diverse audiences.
+  - You’ve tested your app for fairness and inclusion a number of times, but you’ve probably only considered local audiences.
+  - Now imagine your app has been so successful at launch that it will be used by people all over the country — or even around the world.
+  - Who will benefit from your app in its current form?
+  - Who will struggle to use your app or make the most of all its functionality?
+    - For example, does your app depend on consistent high-speed internet connections?
+  - Would that pose a problem for users with limited internet connectivity?
+  - Does your app rely on new (expensive) technologies not included in many older or entry-level device models?
+  - Plan a new version of your app that helps bridge the digital divide.
