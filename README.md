@@ -4318,3 +4318,36 @@
     - Consider variables that would impact how well your product will work in different markets.
   - If you like, create a Keynote presentation to support your pitch.
     - Keep the slides simple, and be sure the style matches your app.
+
+#### 4 - Review and Iterate
+
+- Once you’ve identified the talking points for your pitch, determine a list of likely questions from the audience.
+  - Your answers should cater to different audience members’ concerns, so be prepared with multiple answers to each question.
+  - You’ll also need to be prepared to address any negative perspectives that might emerge during your initial presentation.
+  - In particular, speak to how you plan to bridge the digital divide and to the ethics of your revenue plan.
+  - Be explicit about the ways your app brings about positive impacts, while minimizing potential negative impacts.
+  - And talk about your plans for when unanticipated consequences arise.
+- Get feedback
+  - It’s a good idea to rehearse your entire pitch and to seek feedback from mentors or critical friends. Have them take on personas of members of your target audience, ask questions, and note the strengths and weaknesses of your pitch.
+  - While you might not enjoy it, it’s also a good idea to film yourself rehearsing your pitch. Notice your body language and what it says about your passion for the project and your confidence in the app’s design.
+- Revise and refine
+  - Review your pitch in light of feedback—including self-feedback—and settle on a final script.
+    - Practice your pitch until it feels smooth and comfortable. If there are sections you stumble over repeatedly, rework them.
+  - Even after you’ve delivered your pitch, keep on gathering feedback.
+    - Ask your audience about the presentation’s strengths and weaknesses, and continue to iterate on your vision.
+  - And don’t forget to reflect on the app design process. There are many ways to describe the development process, but the basic phases tend to remain the same:
+    - Investigating and reflecting
+    - Designing
+    - Prototyping
+    - Testing
+  - Reflect on the prompts and activities that helped you iterate on and improve your app idea. What would you do differently next time?
+- Other Considerations
+  - When your pitch is over, the fun is just beginning!
+    - Assume you have the time and money to get started developing—now you have to plan for how you’ll manage the project.
+    - How will your developers collaborate?
+    - Perhaps they’ll use a tool like GitHub to store and share their code.
+    - Working between teams is also crucial.
+    - How will developers and members of your nontechnical staff, such as marketers, keep each other up to date?
+    - Will they use shared documents or a shared calendar?
+    - What cloud resources support on-the-go collaboration?
+    - Why did you select the tools you’ll use to bring your teams together?
