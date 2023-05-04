@@ -4283,3 +4283,38 @@
   - Would that pose a problem for users with limited internet connectivity?
   - Does your app rely on new (expensive) technologies not included in many older or entry-level device models?
   - Plan a new version of your app that helps bridge the digital divide.
+
+#### 3 - Plan and Build
+
+- If you want your app to succeed, it’s not enough to have a great design.
+  - You’ll also need to tell people about it.
+  - Marketing is all about finding the people who’ll want your app, as well as those who’ll champion it—and communicating your vision to them.
+- One form of marketing is a pitch.
+  - A pitch typically includes a demo of your app prototype and a presentation that showcases the full plan and the thinking behind your app.
+  - Your pitch should include an explanation of why your app is a valuable addition to the market, and possibly why it should be selected over competing apps.
+- Unless you’re creating an app just for the fun of it, you’ll want to consider how it will generate income.
+  - There are various funding models for apps: you can charge per download, sell subscription plans, offer in-app purchases, or display in-app ads. But there are other sources of revenue as well.
+- The data your app gathers and generates can be valuable to you and to others.
+  - For example, if you create a multiplayer game that requires users to interact with a real-world environment, you’ll likely need to know their locations.
+  - Local businesses might be willing to pay you for access to that data—as it could determine when your users are close by.
+  - Other kinds of non-PII data, such as how often a user views an image or plays a song, or the titles of the articles they read, could also provide valuable insights about the popularity of content.
+- Before you commit to a revenue plan, however, make sure to consider your users’ rights and privacy.
+  - For example, will users know their data may be sold?
+  - Can other entities, such as law enforcement, purchase this data in order to learn more about users, or to track them?
+  - Even if a revenue stream is legal, it may not be an ethical choice.
+- Recall the list of the four guidelines regarding user privacy that Apple recommends for all app developers:
+  1. Request consent when your app needs personal data.
+  2. Be transparent about how personal data will be used.
+  3. Give the user control over their personal data and protect the personal data you collect.
+  4. Use the minimum amount of personal data required.
+- Build draft a list of talking points for your pitch.
+  - Consider your audience and their interests as you build out each point.
+    - Begin with the problem you’re trying to solve and a short description of how your app will make a difference.
+    - Be sure to highlight key points from your app specs and to note features you’ll want to emphasize.
+  - Create a demo script that shows off your app’s key features.
+    - Determine whether you’ll be presenting your demo in person or presenting a screencast with a voiceover — and design your script accordingly.
+  - Remember to think beyond simply building and publishing your app to distributing and marketing it.
+    - Imagine global distribution and include ways to reach target demographics worldwide.
+    - Consider variables that would impact how well your product will work in different markets.
+  - If you like, create a Keynote presentation to support your pitch.
+    - Keep the slides simple, and be sure the style matches your app.
